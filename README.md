@@ -1,5 +1,5 @@
-# TetriX: Efficient and Reliable Task Scheduler for HPC Clusters
-TetriX is an advanced task scheduler designed for high-performance computing (HPC) clusters. Utilizing a decentralized and resilient approach, TetriX efficiently manages computational tasks, aiming for near-optimal outcomes and surpassing traditional human heuristics and other RL methods.
+# TetriX: Decentralized and Resilient Multi-Agent Schedulers for High-Performance Computing Clusters
+TetriX is an advanced task scheduler designed for high-performance computing (HPC) clusters. Utilizing a decentralized and resilient approach, TetriX employs a network of agents for resource management, aiming for near-optimal outcomes and surpassing traditional human heuristics.
 
 ## Features (Under Development)
 
