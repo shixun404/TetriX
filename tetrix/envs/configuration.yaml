@@ -1,0 +1,20 @@
+gossipProtocol:
+  # The interval in seconds at which a node will initiate gossip communication.
+  gossipIntervalSeconds: 5
+  
+  # The number of peers a node will contact during each gossip interval.
+  peerSelectionCount: 3
+  
+  # Timeout in seconds for considering a non-responding node as possible-failed.
+  PingTimeoutSeconds: 10
+
+  # Timeout in seconds for considering a possible-failed node as failed.
+  PossibleFailedTimeoutSeconds: 20
+
+  # Timeout in seconds for considering a failure report as invalid.
+  PossibleFailedReportTimeoutSeconds: 60
+  
+  # Initial list of known peers (can be empty if peer discovery is dynamic).
+  knownPeers:
+    - 127.0.0.7
+  
