@@ -2,3 +2,4 @@ rl/figs
 *.pkl
 *.pth
 rl/wandb
+*.tar.gz
