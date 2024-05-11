@@ -1,3 +1,4 @@
 rl/figs
 *.pkl
 *.pth
+rl/wandb
