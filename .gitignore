@@ -3,3 +3,4 @@ rl/figs
 *.pth
 rl/wandb
 *.tar.gz
+*.png
