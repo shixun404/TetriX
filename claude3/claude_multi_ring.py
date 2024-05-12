@@ -17,7 +17,7 @@ def construct_matrix_A(num_nodes):
                 A[i, (i-2-j) % num_nodes] = 1
 
     # Create shortcuts between groups
-    for i in range(10):
+    for i in range(                                                  ):
         for j in range(10):
             A[i * group_size + j, ((i+1) % 10) * group_size + j] = 1
 
@@ -26,13 +26,22 @@ def construct_matrix_A(num_nodes):
 # Example usage
 num_nodes = 1000
 # A = construct_matrix_A(num_nodes)
-A = torch.as_tensor(construct_matrix_A(num_nodes)).T
-A_10 = A
-for i in range(9):
- A_10 = A_10 @ A
- A_10 = A_10.clamp(min=0, max=1)
-print("After 10 hop", A_10.sum())
-print(A[:10, :10])
-print(A_10[:10, :10])
-filename = 'N1000_multi_ring.png'
-heatmap.plot_heatmap(A, A_10, 1000, filename)
+A = torch.as_tensor(construct_matrix_A(num_nodes), device=torch.device('cuda:0'), dtype=torch.float)
+print(A.sum(dim=0).float().mean())
+A = (A + A.T).clamp(min=0, max=1)
+# print(A.sum(dim=0))
+print(A.sum(dim=0).float().mean())
+# assert 0
+# A_10 = torch.matrix_power(A, 10).clamp(min=0, max=1)
+# for i in range(9):
+#  A_10 = A_10 @ A
+#  A_10 = A_10.clamp(min=0, max=1)
+# print("After 10 hop", A_10.sum())
+# print(A[:10, :10])
+# print(A_10[:10, :10])
+A_i = A
+for i in range(1, 21, 1):
+    if i != 1:
+        A_i = A_i @ A
+    filename = f"N1000_multi_ring_A^{i}.png"
+    heatmap.plot_heatmap(A_i, 1000, filename)
