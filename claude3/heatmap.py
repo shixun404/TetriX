@@ -12,14 +12,12 @@ plt.rcParams['lines.linewidth'] = 3
 # plt.rcParams["font.family"] = "Times New Roman"
 plt.tight_layout()
 
-def plot_heatmap(data, data_power, N=16, filename=None):
+def plot_heatmap(data, N=16, filename=None):
     cmap = sns.diverging_palette(220, 10, as_cmap=True)
-    fig, ax = plt.subplots(ncols=2, figsize=(20, 20))
+    fig, ax = plt.subplots( figsize=(10, 10))
     sns_plot = sns.heatmap(data.detach().cpu(), cmap=cmap, vmax=1, vmin=0,
-            square=True, linewidths=.001, cbar_kws={"shrink": .5}, ax=ax[0])
-    sns_plot = sns.heatmap(data_power.detach().cpu(), cmap=cmap, vmax=1, vmin=0,
-            square=True, linewidths=.001, cbar_kws={"shrink": .5}, ax=ax[1])
-    ax[0].set_title("A")
-    ax[1].set_title("A^10")
+            square=True, linewidths=.001, cbar_kws={"shrink": .5}, ax=ax, xticklabels=N//4, yticklabels=N//4)
+    ax.set_title(filename.split('.')[0])
     if filename is not None:
-        fig.savefig(filename)
+        fig.savefig(filename, bbox_inches='tight')
+    plt.close(fig)
