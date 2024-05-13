@@ -27,9 +27,9 @@ Designing the loss function to maximize $A^4$ while keeping the constraints is c
 
   This component penalizes deviations from having exactly four 1s per column.
 
-- **Maximization of $A^4$**: The primary goal is to maximize the trace of $A^4$ (sum of diagonal elements), which represents the long-term influence or connectivity in the network matrix:
-  $$\text{Maximization Loss} = -\text{trace}(A^4)$$
-  By minimizing the negative trace of $A^4$, you effectively maximize it.
+- **Minimize number of zeros in $A^4$**: The primary goal is to minimize the number of zeros in \( A^4 \). Here's how you might construct such a loss function:
+  $$\text{Maximization Loss} = \text{Sum}(1 - (A^4)) $$
+  Count the number of zeros in \( A^4 \). This can be simply done by taking the sum of ones in a matrix where 0s in \( A^4 \) are replaced by 1 and 1s by 0.
 
 ### 5. Training the Model
 
