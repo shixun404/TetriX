@@ -12,7 +12,13 @@ def construct_matrix_A(num_nodes):
         order = torch.randperm(num_nodes)
         for j in range(num_nodes):
             A[order[j], order[(j + 1) % 1000]] = 1
+    A = torch.as_tensor(A, dtype=torch.float,device=torch.device('cuda:0'))
+    A = (A + A.T).clamp(min=0, max=1)
     print(A.sum())
+    print(A.sum(dim=0).mean(), A.sum(dim=1).mean())
+    A = (A + A.T).clamp(min=0, max=1)
+    print(A.sum(dim=0).mean(), A.sum(dim=1).mean())
+    assert 0
     return A
 
 # Example usage
