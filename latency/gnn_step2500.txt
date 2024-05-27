@@ -1,0 +1,1657 @@
+Train Episode 0   : step = 38   Total Reward = -21.00   diameter = 21   loss = 0.0000  
+Train Episode 1   : step = 40   Total Reward = -20.00   diameter = 20   loss = 0.0000  
+Train Episode 2   : step = 40   Total Reward = -19.00   diameter = 19   loss = 0.0000  
+Train Episode 3   : step = 40   Total Reward = -19.00   diameter = 19   loss = 0.0000  
+Train Episode 4   : step = 40   Total Reward = -16.00   diameter = 16   loss = 0.0000  
+Train Episode 5   : step = 38   Total Reward = -21.00   diameter = 21   loss = 0.0000  
+Train Episode 6   : step = 40   Total Reward = -18.00   diameter = 18   loss = 26538.3886
+Train Episode 7   : step = 40   Total Reward = -20.00   diameter = 20   loss = 11110.8322
+Train Episode 8   : step = 40   Total Reward = -19.00   diameter = 19   loss = 9115.9978
+Train Episode 9   : step = 40   Total Reward = -24.00   diameter = 24   loss = 8153.9185
+Train Episode 10  : step = 40   Total Reward = -17.00   diameter = 17   loss = 9481.0886
+Train Episode 11  : step = 40   Total Reward = -18.00   diameter = 18   loss = 8245.7780
+Train Episode 12  : step = 40   Total Reward = -15.00   diameter = 15   loss = 7852.7999
+Train Episode 13  : step = 40   Total Reward = -14.00   diameter = 14   loss = 8017.6163
+Train Episode 14  : step = 40   Total Reward = -17.00   diameter = 17   loss = 8616.9462
+Train Episode 15  : step = 40   Total Reward = -17.00   diameter = 17   loss = 7973.0278
+Train Episode 16  : step = 40   Total Reward = -19.00   diameter = 19   loss = 6724.8083
+Train Episode 17  : step = 40   Total Reward = -17.00   diameter = 17   loss = 8094.2684
+Train Episode 18  : step = 40   Total Reward = -20.00   diameter = 20   loss = 7006.9579
+Train Episode 19  : step = 40   Total Reward = -22.00   diameter = 22   loss = 6685.9255
+Train Episode 20  : step = 40   Total Reward = -18.00   diameter = 18   loss = 7529.4871
+Train Episode 21  : step = 40   Total Reward = -17.00   diameter = 17   loss = 3729.3683
+Train Episode 22  : step = 40   Total Reward = -17.00   diameter = 17   loss = 4304.9676
+Train Episode 23  : step = 39   Total Reward = -23.00   diameter = 23   loss = 4437.6181
+Train Episode 24  : step = 40   Total Reward = -16.00   diameter = 16   loss = 3891.5088
+Train Episode 25  : step = 40   Total Reward = -16.00   diameter = 16   loss = 3038.5940
+Train Episode 26  : step = 40   Total Reward = -18.00   diameter = 18   loss = 1806.7793
+Train Episode 27  : step = 40   Total Reward = -16.00   diameter = 16   loss = 1031.5722
+Train Episode 28  : step = 40   Total Reward = -20.00   diameter = 20   loss = 748.5422
+Train Episode 29  : step = 40   Total Reward = -21.00   diameter = 21   loss = 9684.5545
+Train Episode 30  : step = 38   Total Reward = -19.00   diameter = 19   loss = 8902.2733
+Train Episode 31  : step = 40   Total Reward = -22.00   diameter = 22   loss = 8024.4818
+Train Episode 32  : step = 40   Total Reward = -20.00   diameter = 20   loss = 5967.1810
+Train Episode 33  : step = 39   Total Reward = -15.00   diameter = 15   loss = 6069.0384
+Train Episode 34  : step = 38   Total Reward = -22.00   diameter = 22   loss = 2881.6657
+Train Episode 35  : step = 40   Total Reward = -18.00   diameter = 18   loss = 5205.5343
+Train Episode 36  : step = 40   Total Reward = -16.00   diameter = 16   loss = 4177.9030
+Train Episode 37  : step = 40   Total Reward = -16.00   diameter = 16   loss = 2640.9758
+Train Episode 38  : step = 40   Total Reward = -21.00   diameter = 21   loss = 1955.4982
+Train Episode 39  : step = 40   Total Reward = -17.00   diameter = 17   loss = 4777.3468
+Train Episode 40  : step = 40   Total Reward = -18.00   diameter = 18   loss = 1724.6534
+Train Episode 41  : step = 39   Total Reward = -22.00   diameter = 22   loss = 1268.8182
+Train Episode 42  : step = 40   Total Reward = -18.00   diameter = 18   loss = 2439.6285
+Train Episode 43  : step = 40   Total Reward = -22.00   diameter = 22   loss = 1475.1491
+Train Episode 44  : step = 38   Total Reward = -24.00   diameter = 24   loss = 3474.2073
+Train Episode 45  : step = 40   Total Reward = -17.00   diameter = 17   loss = 1835.1052
+Train Episode 46  : step = 40   Total Reward = -18.00   diameter = 18   loss = 8986.9422
+Train Episode 47  : step = 39   Total Reward = -19.00   diameter = 19   loss = 6629.3820
+Train Episode 48  : step = 40   Total Reward = -18.00   diameter = 18   loss = 6144.6107
+Train Episode 49  : step = 40   Total Reward = -18.00   diameter = 18   loss = 8007.9729
+Train Episode 50  : step = 40   Total Reward = -18.00   diameter = 18   loss = 7038.6281
+Train Episode 51  : step = 40   Total Reward = -20.00   diameter = 20   loss = 6060.7289
+Train Episode 52  : step = 40   Total Reward = -19.00   diameter = 19   loss = 10838.4728
+Train Episode 53  : step = 40   Total Reward = -18.00   diameter = 18   loss = 7967.0564
+Train Episode 54  : step = 40   Total Reward = -14.00   diameter = 14   loss = 7748.6540
+Train Episode 55  : step = 40   Total Reward = -20.00   diameter = 20   loss = 7782.3771
+Train Episode 56  : step = 40   Total Reward = -22.00   diameter = 22   loss = 7893.6044
+Train Episode 57  : step = 40   Total Reward = -17.00   diameter = 17   loss = 5857.5946
+Train Episode 58  : step = 38   Total Reward = -23.00   diameter = 23   loss = 6160.0492
+Train Episode 59  : step = 40   Total Reward = -19.00   diameter = 19   loss = 5300.2029
+Train Episode 60  : step = 40   Total Reward = -20.00   diameter = 20   loss = 6458.7667
+Train Episode 61  : step = 40   Total Reward = -19.00   diameter = 19   loss = 6820.3598
+Train Episode 62  : step = 40   Total Reward = -20.00   diameter = 20   loss = 8243.0666
+Train Episode 63  : step = 40   Total Reward = -20.00   diameter = 20   loss = 7185.5556
+Train Episode 64  : step = 40   Total Reward = -13.00   diameter = 13   loss = 6449.5691
+Train Episode 65  : step = 38   Total Reward = -20.00   diameter = 20   loss = 5395.2027
+Train Episode 66  : step = 40   Total Reward = -17.00   diameter = 17   loss = 4944.3946
+Train Episode 67  : step = 40   Total Reward = -21.00   diameter = 21   loss = 7329.7223
+Train Episode 68  : step = 40   Total Reward = -18.00   diameter = 18   loss = 4895.2345
+Train Episode 69  : step = 38   Total Reward = -26.00   diameter = 26   loss = 3964.7645
+Train Episode 70  : step = 40   Total Reward = -23.00   diameter = 23   loss = 5384.5159
+Train Episode 71  : step = 40   Total Reward = -22.00   diameter = 22   loss = 2965.3893
+Train Episode 72  : step = 39   Total Reward = -20.00   diameter = 20   loss = 5164.8542
+Train Episode 73  : step = 40   Total Reward = -16.00   diameter = 16   loss = 6457.1789
+Train Episode 74  : step = 40   Total Reward = -18.00   diameter = 18   loss = 3837.7873
+Train Episode 75  : step = 39   Total Reward = -21.00   diameter = 21   loss = 16386.2928
+Train Episode 76  : step = 40   Total Reward = -17.00   diameter = 17   loss = 6131.7561
+Train Episode 77  : step = 40   Total Reward = -18.00   diameter = 18   loss = 10064.6988
+Train Episode 78  : step = 40   Total Reward = -17.00   diameter = 17   loss = 7791.8059
+Train Episode 79  : step = 40   Total Reward = -20.00   diameter = 20   loss = 6875.9673
+Train Episode 80  : step = 40   Total Reward = -21.00   diameter = 21   loss = 6192.7057
+Train Episode 81  : step = 40   Total Reward = -19.00   diameter = 19   loss = 8466.4496
+Train Episode 82  : step = 38   Total Reward = -23.00   diameter = 23   loss = 7514.6599
+Train Episode 83  : step = 40   Total Reward = -22.00   diameter = 22   loss = 4475.8379
+Train Episode 84  : step = 40   Total Reward = -20.00   diameter = 20   loss = 5600.8667
+Train Episode 85  : step = 40   Total Reward = -19.00   diameter = 19   loss = 6840.9142
+Train Episode 86  : step = 40   Total Reward = -17.00   diameter = 17   loss = 7206.9545
+Train Episode 87  : step = 40   Total Reward = -17.00   diameter = 17   loss = 5600.8482
+Train Episode 88  : step = 40   Total Reward = -21.00   diameter = 21   loss = 3919.2287
+Train Episode 89  : step = 40   Total Reward = -16.00   diameter = 16   loss = 9965.5091
+Test  Episode 90  : step = 39   Total Reward = -21.00   diameter = 21   loss = 0.0000  
+Test  Episode 91  : step = 40   Total Reward = -22.00   diameter = 22   loss = 0.0000  
+Test  Episode 92  : step = 38   Total Reward = -21.00   diameter = 21   loss = 0.0000  
+Test  Episode 93  : step = 40   Total Reward = -14.00   diameter = 14   loss = 0.0000  
+Test  Episode 94  : step = 39   Total Reward = -18.00   diameter = 18   loss = 0.0000  
+Test  Episode 95  : step = 38   Total Reward = -25.00   diameter = 25   loss = 0.0000  
+Test  Episode 96  : step = 40   Total Reward = -22.00   diameter = 22   loss = 0.0000  
+Test  Episode 97  : step = 39   Total Reward = -25.00   diameter = 25   loss = 0.0000  
+Test  Episode 98  : step = 37   Total Reward = -21.00   diameter = 21   loss = 0.0000  
+Test  Episode 99  : step = 39   Total Reward = -26.00   diameter = 26   loss = 0.0000  
+-21.5 21.5
+Train Episode 100 : step = 40   Total Reward = -18.00   diameter = 18   loss = 9616.2197
+Train Episode 101 : step = 40   Total Reward = -16.00   diameter = 16   loss = 6761.5171
+Train Episode 102 : step = 40   Total Reward = -19.00   diameter = 19   loss = 9281.6356
+Train Episode 103 : step = 40   Total Reward = -17.00   diameter = 17   loss = 7181.0064
+Train Episode 104 : step = 40   Total Reward = -18.00   diameter = 18   loss = 4877.0004
+Train Episode 105 : step = 40   Total Reward = -19.00   diameter = 19   loss = 3680.6193
+Train Episode 106 : step = 40   Total Reward = -16.00   diameter = 16   loss = 6029.2497
+Train Episode 107 : step = 39   Total Reward = -21.00   diameter = 21   loss = 5036.4107
+Train Episode 108 : step = 38   Total Reward = -18.00   diameter = 18   loss = 2927.8986
+Train Episode 109 : step = 40   Total Reward = -21.00   diameter = 21   loss = 4033.5294
+Train Episode 110 : step = 39   Total Reward = -19.00   diameter = 19   loss = 1703.1374
+Train Episode 111 : step = 38   Total Reward = -24.00   diameter = 24   loss = 1038.3968
+Train Episode 112 : step = 39   Total Reward = -18.00   diameter = 18   loss = 843.9960
+Train Episode 113 : step = 40   Total Reward = -18.00   diameter = 18   loss = 710.7874
+Train Episode 114 : step = 38   Total Reward = -21.00   diameter = 21   loss = 985.4169
+Train Episode 115 : step = 39   Total Reward = -17.00   diameter = 17   loss = 675.4046
+Train Episode 116 : step = 40   Total Reward = -19.00   diameter = 19   loss = 625.0109
+Train Episode 117 : step = 40   Total Reward = -21.00   diameter = 21   loss = 584.6362
+Train Episode 118 : step = 40   Total Reward = -17.00   diameter = 17   loss = 599.3992
+Train Episode 119 : step = 40   Total Reward = -20.00   diameter = 20   loss = 698.5075
+Train Episode 120 : step = 40   Total Reward = -19.00   diameter = 19   loss = 612.4794
+Train Episode 121 : step = 40   Total Reward = -16.00   diameter = 16   loss = 569.0906
+Train Episode 122 : step = 40   Total Reward = -21.00   diameter = 21   loss = 15822.9011
+Train Episode 123 : step = 40   Total Reward = -20.00   diameter = 20   loss = 3177.6198
+Train Episode 124 : step = 39   Total Reward = -21.00   diameter = 21   loss = 22962.6191
+Train Episode 125 : step = 40   Total Reward = -21.00   diameter = 21   loss = 12489.8449
+Train Episode 126 : step = 40   Total Reward = -20.00   diameter = 20   loss = 10171.3183
+Train Episode 127 : step = 40   Total Reward = -20.00   diameter = 20   loss = 10823.2784
+Train Episode 128 : step = 40   Total Reward = -16.00   diameter = 16   loss = 8784.5592
+Train Episode 129 : step = 40   Total Reward = -17.00   diameter = 17   loss = 7632.2288
+Train Episode 130 : step = 40   Total Reward = -17.00   diameter = 17   loss = 7930.8126
+Train Episode 131 : step = 40   Total Reward = -16.00   diameter = 16   loss = 7023.8932
+Train Episode 132 : step = 40   Total Reward = -17.00   diameter = 17   loss = 6955.2176
+Train Episode 133 : step = 40   Total Reward = -21.00   diameter = 21   loss = 8488.7890
+Train Episode 134 : step = 38   Total Reward = -19.00   diameter = 19   loss = 7338.6900
+Train Episode 135 : step = 40   Total Reward = -19.00   diameter = 19   loss = 8135.6418
+Train Episode 136 : step = 39   Total Reward = -22.00   diameter = 22   loss = 5790.1014
+Train Episode 137 : step = 40   Total Reward = -21.00   diameter = 21   loss = 6626.6581
+Train Episode 138 : step = 40   Total Reward = -16.00   diameter = 16   loss = 7597.5444
+Train Episode 139 : step = 40   Total Reward = -16.00   diameter = 16   loss = 6375.4602
+Train Episode 140 : step = 38   Total Reward = -15.00   diameter = 15   loss = 6643.9339
+Train Episode 141 : step = 38   Total Reward = -20.00   diameter = 20   loss = 5779.4600
+Train Episode 142 : step = 40   Total Reward = -23.00   diameter = 23   loss = 5142.8360
+Train Episode 143 : step = 38   Total Reward = -22.00   diameter = 22   loss = 4904.4442
+Train Episode 144 : step = 40   Total Reward = -22.00   diameter = 22   loss = 7149.3806
+Train Episode 145 : step = 40   Total Reward = -19.00   diameter = 19   loss = 5513.2586
+Train Episode 146 : step = 38   Total Reward = -19.00   diameter = 19   loss = 5431.9238
+Train Episode 147 : step = 40   Total Reward = -21.00   diameter = 21   loss = 7023.7233
+Train Episode 148 : step = 38   Total Reward = -22.00   diameter = 22   loss = 7247.7878
+Train Episode 149 : step = 40   Total Reward = -18.00   diameter = 18   loss = 6271.8725
+Train Episode 150 : step = 40   Total Reward = -20.00   diameter = 20   loss = 6126.0938
+Train Episode 151 : step = 39   Total Reward = -22.00   diameter = 22   loss = 4747.2373
+Train Episode 152 : step = 39   Total Reward = -19.00   diameter = 19   loss = 4557.7553
+Train Episode 153 : step = 40   Total Reward = -19.00   diameter = 19   loss = 4704.9626
+Train Episode 154 : step = 40   Total Reward = -18.00   diameter = 18   loss = 4087.7289
+Train Episode 155 : step = 40   Total Reward = -25.00   diameter = 25   loss = 7259.7205
+Train Episode 156 : step = 40   Total Reward = -22.00   diameter = 22   loss = 5682.0566
+Train Episode 157 : step = 40   Total Reward = -20.00   diameter = 20   loss = 4132.2967
+Train Episode 158 : step = 40   Total Reward = -17.00   diameter = 17   loss = 3365.7863
+Train Episode 159 : step = 40   Total Reward = -19.00   diameter = 19   loss = 4936.3569
+Train Episode 160 : step = 39   Total Reward = -19.00   diameter = 19   loss = 2500.3387
+Train Episode 161 : step = 40   Total Reward = -21.00   diameter = 21   loss = 1801.6163
+Train Episode 162 : step = 40   Total Reward = -18.00   diameter = 18   loss = 1405.6708
+Train Episode 163 : step = 40   Total Reward = -21.00   diameter = 21   loss = 2596.7798
+Train Episode 164 : step = 40   Total Reward = -20.00   diameter = 20   loss = 3931.3932
+Train Episode 165 : step = 40   Total Reward = -18.00   diameter = 18   loss = 2338.6432
+Train Episode 166 : step = 40   Total Reward = -23.00   diameter = 23   loss = 874.8492
+Train Episode 167 : step = 39   Total Reward = -16.00   diameter = 16   loss = 781.3678
+Train Episode 168 : step = 38   Total Reward = -23.00   diameter = 23   loss = 725.8517
+Train Episode 169 : step = 40   Total Reward = -20.00   diameter = 20   loss = 664.8453
+Train Episode 170 : step = 40   Total Reward = -18.00   diameter = 18   loss = 723.2624
+Train Episode 171 : step = 40   Total Reward = -21.00   diameter = 21   loss = 617.1477
+Train Episode 172 : step = 40   Total Reward = -18.00   diameter = 18   loss = 622.4523
+Train Episode 173 : step = 40   Total Reward = -16.00   diameter = 16   loss = 651.5854
+Train Episode 174 : step = 40   Total Reward = -18.00   diameter = 18   loss = 564.2878
+Train Episode 175 : step = 39   Total Reward = -18.00   diameter = 18   loss = 1733.9767
+Train Episode 176 : step = 40   Total Reward = -20.00   diameter = 20   loss = 773.0614
+Train Episode 177 : step = 38   Total Reward = -21.00   diameter = 21   loss = 571.5817
+Train Episode 178 : step = 40   Total Reward = -17.00   diameter = 17   loss = 557.6847
+Train Episode 179 : step = 40   Total Reward = -20.00   diameter = 20   loss = 520.0098
+Train Episode 180 : step = 40   Total Reward = -18.00   diameter = 18   loss = 512.5248
+Train Episode 181 : step = 40   Total Reward = -17.00   diameter = 17   loss = 589.8504
+Train Episode 182 : step = 40   Total Reward = -22.00   diameter = 22   loss = 556.3243
+Train Episode 183 : step = 40   Total Reward = -22.00   diameter = 22   loss = 538.9003
+Train Episode 184 : step = 40   Total Reward = -19.00   diameter = 19   loss = 507.0948
+Train Episode 185 : step = 40   Total Reward = -18.00   diameter = 18   loss = 531.2941
+Train Episode 186 : step = 40   Total Reward = -16.00   diameter = 16   loss = 480.3558
+Train Episode 187 : step = 40   Total Reward = -18.00   diameter = 18   loss = 527.6411
+Train Episode 188 : step = 40   Total Reward = -18.00   diameter = 18   loss = 1424.2309
+Train Episode 189 : step = 39   Total Reward = -22.00   diameter = 22   loss = 3448.5242
+Test  Episode 190 : step = 38   Total Reward = -18.00   diameter = 18   loss = 0.0000  
+Test  Episode 191 : step = 40   Total Reward = -23.00   diameter = 23   loss = 0.0000  
+Test  Episode 192 : step = 40   Total Reward = -17.00   diameter = 17   loss = 0.0000  
+Test  Episode 193 : step = 40   Total Reward = -19.00   diameter = 19   loss = 0.0000  
+Test  Episode 194 : step = 40   Total Reward = -18.00   diameter = 18   loss = 0.0000  
+Test  Episode 195 : step = 40   Total Reward = -17.00   diameter = 17   loss = 0.0000  
+Test  Episode 196 : step = 40   Total Reward = -18.00   diameter = 18   loss = 0.0000  
+Test  Episode 197 : step = 40   Total Reward = -20.00   diameter = 20   loss = 0.0000  
+Test  Episode 198 : step = 40   Total Reward = -18.00   diameter = 18   loss = 0.0000  
+Test  Episode 199 : step = 40   Total Reward = -19.00   diameter = 19   loss = 0.0000  
+-18.7 18.7
+Train Episode 200 : step = 40   Total Reward = -20.00   diameter = 20   loss = 1642.3252
+Train Episode 201 : step = 40   Total Reward = -20.00   diameter = 20   loss = 4498.4308
+Train Episode 202 : step = 38   Total Reward = -30.00   diameter = 30   loss = 1032.9940
+Train Episode 203 : step = 40   Total Reward = -18.00   diameter = 18   loss = 762.0055
+Train Episode 204 : step = 40   Total Reward = -17.00   diameter = 17   loss = 723.2126
+Train Episode 205 : step = 40   Total Reward = -23.00   diameter = 23   loss = 644.4038
+Train Episode 206 : step = 40   Total Reward = -16.00   diameter = 16   loss = 581.2651
+Train Episode 207 : step = 40   Total Reward = -22.00   diameter = 22   loss = 564.7057
+Train Episode 208 : step = 40   Total Reward = -17.00   diameter = 17   loss = 540.1588
+Train Episode 209 : step = 40   Total Reward = -17.00   diameter = 17   loss = 560.0506
+Train Episode 210 : step = 40   Total Reward = -19.00   diameter = 19   loss = 571.2517
+Train Episode 211 : step = 40   Total Reward = -21.00   diameter = 21   loss = 562.4182
+Train Episode 212 : step = 40   Total Reward = -25.00   diameter = 25   loss = 532.5454
+Train Episode 213 : step = 40   Total Reward = -20.00   diameter = 20   loss = 577.3930
+Train Episode 214 : step = 40   Total Reward = -17.00   diameter = 17   loss = 537.3964
+Train Episode 215 : step = 40   Total Reward = -15.00   diameter = 15   loss = 503.4092
+Train Episode 216 : step = 40   Total Reward = -20.00   diameter = 20   loss = 529.5983
+Train Episode 217 : step = 40   Total Reward = -14.00   diameter = 14   loss = 1001.7148
+Train Episode 218 : step = 40   Total Reward = -17.00   diameter = 17   loss = 8672.6248
+Train Episode 219 : step = 40   Total Reward = -18.00   diameter = 18   loss = 8978.6424
+Train Episode 220 : step = 40   Total Reward = -20.00   diameter = 20   loss = 6995.3707
+Train Episode 221 : step = 40   Total Reward = -21.00   diameter = 21   loss = 6736.9610
+Train Episode 222 : step = 40   Total Reward = -17.00   diameter = 17   loss = 5475.5537
+Train Episode 223 : step = 40   Total Reward = -22.00   diameter = 22   loss = 7410.1215
+Train Episode 224 : step = 40   Total Reward = -17.00   diameter = 17   loss = 5934.6593
+Train Episode 225 : step = 40   Total Reward = -21.00   diameter = 21   loss = 3801.5999
+Train Episode 226 : step = 40   Total Reward = -18.00   diameter = 18   loss = 5932.2497
+Train Episode 227 : step = 39   Total Reward = -18.00   diameter = 18   loss = 4843.4010
+Train Episode 228 : step = 40   Total Reward = -19.00   diameter = 19   loss = 3377.2298
+Train Episode 229 : step = 40   Total Reward = -16.00   diameter = 16   loss = 2815.9879
+Train Episode 230 : step = 38   Total Reward = -21.00   diameter = 21   loss = 1425.0228
+Train Episode 231 : step = 40   Total Reward = -19.00   diameter = 19   loss = 2137.6224
+Train Episode 232 : step = 40   Total Reward = -18.00   diameter = 18   loss = 1029.3562
+Train Episode 233 : step = 40   Total Reward = -17.00   diameter = 17   loss = 1317.9566
+Train Episode 234 : step = 40   Total Reward = -18.00   diameter = 18   loss = 731.5008
+Train Episode 235 : step = 40   Total Reward = -17.00   diameter = 17   loss = 686.2249
+Train Episode 236 : step = 40   Total Reward = -17.00   diameter = 17   loss = 634.8514
+Train Episode 237 : step = 40   Total Reward = -21.00   diameter = 21   loss = 647.8568
+Train Episode 238 : step = 40   Total Reward = -21.00   diameter = 21   loss = 584.9770
+Train Episode 239 : step = 40   Total Reward = -20.00   diameter = 20   loss = 764.5815
+Train Episode 240 : step = 38   Total Reward = -24.00   diameter = 24   loss = 1143.8136
+Train Episode 241 : step = 39   Total Reward = -23.00   diameter = 23   loss = 932.5236
+Train Episode 242 : step = 40   Total Reward = -19.00   diameter = 19   loss = 606.1793
+Train Episode 243 : step = 40   Total Reward = -16.00   diameter = 16   loss = 555.0511
+Train Episode 244 : step = 40   Total Reward = -17.00   diameter = 17   loss = 536.0448
+Train Episode 245 : step = 40   Total Reward = -19.00   diameter = 19   loss = 508.9569
+Train Episode 246 : step = 40   Total Reward = -20.00   diameter = 20   loss = 505.4293
+Train Episode 247 : step = 40   Total Reward = -16.00   diameter = 16   loss = 467.0301
+Train Episode 248 : step = 39   Total Reward = -24.00   diameter = 24   loss = 467.6189
+Train Episode 249 : step = 40   Total Reward = -18.00   diameter = 18   loss = 2265.4328
+Train Episode 250 : step = 39   Total Reward = -22.00   diameter = 22   loss = 1461.3761
+Train Episode 251 : step = 40   Total Reward = -20.00   diameter = 20   loss = 1042.2980
+Train Episode 252 : step = 40   Total Reward = -18.00   diameter = 18   loss = 704.2295
+Train Episode 253 : step = 40   Total Reward = -19.00   diameter = 19   loss = 858.9830
+Train Episode 254 : step = 38   Total Reward = -17.00   diameter = 17   loss = 554.7671
+Train Episode 255 : step = 40   Total Reward = -19.00   diameter = 19   loss = 547.7009
+Train Episode 256 : step = 40   Total Reward = -21.00   diameter = 21   loss = 1882.2994
+Train Episode 257 : step = 40   Total Reward = -20.00   diameter = 20   loss = 1386.8568
+Train Episode 258 : step = 40   Total Reward = -20.00   diameter = 20   loss = 953.6269
+Train Episode 259 : step = 40   Total Reward = -16.00   diameter = 16   loss = 627.5100
+Train Episode 260 : step = 40   Total Reward = -17.00   diameter = 17   loss = 1072.2315
+Train Episode 261 : step = 40   Total Reward = -20.00   diameter = 20   loss = 1528.7517
+Train Episode 262 : step = 40   Total Reward = -23.00   diameter = 23   loss = 1697.5921
+Train Episode 263 : step = 40   Total Reward = -20.00   diameter = 20   loss = 567.8582
+Train Episode 264 : step = 40   Total Reward = -25.00   diameter = 25   loss = 518.1948
+Train Episode 265 : step = 40   Total Reward = -18.00   diameter = 18   loss = 492.5765
+Train Episode 266 : step = 40   Total Reward = -16.00   diameter = 16   loss = 1427.7556
+Train Episode 267 : step = 40   Total Reward = -22.00   diameter = 22   loss = 722.0653
+Train Episode 268 : step = 40   Total Reward = -20.00   diameter = 20   loss = 4651.6627
+Train Episode 269 : step = 40   Total Reward = -18.00   diameter = 18   loss = 4289.4352
+Train Episode 270 : step = 40   Total Reward = -17.00   diameter = 17   loss = 6393.7771
+Train Episode 271 : step = 40   Total Reward = -16.00   diameter = 16   loss = 3308.6664
+Train Episode 272 : step = 40   Total Reward = -23.00   diameter = 23   loss = 2052.3086
+Train Episode 273 : step = 40   Total Reward = -16.00   diameter = 16   loss = 747.5992
+Train Episode 274 : step = 40   Total Reward = -18.00   diameter = 18   loss = 622.6544
+Train Episode 275 : step = 40   Total Reward = -21.00   diameter = 21   loss = 528.7352
+Train Episode 276 : step = 40   Total Reward = -17.00   diameter = 17   loss = 511.9706
+Train Episode 277 : step = 40   Total Reward = -20.00   diameter = 20   loss = 504.9099
+Train Episode 278 : step = 40   Total Reward = -22.00   diameter = 22   loss = 578.7721
+Train Episode 279 : step = 40   Total Reward = -17.00   diameter = 17   loss = 553.2890
+Train Episode 280 : step = 40   Total Reward = -20.00   diameter = 20   loss = 500.5735
+Train Episode 281 : step = 40   Total Reward = -18.00   diameter = 18   loss = 477.2811
+Train Episode 282 : step = 40   Total Reward = -19.00   diameter = 19   loss = 454.4116
+Train Episode 283 : step = 39   Total Reward = -19.00   diameter = 19   loss = 440.9570
+Train Episode 284 : step = 40   Total Reward = -19.00   diameter = 19   loss = 476.8733
+Train Episode 285 : step = 40   Total Reward = -20.00   diameter = 20   loss = 439.6279
+Train Episode 286 : step = 40   Total Reward = -29.00   diameter = 29   loss = 456.7408
+Train Episode 287 : step = 40   Total Reward = -17.00   diameter = 17   loss = 463.4288
+Train Episode 288 : step = 40   Total Reward = -23.00   diameter = 23   loss = 435.8574
+Train Episode 289 : step = 40   Total Reward = -20.00   diameter = 20   loss = 457.3839
+Test  Episode 290 : step = 40   Total Reward = -22.00   diameter = 22   loss = 0.0000  
+Test  Episode 291 : step = 39   Total Reward = -21.00   diameter = 21   loss = 0.0000  
+Test  Episode 292 : step = 40   Total Reward = -18.00   diameter = 18   loss = 0.0000  
+Test  Episode 293 : step = 40   Total Reward = -24.00   diameter = 24   loss = 0.0000  
+Test  Episode 294 : step = 40   Total Reward = -20.00   diameter = 20   loss = 0.0000  
+Test  Episode 295 : step = 40   Total Reward = -22.00   diameter = 22   loss = 0.0000  
+Test  Episode 296 : step = 40   Total Reward = -20.00   diameter = 20   loss = 0.0000  
+Test  Episode 297 : step = 38   Total Reward = -17.00   diameter = 17   loss = 0.0000  
+Test  Episode 298 : step = 40   Total Reward = -18.00   diameter = 18   loss = 0.0000  
+Test  Episode 299 : step = 40   Total Reward = -22.00   diameter = 22   loss = 0.0000  
+-20.4 20.4
+Train Episode 300 : step = 40   Total Reward = -19.00   diameter = 19   loss = 466.1631
+Train Episode 301 : step = 39   Total Reward = -20.00   diameter = 20   loss = 421.4581
+Train Episode 302 : step = 40   Total Reward = -24.00   diameter = 24   loss = 439.5300
+Train Episode 303 : step = 39   Total Reward = -20.00   diameter = 20   loss = 419.6182
+Train Episode 304 : step = 39   Total Reward = -19.00   diameter = 19   loss = 418.2855
+Train Episode 305 : step = 40   Total Reward = -17.00   diameter = 17   loss = 447.8269
+Train Episode 306 : step = 39   Total Reward = -19.00   diameter = 19   loss = 446.2443
+Train Episode 307 : step = 40   Total Reward = -18.00   diameter = 18   loss = 447.6676
+Train Episode 308 : step = 40   Total Reward = -21.00   diameter = 21   loss = 442.9061
+Train Episode 309 : step = 39   Total Reward = -23.00   diameter = 23   loss = 424.0623
+Train Episode 310 : step = 40   Total Reward = -22.00   diameter = 22   loss = 455.5185
+Train Episode 311 : step = 40   Total Reward = -20.00   diameter = 20   loss = 460.0506
+Train Episode 312 : step = 40   Total Reward = -19.00   diameter = 19   loss = 456.3592
+Train Episode 313 : step = 38   Total Reward = -19.00   diameter = 19   loss = 415.4051
+Train Episode 314 : step = 40   Total Reward = -18.00   diameter = 18   loss = 424.3607
+Train Episode 315 : step = 40   Total Reward = -17.00   diameter = 17   loss = 476.7448
+Train Episode 316 : step = 40   Total Reward = -18.00   diameter = 18   loss = 420.4926
+Train Episode 317 : step = 40   Total Reward = -20.00   diameter = 20   loss = 444.6887
+Train Episode 318 : step = 40   Total Reward = -20.00   diameter = 20   loss = 451.9078
+Train Episode 319 : step = 40   Total Reward = -15.00   diameter = 15   loss = 451.4555
+Train Episode 320 : step = 39   Total Reward = -20.00   diameter = 20   loss = 463.3592
+Train Episode 321 : step = 40   Total Reward = -17.00   diameter = 17   loss = 441.7889
+Train Episode 322 : step = 40   Total Reward = -17.00   diameter = 17   loss = 414.6238
+Train Episode 323 : step = 40   Total Reward = -20.00   diameter = 20   loss = 441.7386
+Train Episode 324 : step = 40   Total Reward = -18.00   diameter = 18   loss = 513.2505
+Train Episode 325 : step = 39   Total Reward = -19.00   diameter = 19   loss = 404.5466
+Train Episode 326 : step = 40   Total Reward = -20.00   diameter = 20   loss = 411.1004
+Train Episode 327 : step = 40   Total Reward = -22.00   diameter = 22   loss = 426.6979
+Train Episode 328 : step = 40   Total Reward = -17.00   diameter = 17   loss = 419.5139
+Train Episode 329 : step = 40   Total Reward = -16.00   diameter = 16   loss = 446.3651
+Train Episode 330 : step = 40   Total Reward = -20.00   diameter = 20   loss = 451.3192
+Train Episode 331 : step = 40   Total Reward = -19.00   diameter = 19   loss = 434.8702
+Train Episode 332 : step = 40   Total Reward = -17.00   diameter = 17   loss = 395.4540
+Train Episode 333 : step = 40   Total Reward = -23.00   diameter = 23   loss = 401.8974
+Train Episode 334 : step = 39   Total Reward = -20.00   diameter = 20   loss = 381.7392
+Train Episode 335 : step = 40   Total Reward = -18.00   diameter = 18   loss = 434.1051
+Train Episode 336 : step = 40   Total Reward = -17.00   diameter = 17   loss = 457.1112
+Train Episode 337 : step = 40   Total Reward = -16.00   diameter = 16   loss = 398.2899
+Train Episode 338 : step = 40   Total Reward = -17.00   diameter = 17   loss = 409.3707
+Train Episode 339 : step = 40   Total Reward = -20.00   diameter = 20   loss = 400.8089
+Train Episode 340 : step = 39   Total Reward = -18.00   diameter = 18   loss = 391.8904
+Train Episode 341 : step = 40   Total Reward = -16.00   diameter = 16   loss = 387.8475
+Train Episode 342 : step = 40   Total Reward = -17.00   diameter = 17   loss = 401.0421
+Train Episode 343 : step = 39   Total Reward = -20.00   diameter = 20   loss = 386.3659
+Train Episode 344 : step = 40   Total Reward = -21.00   diameter = 21   loss = 389.8370
+Train Episode 345 : step = 40   Total Reward = -24.00   diameter = 24   loss = 381.9357
+Train Episode 346 : step = 40   Total Reward = -14.00   diameter = 14   loss = 391.8551
+Train Episode 347 : step = 40   Total Reward = -18.00   diameter = 18   loss = 382.9472
+Train Episode 348 : step = 40   Total Reward = -21.00   diameter = 21   loss = 428.5533
+Train Episode 349 : step = 40   Total Reward = -22.00   diameter = 22   loss = 409.1453
+Train Episode 350 : step = 40   Total Reward = -17.00   diameter = 17   loss = 433.0260
+Train Episode 351 : step = 40   Total Reward = -17.00   diameter = 17   loss = 387.7470
+Train Episode 352 : step = 38   Total Reward = -20.00   diameter = 20   loss = 361.2244
+Train Episode 353 : step = 40   Total Reward = -18.00   diameter = 18   loss = 389.8876
+Train Episode 354 : step = 40   Total Reward = -18.00   diameter = 18   loss = 369.7819
+Train Episode 355 : step = 40   Total Reward = -20.00   diameter = 20   loss = 390.0789
+Train Episode 356 : step = 40   Total Reward = -20.00   diameter = 20   loss = 366.4012
+Train Episode 357 : step = 40   Total Reward = -22.00   diameter = 22   loss = 405.8772
+Train Episode 358 : step = 40   Total Reward = -18.00   diameter = 18   loss = 396.6379
+Train Episode 359 : step = 40   Total Reward = -21.00   diameter = 21   loss = 376.8897
+Train Episode 360 : step = 40   Total Reward = -21.00   diameter = 21   loss = 377.7134
+Train Episode 361 : step = 40   Total Reward = -20.00   diameter = 20   loss = 389.1214
+Train Episode 362 : step = 40   Total Reward = -18.00   diameter = 18   loss = 386.2930
+Train Episode 363 : step = 39   Total Reward = -19.00   diameter = 19   loss = 354.6504
+Train Episode 364 : step = 39   Total Reward = -20.00   diameter = 20   loss = 408.8114
+Train Episode 365 : step = 40   Total Reward = -15.00   diameter = 15   loss = 379.2542
+Train Episode 366 : step = 39   Total Reward = -17.00   diameter = 17   loss = 367.1117
+Train Episode 367 : step = 40   Total Reward = -19.00   diameter = 19   loss = 399.0098
+Train Episode 368 : step = 40   Total Reward = -17.00   diameter = 17   loss = 408.4740
+Train Episode 369 : step = 38   Total Reward = -25.00   diameter = 25   loss = 349.8328
+Train Episode 370 : step = 40   Total Reward = -15.00   diameter = 15   loss = 361.0061
+Train Episode 371 : step = 40   Total Reward = -21.00   diameter = 21   loss = 349.1054
+Train Episode 372 : step = 40   Total Reward = -19.00   diameter = 19   loss = 374.2415
+Train Episode 373 : step = 40   Total Reward = -21.00   diameter = 21   loss = 437.3491
+Train Episode 374 : step = 40   Total Reward = -18.00   diameter = 18   loss = 377.6027
+Train Episode 375 : step = 40   Total Reward = -19.00   diameter = 19   loss = 348.4980
+Train Episode 376 : step = 40   Total Reward = -20.00   diameter = 20   loss = 355.1758
+Train Episode 377 : step = 40   Total Reward = -19.00   diameter = 19   loss = 345.4793
+Train Episode 378 : step = 40   Total Reward = -16.00   diameter = 16   loss = 388.5847
+Train Episode 379 : step = 40   Total Reward = -22.00   diameter = 22   loss = 388.3398
+Train Episode 380 : step = 40   Total Reward = -17.00   diameter = 17   loss = 357.1200
+Train Episode 381 : step = 40   Total Reward = -16.00   diameter = 16   loss = 347.6309
+Train Episode 382 : step = 40   Total Reward = -18.00   diameter = 18   loss = 349.4553
+Train Episode 383 : step = 40   Total Reward = -20.00   diameter = 20   loss = 338.7116
+Train Episode 384 : step = 40   Total Reward = -21.00   diameter = 21   loss = 347.9835
+Train Episode 385 : step = 40   Total Reward = -15.00   diameter = 15   loss = 358.8560
+Train Episode 386 : step = 40   Total Reward = -18.00   diameter = 18   loss = 350.3350
+Train Episode 387 : step = 40   Total Reward = -20.00   diameter = 20   loss = 338.0680
+Train Episode 388 : step = 40   Total Reward = -16.00   diameter = 16   loss = 342.0719
+Train Episode 389 : step = 40   Total Reward = -17.00   diameter = 17   loss = 346.6741
+Test  Episode 390 : step = 40   Total Reward = -23.00   diameter = 23   loss = 0.0000  
+Test  Episode 391 : step = 40   Total Reward = -24.00   diameter = 24   loss = 0.0000  
+Test  Episode 392 : step = 38   Total Reward = -17.00   diameter = 17   loss = 0.0000  
+Test  Episode 393 : step = 39   Total Reward = -16.00   diameter = 16   loss = 0.0000  
+Test  Episode 394 : step = 40   Total Reward = -20.00   diameter = 20   loss = 0.0000  
+Test  Episode 395 : step = 40   Total Reward = -20.00   diameter = 20   loss = 0.0000  
+Test  Episode 396 : step = 40   Total Reward = -20.00   diameter = 20   loss = 0.0000  
+Test  Episode 397 : step = 39   Total Reward = -21.00   diameter = 21   loss = 0.0000  
+Test  Episode 398 : step = 40   Total Reward = -17.00   diameter = 17   loss = 0.0000  
+Test  Episode 399 : step = 40   Total Reward = -16.00   diameter = 16   loss = 0.0000  
+-19.4 19.4
+Train Episode 400 : step = 40   Total Reward = -17.00   diameter = 17   loss = 333.1746
+Train Episode 401 : step = 40   Total Reward = -16.00   diameter = 16   loss = 347.8768
+Train Episode 402 : step = 38   Total Reward = -20.00   diameter = 20   loss = 323.9106
+Train Episode 403 : step = 40   Total Reward = -17.00   diameter = 17   loss = 353.8963
+Train Episode 404 : step = 40   Total Reward = -16.00   diameter = 16   loss = 370.4105
+Train Episode 405 : step = 40   Total Reward = -19.00   diameter = 19   loss = 360.1838
+Train Episode 406 : step = 40   Total Reward = -17.00   diameter = 17   loss = 362.6054
+Train Episode 407 : step = 40   Total Reward = -20.00   diameter = 20   loss = 362.1750
+Train Episode 408 : step = 38   Total Reward = -21.00   diameter = 21   loss = 348.8625
+Train Episode 409 : step = 40   Total Reward = -23.00   diameter = 23   loss = 347.2767
+Train Episode 410 : step = 40   Total Reward = -23.00   diameter = 23   loss = 343.0283
+Train Episode 411 : step = 40   Total Reward = -19.00   diameter = 19   loss = 338.8196
+Train Episode 412 : step = 40   Total Reward = -24.00   diameter = 24   loss = 329.1026
+Train Episode 413 : step = 40   Total Reward = -18.00   diameter = 18   loss = 337.2159
+Train Episode 414 : step = 40   Total Reward = -17.00   diameter = 17   loss = 354.1866
+Train Episode 415 : step = 40   Total Reward = -16.00   diameter = 16   loss = 3959.4924
+Train Episode 416 : step = 39   Total Reward = -21.00   diameter = 21   loss = 7024.9219
+Train Episode 417 : step = 40   Total Reward = -18.00   diameter = 18   loss = 8613.6459
+Train Episode 418 : step = 39   Total Reward = -27.00   diameter = 27   loss = 7177.8771
+Train Episode 419 : step = 40   Total Reward = -17.00   diameter = 17   loss = 5148.0100
+Train Episode 420 : step = 40   Total Reward = -19.00   diameter = 19   loss = 3156.5659
+Train Episode 421 : step = 40   Total Reward = -18.00   diameter = 18   loss = 3396.9369
+Train Episode 422 : step = 40   Total Reward = -19.00   diameter = 19   loss = 780.6947
+Train Episode 423 : step = 40   Total Reward = -17.00   diameter = 17   loss = 651.6589
+Train Episode 424 : step = 40   Total Reward = -21.00   diameter = 21   loss = 575.8422
+Train Episode 425 : step = 39   Total Reward = -21.00   diameter = 21   loss = 514.2516
+Train Episode 426 : step = 40   Total Reward = -20.00   diameter = 20   loss = 479.1396
+Train Episode 427 : step = 39   Total Reward = -16.00   diameter = 16   loss = 449.5572
+Train Episode 428 : step = 40   Total Reward = -21.00   diameter = 21   loss = 452.2888
+Train Episode 429 : step = 40   Total Reward = -22.00   diameter = 22   loss = 452.6786
+Train Episode 430 : step = 40   Total Reward = -17.00   diameter = 17   loss = 446.1224
+Train Episode 431 : step = 40   Total Reward = -16.00   diameter = 16   loss = 420.7969
+Train Episode 432 : step = 40   Total Reward = -18.00   diameter = 18   loss = 444.2268
+Train Episode 433 : step = 40   Total Reward = -19.00   diameter = 19   loss = 437.2337
+Train Episode 434 : step = 40   Total Reward = -19.00   diameter = 19   loss = 424.3253
+Train Episode 435 : step = 39   Total Reward = -18.00   diameter = 18   loss = 410.4653
+Train Episode 436 : step = 40   Total Reward = -22.00   diameter = 22   loss = 470.3674
+Train Episode 437 : step = 40   Total Reward = -14.00   diameter = 14   loss = 449.2656
+Train Episode 438 : step = 40   Total Reward = -23.00   diameter = 23   loss = 406.7569
+Train Episode 439 : step = 40   Total Reward = -19.00   diameter = 19   loss = 399.4079
+Train Episode 440 : step = 40   Total Reward = -17.00   diameter = 17   loss = 413.8550
+Train Episode 441 : step = 40   Total Reward = -19.00   diameter = 19   loss = 414.8891
+Train Episode 442 : step = 40   Total Reward = -21.00   diameter = 21   loss = 408.2881
+Train Episode 443 : step = 40   Total Reward = -21.00   diameter = 21   loss = 403.7195
+Train Episode 444 : step = 40   Total Reward = -19.00   diameter = 19   loss = 375.3979
+Train Episode 445 : step = 38   Total Reward = -19.00   diameter = 19   loss = 377.0093
+Train Episode 446 : step = 40   Total Reward = -19.00   diameter = 19   loss = 433.6438
+Train Episode 447 : step = 40   Total Reward = -20.00   diameter = 20   loss = 374.4950
+Train Episode 448 : step = 40   Total Reward = -22.00   diameter = 22   loss = 396.7235
+Train Episode 449 : step = 40   Total Reward = -17.00   diameter = 17   loss = 399.5422
+Train Episode 450 : step = 40   Total Reward = -19.00   diameter = 19   loss = 416.7704
+Train Episode 451 : step = 40   Total Reward = -19.00   diameter = 19   loss = 404.3147
+Train Episode 452 : step = 40   Total Reward = -19.00   diameter = 19   loss = 374.7401
+Train Episode 453 : step = 38   Total Reward = -22.00   diameter = 22   loss = 356.1755
+Train Episode 454 : step = 40   Total Reward = -17.00   diameter = 17   loss = 405.6586
+Train Episode 455 : step = 40   Total Reward = -20.00   diameter = 20   loss = 373.7020
+Train Episode 456 : step = 40   Total Reward = -23.00   diameter = 23   loss = 373.2635
+Train Episode 457 : step = 40   Total Reward = -17.00   diameter = 17   loss = 360.6509
+Train Episode 458 : step = 39   Total Reward = -22.00   diameter = 22   loss = 358.2689
+Train Episode 459 : step = 40   Total Reward = -21.00   diameter = 21   loss = 376.9071
+Train Episode 460 : step = 40   Total Reward = -18.00   diameter = 18   loss = 346.4573
+Train Episode 461 : step = 40   Total Reward = -20.00   diameter = 20   loss = 364.7239
+Train Episode 462 : step = 40   Total Reward = -19.00   diameter = 19   loss = 358.8628
+Train Episode 463 : step = 40   Total Reward = -19.00   diameter = 19   loss = 376.2126
+Train Episode 464 : step = 38   Total Reward = -18.00   diameter = 18   loss = 336.9973
+Train Episode 465 : step = 39   Total Reward = -19.00   diameter = 19   loss = 350.9031
+Train Episode 466 : step = 40   Total Reward = -21.00   diameter = 21   loss = 347.1463
+Train Episode 467 : step = 40   Total Reward = -17.00   diameter = 17   loss = 336.4419
+Train Episode 468 : step = 40   Total Reward = -21.00   diameter = 21   loss = 361.9373
+Train Episode 469 : step = 40   Total Reward = -17.00   diameter = 17   loss = 355.9635
+Train Episode 470 : step = 40   Total Reward = -22.00   diameter = 22   loss = 368.3385
+Train Episode 471 : step = 40   Total Reward = -19.00   diameter = 19   loss = 383.6264
+Train Episode 472 : step = 40   Total Reward = -19.00   diameter = 19   loss = 404.5287
+Train Episode 473 : step = 40   Total Reward = -19.00   diameter = 19   loss = 346.9049
+Train Episode 474 : step = 40   Total Reward = -19.00   diameter = 19   loss = 357.7853
+Train Episode 475 : step = 39   Total Reward = -18.00   diameter = 18   loss = 365.7116
+Train Episode 476 : step = 40   Total Reward = -18.00   diameter = 18   loss = 353.0328
+Train Episode 477 : step = 40   Total Reward = -22.00   diameter = 22   loss = 358.5456
+Train Episode 478 : step = 39   Total Reward = -19.00   diameter = 19   loss = 339.2011
+Train Episode 479 : step = 39   Total Reward = -23.00   diameter = 23   loss = 334.5823
+Train Episode 480 : step = 40   Total Reward = -23.00   diameter = 23   loss = 350.9432
+Train Episode 481 : step = 38   Total Reward = -22.00   diameter = 22   loss = 337.4264
+Train Episode 482 : step = 40   Total Reward = -18.00   diameter = 18   loss = 344.3842
+Train Episode 483 : step = 39   Total Reward = -15.00   diameter = 15   loss = 334.1709
+Train Episode 484 : step = 40   Total Reward = -18.00   diameter = 18   loss = 331.1545
+Train Episode 485 : step = 40   Total Reward = -17.00   diameter = 17   loss = 339.0744
+Train Episode 486 : step = 40   Total Reward = -16.00   diameter = 16   loss = 347.5230
+Train Episode 487 : step = 40   Total Reward = -20.00   diameter = 20   loss = 360.2567
+Train Episode 488 : step = 40   Total Reward = -23.00   diameter = 23   loss = 333.7646
+Train Episode 489 : step = 40   Total Reward = -19.00   diameter = 19   loss = 339.5005
+Test  Episode 490 : step = 40   Total Reward = -21.00   diameter = 21   loss = 0.0000  
+Test  Episode 491 : step = 40   Total Reward = -17.00   diameter = 17   loss = 0.0000  
+Test  Episode 492 : step = 40   Total Reward = -18.00   diameter = 18   loss = 0.0000  
+Test  Episode 493 : step = 39   Total Reward = -18.00   diameter = 18   loss = 0.0000  
+Test  Episode 494 : step = 40   Total Reward = -22.00   diameter = 22   loss = 0.0000  
+Test  Episode 495 : step = 40   Total Reward = -19.00   diameter = 19   loss = 0.0000  
+Test  Episode 496 : step = 39   Total Reward = -24.00   diameter = 24   loss = 0.0000  
+Test  Episode 497 : step = 38   Total Reward = -29.00   diameter = 29   loss = 0.0000  
+Test  Episode 498 : step = 40   Total Reward = -18.00   diameter = 18   loss = 0.0000  
+Test  Episode 499 : step = 40   Total Reward = -15.00   diameter = 15   loss = 0.0000  
+-20.1 20.1
+Train Episode 500 : step = 40   Total Reward = -19.00   diameter = 19   loss = 329.9447
+Train Episode 501 : step = 40   Total Reward = -15.00   diameter = 15   loss = 338.9853
+Train Episode 502 : step = 40   Total Reward = -21.00   diameter = 21   loss = 324.5089
+Train Episode 503 : step = 40   Total Reward = -19.00   diameter = 19   loss = 337.9487
+Train Episode 504 : step = 40   Total Reward = -18.00   diameter = 18   loss = 330.0138
+Train Episode 505 : step = 39   Total Reward = -20.00   diameter = 20   loss = 318.4174
+Train Episode 506 : step = 40   Total Reward = -16.00   diameter = 16   loss = 311.4428
+Train Episode 507 : step = 40   Total Reward = -19.00   diameter = 19   loss = 326.1463
+Train Episode 508 : step = 40   Total Reward = -18.00   diameter = 18   loss = 348.3017
+Train Episode 509 : step = 40   Total Reward = -18.00   diameter = 18   loss = 330.7986
+Train Episode 510 : step = 40   Total Reward = -24.00   diameter = 24   loss = 342.4955
+Train Episode 511 : step = 39   Total Reward = -12.00   diameter = 12   loss = 327.1692
+Train Episode 512 : step = 40   Total Reward = -19.00   diameter = 19   loss = 343.8529
+Train Episode 513 : step = 40   Total Reward = -22.00   diameter = 22   loss = 318.7310
+Train Episode 514 : step = 40   Total Reward = -16.00   diameter = 16   loss = 349.5426
+Train Episode 515 : step = 40   Total Reward = -24.00   diameter = 24   loss = 337.7067
+Train Episode 516 : step = 39   Total Reward = -22.00   diameter = 22   loss = 313.8266
+Train Episode 517 : step = 40   Total Reward = -17.00   diameter = 17   loss = 338.5852
+Train Episode 518 : step = 40   Total Reward = -16.00   diameter = 16   loss = 312.3006
+Train Episode 519 : step = 40   Total Reward = -20.00   diameter = 20   loss = 316.5737
+Train Episode 520 : step = 40   Total Reward = -19.00   diameter = 19   loss = 314.5097
+Train Episode 521 : step = 40   Total Reward = -21.00   diameter = 21   loss = 348.6871
+Train Episode 522 : step = 40   Total Reward = -17.00   diameter = 17   loss = 318.0526
+Train Episode 523 : step = 39   Total Reward = -20.00   diameter = 20   loss = 310.8949
+Train Episode 524 : step = 40   Total Reward = -15.00   diameter = 15   loss = 313.7190
+Train Episode 525 : step = 40   Total Reward = -26.00   diameter = 26   loss = 334.5473
+Train Episode 526 : step = 40   Total Reward = -20.00   diameter = 20   loss = 339.9448
+Train Episode 527 : step = 40   Total Reward = -20.00   diameter = 20   loss = 353.2659
+Train Episode 528 : step = 40   Total Reward = -16.00   diameter = 16   loss = 321.6196
+Train Episode 529 : step = 38   Total Reward = -19.00   diameter = 19   loss = 292.6180
+Train Episode 530 : step = 40   Total Reward = -20.00   diameter = 20   loss = 347.7562
+Train Episode 531 : step = 40   Total Reward = -19.00   diameter = 19   loss = 324.0178
+Train Episode 532 : step = 40   Total Reward = -18.00   diameter = 18   loss = 369.1252
+Train Episode 533 : step = 40   Total Reward = -24.00   diameter = 24   loss = 336.8212
+Train Episode 534 : step = 40   Total Reward = -14.00   diameter = 14   loss = 319.3331
+Train Episode 535 : step = 40   Total Reward = -15.00   diameter = 15   loss = 309.5620
+Train Episode 536 : step = 40   Total Reward = -16.00   diameter = 16   loss = 317.3505
+Train Episode 537 : step = 40   Total Reward = -23.00   diameter = 23   loss = 313.8511
+Train Episode 538 : step = 40   Total Reward = -20.00   diameter = 20   loss = 321.6816
+Train Episode 539 : step = 40   Total Reward = -17.00   diameter = 17   loss = 319.8826
+Train Episode 540 : step = 40   Total Reward = -16.00   diameter = 16   loss = 310.0594
+Train Episode 541 : step = 40   Total Reward = -19.00   diameter = 19   loss = 325.7667
+Train Episode 542 : step = 40   Total Reward = -15.00   diameter = 15   loss = 330.1766
+Train Episode 543 : step = 40   Total Reward = -19.00   diameter = 19   loss = 341.1307
+Train Episode 544 : step = 40   Total Reward = -24.00   diameter = 24   loss = 303.9861
+Train Episode 545 : step = 40   Total Reward = -16.00   diameter = 16   loss = 348.5351
+Train Episode 546 : step = 40   Total Reward = -20.00   diameter = 20   loss = 345.7960
+Train Episode 547 : step = 40   Total Reward = -19.00   diameter = 19   loss = 335.3177
+Train Episode 548 : step = 40   Total Reward = -16.00   diameter = 16   loss = 310.9189
+Train Episode 549 : step = 38   Total Reward = -20.00   diameter = 20   loss = 296.3613
+Train Episode 550 : step = 40   Total Reward = -20.00   diameter = 20   loss = 310.5136
+Train Episode 551 : step = 40   Total Reward = -19.00   diameter = 19   loss = 307.4197
+Train Episode 552 : step = 40   Total Reward = -12.00   diameter = 12   loss = 316.1992
+Train Episode 553 : step = 40   Total Reward = -20.00   diameter = 20   loss = 295.8447
+Train Episode 554 : step = 40   Total Reward = -16.00   diameter = 16   loss = 299.8901
+Train Episode 555 : step = 40   Total Reward = -20.00   diameter = 20   loss = 310.8814
+Train Episode 556 : step = 40   Total Reward = -18.00   diameter = 18   loss = 309.3463
+Train Episode 557 : step = 40   Total Reward = -19.00   diameter = 19   loss = 312.4109
+Train Episode 558 : step = 40   Total Reward = -18.00   diameter = 18   loss = 349.9791
+Train Episode 559 : step = 40   Total Reward = -22.00   diameter = 22   loss = 349.6799
+Train Episode 560 : step = 40   Total Reward = -20.00   diameter = 20   loss = 341.7525
+Train Episode 561 : step = 40   Total Reward = -16.00   diameter = 16   loss = 329.4064
+Train Episode 562 : step = 40   Total Reward = -17.00   diameter = 17   loss = 336.2008
+Train Episode 563 : step = 40   Total Reward = -15.00   diameter = 15   loss = 326.6442
+Train Episode 564 : step = 40   Total Reward = -22.00   diameter = 22   loss = 304.0752
+Train Episode 565 : step = 39   Total Reward = -25.00   diameter = 25   loss = 299.8480
+Train Episode 566 : step = 39   Total Reward = -20.00   diameter = 20   loss = 304.5232
+Train Episode 567 : step = 40   Total Reward = -15.00   diameter = 15   loss = 7842.1355
+Train Episode 568 : step = 40   Total Reward = -16.00   diameter = 16   loss = 10820.1474
+Train Episode 569 : step = 40   Total Reward = -22.00   diameter = 22   loss = 9105.0153
+Train Episode 570 : step = 40   Total Reward = -15.00   diameter = 15   loss = 7982.5050
+Train Episode 571 : step = 39   Total Reward = -21.00   diameter = 21   loss = 8537.2268
+Train Episode 572 : step = 40   Total Reward = -21.00   diameter = 21   loss = 8760.6338
+Train Episode 573 : step = 40   Total Reward = -19.00   diameter = 19   loss = 12361.2887
+Train Episode 574 : step = 40   Total Reward = -20.00   diameter = 20   loss = 9674.9982
+Train Episode 575 : step = 40   Total Reward = -21.00   diameter = 21   loss = 8564.0629
+Train Episode 576 : step = 40   Total Reward = -22.00   diameter = 22   loss = 6077.0095
+Train Episode 577 : step = 40   Total Reward = -22.00   diameter = 22   loss = 7605.2288
+Train Episode 578 : step = 40   Total Reward = -23.00   diameter = 23   loss = 6542.1715
+Train Episode 579 : step = 39   Total Reward = -21.00   diameter = 21   loss = 11254.3273
+Train Episode 580 : step = 38   Total Reward = -20.00   diameter = 20   loss = 10674.6093
+Train Episode 581 : step = 40   Total Reward = -19.00   diameter = 19   loss = 8279.2746
+Train Episode 582 : step = 38   Total Reward = -17.00   diameter = 17   loss = 5380.3436
+Train Episode 583 : step = 40   Total Reward = -16.00   diameter = 16   loss = 7212.9094
+Train Episode 584 : step = 40   Total Reward = -17.00   diameter = 17   loss = 9903.5383
+Train Episode 585 : step = 40   Total Reward = -17.00   diameter = 17   loss = 7374.3608
+Train Episode 586 : step = 39   Total Reward = -21.00   diameter = 21   loss = 2579.4697
+Train Episode 587 : step = 40   Total Reward = -17.00   diameter = 17   loss = 7310.7241
+Train Episode 588 : step = 40   Total Reward = -19.00   diameter = 19   loss = 4565.6866
+Train Episode 589 : step = 40   Total Reward = -18.00   diameter = 18   loss = 5785.3378
+Test  Episode 590 : step = 38   Total Reward = -19.00   diameter = 19   loss = 0.0000  
+Test  Episode 591 : step = 40   Total Reward = -26.00   diameter = 26   loss = 0.0000  
+Test  Episode 592 : step = 40   Total Reward = -21.00   diameter = 21   loss = 0.0000  
+Test  Episode 593 : step = 38   Total Reward = -21.00   diameter = 21   loss = 0.0000  
+Test  Episode 594 : step = 40   Total Reward = -27.00   diameter = 27   loss = 0.0000  
+Test  Episode 595 : step = 40   Total Reward = -23.00   diameter = 23   loss = 0.0000  
+Test  Episode 596 : step = 39   Total Reward = -21.00   diameter = 21   loss = 0.0000  
+Test  Episode 597 : step = 38   Total Reward = -25.00   diameter = 25   loss = 0.0000  
+Test  Episode 598 : step = 39   Total Reward = -21.00   diameter = 21   loss = 0.0000  
+Test  Episode 599 : step = 38   Total Reward = -23.00   diameter = 23   loss = 0.0000  
+-22.7 22.7
+Train Episode 600 : step = 40   Total Reward = -17.00   diameter = 17   loss = 11487.1579
+Train Episode 601 : step = 40   Total Reward = -18.00   diameter = 18   loss = 6917.2430
+Train Episode 602 : step = 40   Total Reward = -20.00   diameter = 20   loss = 5903.9221
+Train Episode 603 : step = 38   Total Reward = -20.00   diameter = 20   loss = 5205.2561
+Train Episode 604 : step = 40   Total Reward = -18.00   diameter = 18   loss = 3655.0565
+Train Episode 605 : step = 40   Total Reward = -16.00   diameter = 16   loss = 4838.5470
+Train Episode 606 : step = 40   Total Reward = -18.00   diameter = 18   loss = 1821.9938
+Train Episode 607 : step = 40   Total Reward = -20.00   diameter = 20   loss = 1629.7072
+Train Episode 608 : step = 40   Total Reward = -24.00   diameter = 24   loss = 1897.7756
+Train Episode 609 : step = 40   Total Reward = -26.00   diameter = 26   loss = 1497.5286
+Train Episode 610 : step = 40   Total Reward = -20.00   diameter = 20   loss = 5475.2431
+Train Episode 611 : step = 40   Total Reward = -21.00   diameter = 21   loss = 6678.1834
+Train Episode 612 : step = 40   Total Reward = -19.00   diameter = 19   loss = 2918.8004
+Train Episode 613 : step = 40   Total Reward = -17.00   diameter = 17   loss = 1091.0871
+Train Episode 614 : step = 40   Total Reward = -20.00   diameter = 20   loss = 805.7449
+Train Episode 615 : step = 40   Total Reward = -18.00   diameter = 18   loss = 786.8257
+Train Episode 616 : step = 40   Total Reward = -19.00   diameter = 19   loss = 801.2850
+Train Episode 617 : step = 40   Total Reward = -15.00   diameter = 15   loss = 678.8678
+Train Episode 618 : step = 40   Total Reward = -17.00   diameter = 17   loss = 706.9311
+Train Episode 619 : step = 40   Total Reward = -18.00   diameter = 18   loss = 732.6964
+Train Episode 620 : step = 40   Total Reward = -23.00   diameter = 23   loss = 1258.2734
+Train Episode 621 : step = 40   Total Reward = -12.00   diameter = 12   loss = 760.4815
+Train Episode 622 : step = 40   Total Reward = -18.00   diameter = 18   loss = 664.9601
+Train Episode 623 : step = 40   Total Reward = -21.00   diameter = 21   loss = 606.2237
+Train Episode 624 : step = 40   Total Reward = -20.00   diameter = 20   loss = 585.8461
+Train Episode 625 : step = 40   Total Reward = -15.00   diameter = 15   loss = 598.0795
+Train Episode 626 : step = 40   Total Reward = -20.00   diameter = 20   loss = 589.3268
+Train Episode 627 : step = 40   Total Reward = -20.00   diameter = 20   loss = 585.4662
+Train Episode 628 : step = 40   Total Reward = -21.00   diameter = 21   loss = 562.6102
+Train Episode 629 : step = 40   Total Reward = -20.00   diameter = 20   loss = 574.8588
+Train Episode 630 : step = 38   Total Reward = -23.00   diameter = 23   loss = 594.6469
+Train Episode 631 : step = 38   Total Reward = -22.00   diameter = 22   loss = 523.5713
+Train Episode 632 : step = 40   Total Reward = -19.00   diameter = 19   loss = 609.6744
+Train Episode 633 : step = 40   Total Reward = -22.00   diameter = 22   loss = 564.8911
+Train Episode 634 : step = 40   Total Reward = -21.00   diameter = 21   loss = 536.3600
+Train Episode 635 : step = 40   Total Reward = -18.00   diameter = 18   loss = 550.5421
+Train Episode 636 : step = 40   Total Reward = -22.00   diameter = 22   loss = 538.7063
+Train Episode 637 : step = 40   Total Reward = -16.00   diameter = 16   loss = 583.7468
+Train Episode 638 : step = 40   Total Reward = -17.00   diameter = 17   loss = 572.3351
+Train Episode 639 : step = 40   Total Reward = -18.00   diameter = 18   loss = 565.5850
+Train Episode 640 : step = 40   Total Reward = -23.00   diameter = 23   loss = 557.2432
+Train Episode 641 : step = 40   Total Reward = -16.00   diameter = 16   loss = 532.3956
+Train Episode 642 : step = 40   Total Reward = -15.00   diameter = 15   loss = 572.1721
+Train Episode 643 : step = 39   Total Reward = -17.00   diameter = 17   loss = 543.0267
+Train Episode 644 : step = 38   Total Reward = -19.00   diameter = 19   loss = 489.3856
+Train Episode 645 : step = 40   Total Reward = -19.00   diameter = 19   loss = 524.7361
+Train Episode 646 : step = 40   Total Reward = -19.00   diameter = 19   loss = 491.5042
+Train Episode 647 : step = 40   Total Reward = -21.00   diameter = 21   loss = 524.0030
+Train Episode 648 : step = 40   Total Reward = -19.00   diameter = 19   loss = 516.3127
+Train Episode 649 : step = 39   Total Reward = -18.00   diameter = 18   loss = 514.7377
+Train Episode 650 : step = 40   Total Reward = -19.00   diameter = 19   loss = 514.9026
+Train Episode 651 : step = 40   Total Reward = -22.00   diameter = 22   loss = 580.0625
+Train Episode 652 : step = 40   Total Reward = -17.00   diameter = 17   loss = 558.8186
+Train Episode 653 : step = 40   Total Reward = -22.00   diameter = 22   loss = 517.8468
+Train Episode 654 : step = 40   Total Reward = -20.00   diameter = 20   loss = 537.6006
+Train Episode 655 : step = 39   Total Reward = -20.00   diameter = 20   loss = 682.6765
+Train Episode 656 : step = 40   Total Reward = -23.00   diameter = 23   loss = 572.9498
+Train Episode 657 : step = 40   Total Reward = -18.00   diameter = 18   loss = 2549.1554
+Train Episode 658 : step = 38   Total Reward = -19.00   diameter = 19   loss = 9499.8533
+Train Episode 659 : step = 38   Total Reward = -23.00   diameter = 23   loss = 1896.3070
+Train Episode 660 : step = 40   Total Reward = -17.00   diameter = 17   loss = 977.2812
+Train Episode 661 : step = 40   Total Reward = -20.00   diameter = 20   loss = 787.7955
+Train Episode 662 : step = 40   Total Reward = -18.00   diameter = 18   loss = 625.9126
+Train Episode 663 : step = 40   Total Reward = -21.00   diameter = 21   loss = 564.9565
+Train Episode 664 : step = 40   Total Reward = -18.00   diameter = 18   loss = 581.5394
+Train Episode 665 : step = 40   Total Reward = -18.00   diameter = 18   loss = 605.6058
+Train Episode 666 : step = 38   Total Reward = -21.00   diameter = 21   loss = 504.1837
+Train Episode 667 : step = 39   Total Reward = -19.00   diameter = 19   loss = 500.6013
+Train Episode 668 : step = 40   Total Reward = -14.00   diameter = 14   loss = 516.2506
+Train Episode 669 : step = 40   Total Reward = -24.00   diameter = 24   loss = 511.5631
+Train Episode 670 : step = 40   Total Reward = -18.00   diameter = 18   loss = 521.6614
+Train Episode 671 : step = 40   Total Reward = -19.00   diameter = 19   loss = 533.3954
+Train Episode 672 : step = 40   Total Reward = -19.00   diameter = 19   loss = 544.9158
+Train Episode 673 : step = 40   Total Reward = -17.00   diameter = 17   loss = 529.1537
+Train Episode 674 : step = 40   Total Reward = -20.00   diameter = 20   loss = 531.7556
+Train Episode 675 : step = 40   Total Reward = -14.00   diameter = 14   loss = 532.2908
+Train Episode 676 : step = 40   Total Reward = -18.00   diameter = 18   loss = 512.7315
+Train Episode 677 : step = 38   Total Reward = -19.00   diameter = 19   loss = 493.9734
+Train Episode 678 : step = 40   Total Reward = -17.00   diameter = 17   loss = 514.8366
+Train Episode 679 : step = 40   Total Reward = -19.00   diameter = 19   loss = 518.2158
+Train Episode 680 : step = 40   Total Reward = -21.00   diameter = 21   loss = 483.6244
+Train Episode 681 : step = 40   Total Reward = -22.00   diameter = 22   loss = 545.7786
+Train Episode 682 : step = 40   Total Reward = -19.00   diameter = 19   loss = 569.0578
+Train Episode 683 : step = 40   Total Reward = -18.00   diameter = 18   loss = 546.5656
+Train Episode 684 : step = 40   Total Reward = -17.00   diameter = 17   loss = 500.8325
+Train Episode 685 : step = 40   Total Reward = -16.00   diameter = 16   loss = 509.4891
+Train Episode 686 : step = 40   Total Reward = -21.00   diameter = 21   loss = 495.1627
+Train Episode 687 : step = 40   Total Reward = -21.00   diameter = 21   loss = 497.4974
+Train Episode 688 : step = 39   Total Reward = -19.00   diameter = 19   loss = 478.2355
+Train Episode 689 : step = 40   Total Reward = -22.00   diameter = 22   loss = 489.9889
+Test  Episode 690 : step = 38   Total Reward = -19.00   diameter = 19   loss = 0.0000  
+Test  Episode 691 : step = 40   Total Reward = -19.00   diameter = 19   loss = 0.0000  
+Test  Episode 692 : step = 40   Total Reward = -18.00   diameter = 18   loss = 0.0000  
+Test  Episode 693 : step = 40   Total Reward = -14.00   diameter = 14   loss = 0.0000  
+Test  Episode 694 : step = 40   Total Reward = -16.00   diameter = 16   loss = 0.0000  
+Test  Episode 695 : step = 40   Total Reward = -21.00   diameter = 21   loss = 0.0000  
+Test  Episode 696 : step = 38   Total Reward = -21.00   diameter = 21   loss = 0.0000  
+Test  Episode 697 : step = 38   Total Reward = -19.00   diameter = 19   loss = 0.0000  
+Test  Episode 698 : step = 40   Total Reward = -19.00   diameter = 19   loss = 0.0000  
+Test  Episode 699 : step = 38   Total Reward = -18.00   diameter = 18   loss = 0.0000  
+-18.4 18.4
+Train Episode 700 : step = 40   Total Reward = -26.00   diameter = 26   loss = 467.5650
+Train Episode 701 : step = 40   Total Reward = -18.00   diameter = 18   loss = 463.1221
+Train Episode 702 : step = 37   Total Reward = -18.00   diameter = 18   loss = 454.1102
+Train Episode 703 : step = 40   Total Reward = -18.00   diameter = 18   loss = 498.9720
+Train Episode 704 : step = 40   Total Reward = -17.00   diameter = 17   loss = 506.0273
+Train Episode 705 : step = 38   Total Reward = -18.00   diameter = 18   loss = 473.9601
+Train Episode 706 : step = 40   Total Reward = -15.00   diameter = 15   loss = 480.3261
+Train Episode 707 : step = 40   Total Reward = -16.00   diameter = 16   loss = 489.3280
+Train Episode 708 : step = 40   Total Reward = -23.00   diameter = 23   loss = 486.9171
+Train Episode 709 : step = 40   Total Reward = -21.00   diameter = 21   loss = 476.8137
+Train Episode 710 : step = 40   Total Reward = -21.00   diameter = 21   loss = 494.6097
+Train Episode 711 : step = 40   Total Reward = -23.00   diameter = 23   loss = 470.3342
+Train Episode 712 : step = 40   Total Reward = -20.00   diameter = 20   loss = 475.5638
+Train Episode 713 : step = 40   Total Reward = -16.00   diameter = 16   loss = 511.4908
+Train Episode 714 : step = 38   Total Reward = -21.00   diameter = 21   loss = 468.9837
+Train Episode 715 : step = 40   Total Reward = -20.00   diameter = 20   loss = 478.6047
+Train Episode 716 : step = 40   Total Reward = -19.00   diameter = 19   loss = 503.8925
+Train Episode 717 : step = 40   Total Reward = -20.00   diameter = 20   loss = 530.6650
+Train Episode 718 : step = 38   Total Reward = -22.00   diameter = 22   loss = 523.2558
+Train Episode 719 : step = 40   Total Reward = -21.00   diameter = 21   loss = 481.9611
+Train Episode 720 : step = 40   Total Reward = -21.00   diameter = 21   loss = 497.7079
+Train Episode 721 : step = 40   Total Reward = -24.00   diameter = 24   loss = 484.9698
+Train Episode 722 : step = 39   Total Reward = -27.00   diameter = 27   loss = 473.5760
+Train Episode 723 : step = 40   Total Reward = -15.00   diameter = 15   loss = 481.7251
+Train Episode 724 : step = 39   Total Reward = -21.00   diameter = 21   loss = 514.7329
+Train Episode 725 : step = 40   Total Reward = -18.00   diameter = 18   loss = 491.6863
+Train Episode 726 : step = 40   Total Reward = -22.00   diameter = 22   loss = 493.1816
+Train Episode 727 : step = 40   Total Reward = -13.00   diameter = 13   loss = 499.1302
+Train Episode 728 : step = 40   Total Reward = -20.00   diameter = 20   loss = 488.2076
+Train Episode 729 : step = 40   Total Reward = -20.00   diameter = 20   loss = 499.5173
+Train Episode 730 : step = 40   Total Reward = -18.00   diameter = 18   loss = 557.5293
+Train Episode 731 : step = 40   Total Reward = -22.00   diameter = 22   loss = 548.0445
+Train Episode 732 : step = 40   Total Reward = -21.00   diameter = 21   loss = 500.9268
+Train Episode 733 : step = 40   Total Reward = -24.00   diameter = 24   loss = 469.4531
+Train Episode 734 : step = 40   Total Reward = -18.00   diameter = 18   loss = 459.9779
+Train Episode 735 : step = 40   Total Reward = -15.00   diameter = 15   loss = 506.1978
+Train Episode 736 : step = 40   Total Reward = -25.00   diameter = 25   loss = 473.2693
+Train Episode 737 : step = 40   Total Reward = -17.00   diameter = 17   loss = 454.0581
+Train Episode 738 : step = 40   Total Reward = -20.00   diameter = 20   loss = 472.8096
+Train Episode 739 : step = 40   Total Reward = -19.00   diameter = 19   loss = 474.5939
+Train Episode 740 : step = 38   Total Reward = -20.00   diameter = 20   loss = 453.3253
+Train Episode 741 : step = 40   Total Reward = -20.00   diameter = 20   loss = 475.8197
+Train Episode 742 : step = 40   Total Reward = -25.00   diameter = 25   loss = 467.0468
+Train Episode 743 : step = 40   Total Reward = -23.00   diameter = 23   loss = 516.6614
+Train Episode 744 : step = 40   Total Reward = -21.00   diameter = 21   loss = 724.4475
+Train Episode 745 : step = 40   Total Reward = -20.00   diameter = 20   loss = 537.5870
+Train Episode 746 : step = 40   Total Reward = -17.00   diameter = 17   loss = 482.7053
+Train Episode 747 : step = 40   Total Reward = -22.00   diameter = 22   loss = 497.4140
+Train Episode 748 : step = 40   Total Reward = -24.00   diameter = 24   loss = 478.9612
+Train Episode 749 : step = 40   Total Reward = -23.00   diameter = 23   loss = 466.1302
+Train Episode 750 : step = 40   Total Reward = -20.00   diameter = 20   loss = 477.6700
+Train Episode 751 : step = 40   Total Reward = -20.00   diameter = 20   loss = 479.3951
+Train Episode 752 : step = 40   Total Reward = -20.00   diameter = 20   loss = 474.1008
+Train Episode 753 : step = 40   Total Reward = -20.00   diameter = 20   loss = 465.2758
+Train Episode 754 : step = 40   Total Reward = -20.00   diameter = 20   loss = 466.2489
+Train Episode 755 : step = 40   Total Reward = -15.00   diameter = 15   loss = 471.7265
+Train Episode 756 : step = 40   Total Reward = -20.00   diameter = 20   loss = 494.0592
+Train Episode 757 : step = 40   Total Reward = -17.00   diameter = 17   loss = 486.7860
+Train Episode 758 : step = 40   Total Reward = -21.00   diameter = 21   loss = 471.1823
+Train Episode 759 : step = 40   Total Reward = -25.00   diameter = 25   loss = 468.0839
+Train Episode 760 : step = 39   Total Reward = -23.00   diameter = 23   loss = 450.0339
+Train Episode 761 : step = 40   Total Reward = -17.00   diameter = 17   loss = 474.3227
+Train Episode 762 : step = 40   Total Reward = -16.00   diameter = 16   loss = 450.5874
+Train Episode 763 : step = 40   Total Reward = -15.00   diameter = 15   loss = 483.3922
+Train Episode 764 : step = 40   Total Reward = -19.00   diameter = 19   loss = 471.4632
+Train Episode 765 : step = 39   Total Reward = -15.00   diameter = 15   loss = 453.6629
+Train Episode 766 : step = 40   Total Reward = -18.00   diameter = 18   loss = 472.0801
+Train Episode 767 : step = 40   Total Reward = -20.00   diameter = 20   loss = 515.1448
+Train Episode 768 : step = 40   Total Reward = -20.00   diameter = 20   loss = 483.9359
+Train Episode 769 : step = 39   Total Reward = -13.00   diameter = 13   loss = 456.3468
+Train Episode 770 : step = 40   Total Reward = -19.00   diameter = 19   loss = 481.3335
+Train Episode 771 : step = 40   Total Reward = -20.00   diameter = 20   loss = 472.9611
+Train Episode 772 : step = 40   Total Reward = -20.00   diameter = 20   loss = 494.3964
+Train Episode 773 : step = 39   Total Reward = -25.00   diameter = 25   loss = 490.9906
+Train Episode 774 : step = 40   Total Reward = -19.00   diameter = 19   loss = 473.9876
+Train Episode 775 : step = 40   Total Reward = -18.00   diameter = 18   loss = 494.2165
+Train Episode 776 : step = 40   Total Reward = -16.00   diameter = 16   loss = 481.9415
+Train Episode 777 : step = 40   Total Reward = -19.00   diameter = 19   loss = 500.6962
+Train Episode 778 : step = 40   Total Reward = -22.00   diameter = 22   loss = 476.0509
+Train Episode 779 : step = 40   Total Reward = -20.00   diameter = 20   loss = 473.0083
+Train Episode 780 : step = 40   Total Reward = -18.00   diameter = 18   loss = 478.4386
+Train Episode 781 : step = 40   Total Reward = -15.00   diameter = 15   loss = 512.7997
+Train Episode 782 : step = 40   Total Reward = -22.00   diameter = 22   loss = 507.2719
+Train Episode 783 : step = 40   Total Reward = -21.00   diameter = 21   loss = 470.6000
+Train Episode 784 : step = 40   Total Reward = -18.00   diameter = 18   loss = 460.4859
+Train Episode 785 : step = 40   Total Reward = -19.00   diameter = 19   loss = 465.2040
+Train Episode 786 : step = 40   Total Reward = -16.00   diameter = 16   loss = 472.1730
+Train Episode 787 : step = 40   Total Reward = -14.00   diameter = 14   loss = 466.1924
+Train Episode 788 : step = 40   Total Reward = -20.00   diameter = 20   loss = 488.0947
+Train Episode 789 : step = 38   Total Reward = -15.00   diameter = 15   loss = 488.3063
+Test  Episode 790 : step = 40   Total Reward = -18.00   diameter = 18   loss = 0.0000  
+Test  Episode 791 : step = 40   Total Reward = -20.00   diameter = 20   loss = 0.0000  
+Test  Episode 792 : step = 40   Total Reward = -18.00   diameter = 18   loss = 0.0000  
+Test  Episode 793 : step = 38   Total Reward = -19.00   diameter = 19   loss = 0.0000  
+Test  Episode 794 : step = 40   Total Reward = -17.00   diameter = 17   loss = 0.0000  
+Test  Episode 795 : step = 38   Total Reward = -27.00   diameter = 27   loss = 0.0000  
+Test  Episode 796 : step = 39   Total Reward = -21.00   diameter = 21   loss = 0.0000  
+Test  Episode 797 : step = 40   Total Reward = -18.00   diameter = 18   loss = 0.0000  
+Test  Episode 798 : step = 40   Total Reward = -17.00   diameter = 17   loss = 0.0000  
+Test  Episode 799 : step = 40   Total Reward = -25.00   diameter = 25   loss = 0.0000  
+-20.0 20.0
+Train Episode 800 : step = 40   Total Reward = -18.00   diameter = 18   loss = 472.7975
+Train Episode 801 : step = 40   Total Reward = -22.00   diameter = 22   loss = 468.2584
+Train Episode 802 : step = 40   Total Reward = -20.00   diameter = 20   loss = 441.6635
+Train Episode 803 : step = 40   Total Reward = -20.00   diameter = 20   loss = 454.4783
+Train Episode 804 : step = 40   Total Reward = -18.00   diameter = 18   loss = 487.2090
+Train Episode 805 : step = 40   Total Reward = -20.00   diameter = 20   loss = 465.6243
+Train Episode 806 : step = 40   Total Reward = -19.00   diameter = 19   loss = 460.7288
+Train Episode 807 : step = 40   Total Reward = -17.00   diameter = 17   loss = 471.8200
+Train Episode 808 : step = 40   Total Reward = -19.00   diameter = 19   loss = 455.2805
+Train Episode 809 : step = 40   Total Reward = -18.00   diameter = 18   loss = 445.9759
+Train Episode 810 : step = 40   Total Reward = -17.00   diameter = 17   loss = 486.0858
+Train Episode 811 : step = 40   Total Reward = -22.00   diameter = 22   loss = 460.8409
+Train Episode 812 : step = 40   Total Reward = -19.00   diameter = 19   loss = 485.2232
+Train Episode 813 : step = 40   Total Reward = -17.00   diameter = 17   loss = 637.1803
+Train Episode 814 : step = 40   Total Reward = -13.00   diameter = 13   loss = 587.5102
+Train Episode 815 : step = 40   Total Reward = -17.00   diameter = 17   loss = 501.7993
+Train Episode 816 : step = 39   Total Reward = -20.00   diameter = 20   loss = 472.8495
+Train Episode 817 : step = 40   Total Reward = -19.00   diameter = 19   loss = 491.2342
+Train Episode 818 : step = 40   Total Reward = -16.00   diameter = 16   loss = 538.4768
+Train Episode 819 : step = 39   Total Reward = -18.00   diameter = 18   loss = 462.9622
+Train Episode 820 : step = 40   Total Reward = -16.00   diameter = 16   loss = 490.5647
+Train Episode 821 : step = 40   Total Reward = -16.00   diameter = 16   loss = 479.8613
+Train Episode 822 : step = 40   Total Reward = -21.00   diameter = 21   loss = 476.6094
+Train Episode 823 : step = 38   Total Reward = -20.00   diameter = 20   loss = 428.2697
+Train Episode 824 : step = 39   Total Reward = -18.00   diameter = 18   loss = 458.2020
+Train Episode 825 : step = 40   Total Reward = -19.00   diameter = 19   loss = 508.2040
+Train Episode 826 : step = 38   Total Reward = -19.00   diameter = 19   loss = 439.3703
+Train Episode 827 : step = 40   Total Reward = -21.00   diameter = 21   loss = 515.5404
+Train Episode 828 : step = 40   Total Reward = -21.00   diameter = 21   loss = 476.5370
+Train Episode 829 : step = 40   Total Reward = -19.00   diameter = 19   loss = 458.3103
+Train Episode 830 : step = 40   Total Reward = -22.00   diameter = 22   loss = 441.7359
+Train Episode 831 : step = 40   Total Reward = -18.00   diameter = 18   loss = 450.2979
+Train Episode 832 : step = 40   Total Reward = -22.00   diameter = 22   loss = 447.2534
+Train Episode 833 : step = 40   Total Reward = -18.00   diameter = 18   loss = 458.3070
+Train Episode 834 : step = 40   Total Reward = -24.00   diameter = 24   loss = 466.1902
+Train Episode 835 : step = 40   Total Reward = -23.00   diameter = 23   loss = 454.6748
+Train Episode 836 : step = 40   Total Reward = -19.00   diameter = 19   loss = 434.0712
+Train Episode 837 : step = 40   Total Reward = -18.00   diameter = 18   loss = 485.1299
+Train Episode 838 : step = 40   Total Reward = -16.00   diameter = 16   loss = 472.0224
+Train Episode 839 : step = 40   Total Reward = -18.00   diameter = 18   loss = 464.3119
+Train Episode 840 : step = 37   Total Reward = -20.00   diameter = 20   loss = 412.0917
+Train Episode 841 : step = 40   Total Reward = -17.00   diameter = 17   loss = 446.3655
+Train Episode 842 : step = 40   Total Reward = -19.00   diameter = 19   loss = 459.3333
+Train Episode 843 : step = 40   Total Reward = -23.00   diameter = 23   loss = 456.3009
+Train Episode 844 : step = 40   Total Reward = -17.00   diameter = 17   loss = 454.1781
+Train Episode 845 : step = 40   Total Reward = -16.00   diameter = 16   loss = 467.3205
+Train Episode 846 : step = 40   Total Reward = -18.00   diameter = 18   loss = 474.3250
+Train Episode 847 : step = 40   Total Reward = -16.00   diameter = 16   loss = 441.9083
+Train Episode 848 : step = 40   Total Reward = -18.00   diameter = 18   loss = 465.2020
+Train Episode 849 : step = 40   Total Reward = -20.00   diameter = 20   loss = 464.5853
+Train Episode 850 : step = 40   Total Reward = -23.00   diameter = 23   loss = 494.8462
+Train Episode 851 : step = 40   Total Reward = -16.00   diameter = 16   loss = 470.3840
+Train Episode 852 : step = 40   Total Reward = -19.00   diameter = 19   loss = 460.9199
+Train Episode 853 : step = 38   Total Reward = -25.00   diameter = 25   loss = 403.3417
+Train Episode 854 : step = 40   Total Reward = -24.00   diameter = 24   loss = 455.7567
+Train Episode 855 : step = 40   Total Reward = -14.00   diameter = 14   loss = 460.4157
+Train Episode 856 : step = 40   Total Reward = -24.00   diameter = 24   loss = 445.7731
+Train Episode 857 : step = 40   Total Reward = -20.00   diameter = 20   loss = 449.7197
+Train Episode 858 : step = 40   Total Reward = -13.00   diameter = 13   loss = 451.0276
+Train Episode 859 : step = 39   Total Reward = -21.00   diameter = 21   loss = 428.4995
+Train Episode 860 : step = 40   Total Reward = -19.00   diameter = 19   loss = 454.2878
+Train Episode 861 : step = 40   Total Reward = -21.00   diameter = 21   loss = 485.6739
+Train Episode 862 : step = 40   Total Reward = -18.00   diameter = 18   loss = 456.1825
+Train Episode 863 : step = 39   Total Reward = -23.00   diameter = 23   loss = 432.0324
+Train Episode 864 : step = 40   Total Reward = -18.00   diameter = 18   loss = 459.1627
+Train Episode 865 : step = 40   Total Reward = -16.00   diameter = 16   loss = 444.2710
+Train Episode 866 : step = 40   Total Reward = -18.00   diameter = 18   loss = 466.1963
+Train Episode 867 : step = 39   Total Reward = -19.00   diameter = 19   loss = 423.3159
+Train Episode 868 : step = 38   Total Reward = -19.00   diameter = 19   loss = 429.8039
+Train Episode 869 : step = 38   Total Reward = -17.00   diameter = 17   loss = 420.2043
+Train Episode 870 : step = 40   Total Reward = -21.00   diameter = 21   loss = 433.4837
+Train Episode 871 : step = 40   Total Reward = -20.00   diameter = 20   loss = 459.7894
+Train Episode 872 : step = 40   Total Reward = -20.00   diameter = 20   loss = 433.5738
+Train Episode 873 : step = 38   Total Reward = -23.00   diameter = 23   loss = 437.9913
+Train Episode 874 : step = 39   Total Reward = -16.00   diameter = 16   loss = 424.1458
+Train Episode 875 : step = 40   Total Reward = -18.00   diameter = 18   loss = 594.7095
+Train Episode 876 : step = 40   Total Reward = -20.00   diameter = 20   loss = 7907.1955
+Train Episode 877 : step = 40   Total Reward = -18.00   diameter = 18   loss = 6737.8487
+Train Episode 878 : step = 40   Total Reward = -20.00   diameter = 20   loss = 2330.0756
+Train Episode 879 : step = 39   Total Reward = -22.00   diameter = 22   loss = 1223.9947
+Train Episode 880 : step = 40   Total Reward = -19.00   diameter = 19   loss = 1038.8670
+Train Episode 881 : step = 40   Total Reward = -20.00   diameter = 20   loss = 901.7800
+Train Episode 882 : step = 40   Total Reward = -24.00   diameter = 24   loss = 817.6994
+Train Episode 883 : step = 40   Total Reward = -20.00   diameter = 20   loss = 794.0241
+Train Episode 884 : step = 40   Total Reward = -18.00   diameter = 18   loss = 694.4467
+Train Episode 885 : step = 40   Total Reward = -17.00   diameter = 17   loss = 616.9491
+Train Episode 886 : step = 40   Total Reward = -17.00   diameter = 17   loss = 589.0018
+Train Episode 887 : step = 40   Total Reward = -16.00   diameter = 16   loss = 563.4942
+Train Episode 888 : step = 40   Total Reward = -20.00   diameter = 20   loss = 569.1232
+Train Episode 889 : step = 40   Total Reward = -18.00   diameter = 18   loss = 575.6736
+Test  Episode 890 : step = 40   Total Reward = -20.00   diameter = 20   loss = 0.0000  
+Test  Episode 891 : step = 40   Total Reward = -24.00   diameter = 24   loss = 0.0000  
+Test  Episode 892 : step = 40   Total Reward = -21.00   diameter = 21   loss = 0.0000  
+Test  Episode 893 : step = 40   Total Reward = -17.00   diameter = 17   loss = 0.0000  
+Test  Episode 894 : step = 40   Total Reward = -20.00   diameter = 20   loss = 0.0000  
+Test  Episode 895 : step = 38   Total Reward = -23.00   diameter = 23   loss = 0.0000  
+Test  Episode 896 : step = 40   Total Reward = -17.00   diameter = 17   loss = 0.0000  
+Test  Episode 897 : step = 40   Total Reward = -20.00   diameter = 20   loss = 0.0000  
+Test  Episode 898 : step = 40   Total Reward = -24.00   diameter = 24   loss = 0.0000  
+Test  Episode 899 : step = 40   Total Reward = -19.00   diameter = 19   loss = 0.0000  
+-20.5 20.5
+Train Episode 900 : step = 40   Total Reward = -24.00   diameter = 24   loss = 547.7014
+Train Episode 901 : step = 40   Total Reward = -18.00   diameter = 18   loss = 607.7434
+Train Episode 902 : step = 40   Total Reward = -20.00   diameter = 20   loss = 560.6278
+Train Episode 903 : step = 40   Total Reward = -17.00   diameter = 17   loss = 524.6906
+Train Episode 904 : step = 38   Total Reward = -25.00   diameter = 25   loss = 496.6594
+Train Episode 905 : step = 40   Total Reward = -16.00   diameter = 16   loss = 536.9007
+Train Episode 906 : step = 40   Total Reward = -22.00   diameter = 22   loss = 502.6378
+Train Episode 907 : step = 40   Total Reward = -21.00   diameter = 21   loss = 523.9519
+Train Episode 908 : step = 40   Total Reward = -19.00   diameter = 19   loss = 504.2486
+Train Episode 909 : step = 40   Total Reward = -20.00   diameter = 20   loss = 528.8247
+Train Episode 910 : step = 39   Total Reward = -20.00   diameter = 20   loss = 497.2801
+Train Episode 911 : step = 40   Total Reward = -18.00   diameter = 18   loss = 512.1230
+Train Episode 912 : step = 38   Total Reward = -22.00   diameter = 22   loss = 477.9185
+Train Episode 913 : step = 38   Total Reward = -21.00   diameter = 21   loss = 524.6809
+Train Episode 914 : step = 40   Total Reward = -23.00   diameter = 23   loss = 510.7536
+Train Episode 915 : step = 40   Total Reward = -23.00   diameter = 23   loss = 506.1146
+Train Episode 916 : step = 40   Total Reward = -20.00   diameter = 20   loss = 551.4251
+Train Episode 917 : step = 40   Total Reward = -18.00   diameter = 18   loss = 511.3459
+Train Episode 918 : step = 40   Total Reward = -16.00   diameter = 16   loss = 491.5803
+Train Episode 919 : step = 40   Total Reward = -19.00   diameter = 19   loss = 478.0429
+Train Episode 920 : step = 40   Total Reward = -18.00   diameter = 18   loss = 473.0303
+Train Episode 921 : step = 40   Total Reward = -21.00   diameter = 21   loss = 493.9679
+Train Episode 922 : step = 38   Total Reward = -21.00   diameter = 21   loss = 466.6331
+Train Episode 923 : step = 39   Total Reward = -18.00   diameter = 18   loss = 475.4200
+Train Episode 924 : step = 38   Total Reward = -18.00   diameter = 18   loss = 446.8330
+Train Episode 925 : step = 40   Total Reward = -14.00   diameter = 14   loss = 486.7499
+Train Episode 926 : step = 40   Total Reward = -24.00   diameter = 24   loss = 464.5343
+Train Episode 927 : step = 40   Total Reward = -19.00   diameter = 19   loss = 503.9732
+Train Episode 928 : step = 39   Total Reward = -23.00   diameter = 23   loss = 471.6260
+Train Episode 929 : step = 40   Total Reward = -23.00   diameter = 23   loss = 511.4078
+Train Episode 930 : step = 40   Total Reward = -17.00   diameter = 17   loss = 504.9599
+Train Episode 931 : step = 40   Total Reward = -19.00   diameter = 19   loss = 518.7658
+Train Episode 932 : step = 40   Total Reward = -20.00   diameter = 20   loss = 496.7060
+Train Episode 933 : step = 40   Total Reward = -26.00   diameter = 26   loss = 492.5422
+Train Episode 934 : step = 40   Total Reward = -15.00   diameter = 15   loss = 481.9662
+Train Episode 935 : step = 40   Total Reward = -23.00   diameter = 23   loss = 466.6600
+Train Episode 936 : step = 40   Total Reward = -17.00   diameter = 17   loss = 499.2318
+Train Episode 937 : step = 40   Total Reward = -24.00   diameter = 24   loss = 479.7639
+Train Episode 938 : step = 40   Total Reward = -16.00   diameter = 16   loss = 489.8326
+Train Episode 939 : step = 40   Total Reward = -18.00   diameter = 18   loss = 523.7822
+Train Episode 940 : step = 40   Total Reward = -21.00   diameter = 21   loss = 493.2782
+Train Episode 941 : step = 38   Total Reward = -19.00   diameter = 19   loss = 441.6580
+Train Episode 942 : step = 40   Total Reward = -19.00   diameter = 19   loss = 522.2284
+Train Episode 943 : step = 40   Total Reward = -17.00   diameter = 17   loss = 474.5691
+Train Episode 944 : step = 40   Total Reward = -15.00   diameter = 15   loss = 465.8721
+Train Episode 945 : step = 40   Total Reward = -17.00   diameter = 17   loss = 445.2392
+Train Episode 946 : step = 40   Total Reward = -16.00   diameter = 16   loss = 463.0226
+Train Episode 947 : step = 39   Total Reward = -19.00   diameter = 19   loss = 463.3701
+Train Episode 948 : step = 40   Total Reward = -19.00   diameter = 19   loss = 454.4254
+Train Episode 949 : step = 40   Total Reward = -17.00   diameter = 17   loss = 469.4762
+Train Episode 950 : step = 40   Total Reward = -15.00   diameter = 15   loss = 450.4947
+Train Episode 951 : step = 39   Total Reward = -16.00   diameter = 16   loss = 459.4208
+Train Episode 952 : step = 40   Total Reward = -21.00   diameter = 21   loss = 458.8913
+Train Episode 953 : step = 40   Total Reward = -16.00   diameter = 16   loss = 463.4077
+Train Episode 954 : step = 40   Total Reward = -21.00   diameter = 21   loss = 457.4156
+Train Episode 955 : step = 40   Total Reward = -18.00   diameter = 18   loss = 472.0673
+Train Episode 956 : step = 40   Total Reward = -20.00   diameter = 20   loss = 479.5366
+Train Episode 957 : step = 40   Total Reward = -20.00   diameter = 20   loss = 471.8881
+Train Episode 958 : step = 40   Total Reward = -16.00   diameter = 16   loss = 480.7372
+Train Episode 959 : step = 40   Total Reward = -20.00   diameter = 20   loss = 436.1237
+Train Episode 960 : step = 40   Total Reward = -19.00   diameter = 19   loss = 446.6241
+Train Episode 961 : step = 40   Total Reward = -19.00   diameter = 19   loss = 454.2205
+Train Episode 962 : step = 40   Total Reward = -19.00   diameter = 19   loss = 475.6637
+Train Episode 963 : step = 40   Total Reward = -23.00   diameter = 23   loss = 458.7980
+Train Episode 964 : step = 40   Total Reward = -19.00   diameter = 19   loss = 485.7935
+Train Episode 965 : step = 40   Total Reward = -23.00   diameter = 23   loss = 460.9663
+Train Episode 966 : step = 40   Total Reward = -18.00   diameter = 18   loss = 461.4731
+Train Episode 967 : step = 39   Total Reward = -19.00   diameter = 19   loss = 459.6686
+Train Episode 968 : step = 40   Total Reward = -22.00   diameter = 22   loss = 505.5298
+Train Episode 969 : step = 40   Total Reward = -17.00   diameter = 17   loss = 440.1172
+Train Episode 970 : step = 40   Total Reward = -20.00   diameter = 20   loss = 440.0400
+Train Episode 971 : step = 40   Total Reward = -19.00   diameter = 19   loss = 441.6752
+Train Episode 972 : step = 40   Total Reward = -16.00   diameter = 16   loss = 450.0678
+Train Episode 973 : step = 40   Total Reward = -23.00   diameter = 23   loss = 451.8435
+Train Episode 974 : step = 40   Total Reward = -20.00   diameter = 20   loss = 425.1506
+Train Episode 975 : step = 40   Total Reward = -21.00   diameter = 21   loss = 436.2304
+Train Episode 976 : step = 40   Total Reward = -22.00   diameter = 22   loss = 439.4761
+Train Episode 977 : step = 38   Total Reward = -19.00   diameter = 19   loss = 441.1603
+Train Episode 978 : step = 40   Total Reward = -23.00   diameter = 23   loss = 449.1089
+Train Episode 979 : step = 40   Total Reward = -24.00   diameter = 24   loss = 436.8629
+Train Episode 980 : step = 40   Total Reward = -19.00   diameter = 19   loss = 447.0062
+Train Episode 981 : step = 40   Total Reward = -20.00   diameter = 20   loss = 422.4102
+Train Episode 982 : step = 39   Total Reward = -24.00   diameter = 24   loss = 446.7412
+Train Episode 983 : step = 40   Total Reward = -21.00   diameter = 21   loss = 432.0922
+Train Episode 984 : step = 40   Total Reward = -19.00   diameter = 19   loss = 418.1189
+Train Episode 985 : step = 40   Total Reward = -18.00   diameter = 18   loss = 460.1645
+Train Episode 986 : step = 40   Total Reward = -15.00   diameter = 15   loss = 416.4393
+Train Episode 987 : step = 40   Total Reward = -20.00   diameter = 20   loss = 439.9603
+Train Episode 988 : step = 40   Total Reward = -17.00   diameter = 17   loss = 486.0366
+Train Episode 989 : step = 40   Total Reward = -18.00   diameter = 18   loss = 474.1513
+Test  Episode 990 : step = 38   Total Reward = -19.00   diameter = 19   loss = 0.0000  
+Test  Episode 991 : step = 40   Total Reward = -22.00   diameter = 22   loss = 0.0000  
+Test  Episode 992 : step = 40   Total Reward = -20.00   diameter = 20   loss = 0.0000  
+Test  Episode 993 : step = 37   Total Reward = -25.00   diameter = 25   loss = 0.0000  
+Test  Episode 994 : step = 40   Total Reward = -21.00   diameter = 21   loss = 0.0000  
+Test  Episode 995 : step = 40   Total Reward = -19.00   diameter = 19   loss = 0.0000  
+Test  Episode 996 : step = 40   Total Reward = -18.00   diameter = 18   loss = 0.0000  
+Test  Episode 997 : step = 38   Total Reward = -28.00   diameter = 28   loss = 0.0000  
+Test  Episode 998 : step = 39   Total Reward = -20.00   diameter = 20   loss = 0.0000  
+Test  Episode 999 : step = 40   Total Reward = -18.00   diameter = 18   loss = 0.0000  
+-21.0 21.0
+Train Episode 1000: step = 40   Total Reward = -14.00   diameter = 14   loss = 426.4438
+Train Episode 1001: step = 40   Total Reward = -17.00   diameter = 17   loss = 435.5384
+Train Episode 1002: step = 40   Total Reward = -19.00   diameter = 19   loss = 437.0758
+Train Episode 1003: step = 39   Total Reward = -19.00   diameter = 19   loss = 417.4504
+Train Episode 1004: step = 40   Total Reward = -17.00   diameter = 17   loss = 441.2766
+Train Episode 1005: step = 40   Total Reward = -17.00   diameter = 17   loss = 438.1179
+Train Episode 1006: step = 38   Total Reward = -18.00   diameter = 18   loss = 441.3389
+Train Episode 1007: step = 40   Total Reward = -17.00   diameter = 17   loss = 431.4857
+Train Episode 1008: step = 40   Total Reward = -19.00   diameter = 19   loss = 441.3084
+Train Episode 1009: step = 40   Total Reward = -21.00   diameter = 21   loss = 416.8931
+Train Episode 1010: step = 38   Total Reward = -17.00   diameter = 17   loss = 399.0097
+Train Episode 1011: step = 40   Total Reward = -20.00   diameter = 20   loss = 398.7083
+Train Episode 1012: step = 40   Total Reward = -18.00   diameter = 18   loss = 421.4146
+Train Episode 1013: step = 40   Total Reward = -21.00   diameter = 21   loss = 437.3156
+Train Episode 1014: step = 40   Total Reward = -18.00   diameter = 18   loss = 404.4617
+Train Episode 1015: step = 40   Total Reward = -16.00   diameter = 16   loss = 413.3566
+Train Episode 1016: step = 39   Total Reward = -15.00   diameter = 15   loss = 385.0824
+Train Episode 1017: step = 40   Total Reward = -17.00   diameter = 17   loss = 443.4601
+Train Episode 1018: step = 38   Total Reward = -23.00   diameter = 23   loss = 409.5423
+Train Episode 1019: step = 40   Total Reward = -18.00   diameter = 18   loss = 438.2540
+Train Episode 1020: step = 40   Total Reward = -19.00   diameter = 19   loss = 441.5223
+Train Episode 1021: step = 40   Total Reward = -20.00   diameter = 20   loss = 409.3296
+Train Episode 1022: step = 40   Total Reward = -19.00   diameter = 19   loss = 439.7069
+Train Episode 1023: step = 40   Total Reward = -18.00   diameter = 18   loss = 428.9914
+Train Episode 1024: step = 40   Total Reward = -23.00   diameter = 23   loss = 436.7298
+Train Episode 1025: step = 39   Total Reward = -21.00   diameter = 21   loss = 413.6396
+Train Episode 1026: step = 40   Total Reward = -17.00   diameter = 17   loss = 404.2740
+Train Episode 1027: step = 40   Total Reward = -18.00   diameter = 18   loss = 420.8504
+Train Episode 1028: step = 40   Total Reward = -18.00   diameter = 18   loss = 433.7879
+Train Episode 1029: step = 40   Total Reward = -19.00   diameter = 19   loss = 438.6074
+Train Episode 1030: step = 40   Total Reward = -16.00   diameter = 16   loss = 416.8477
+Train Episode 1031: step = 40   Total Reward = -17.00   diameter = 17   loss = 415.7986
+Train Episode 1032: step = 40   Total Reward = -16.00   diameter = 16   loss = 404.7621
+Train Episode 1033: step = 40   Total Reward = -17.00   diameter = 17   loss = 410.0662
+Train Episode 1034: step = 40   Total Reward = -17.00   diameter = 17   loss = 407.4470
+Train Episode 1035: step = 40   Total Reward = -23.00   diameter = 23   loss = 428.7698
+Train Episode 1036: step = 40   Total Reward = -24.00   diameter = 24   loss = 421.5958
+Train Episode 1037: step = 40   Total Reward = -19.00   diameter = 19   loss = 470.0099
+Train Episode 1038: step = 40   Total Reward = -17.00   diameter = 17   loss = 432.4612
+Train Episode 1039: step = 40   Total Reward = -21.00   diameter = 21   loss = 443.6948
+Train Episode 1040: step = 40   Total Reward = -13.00   diameter = 13   loss = 432.7055
+Train Episode 1041: step = 40   Total Reward = -21.00   diameter = 21   loss = 419.1323
+Train Episode 1042: step = 40   Total Reward = -21.00   diameter = 21   loss = 413.3942
+Train Episode 1043: step = 40   Total Reward = -18.00   diameter = 18   loss = 396.4351
+Train Episode 1044: step = 40   Total Reward = -22.00   diameter = 22   loss = 412.7982
+Train Episode 1045: step = 38   Total Reward = -20.00   diameter = 20   loss = 381.6199
+Train Episode 1046: step = 40   Total Reward = -21.00   diameter = 21   loss = 391.2351
+Train Episode 1047: step = 40   Total Reward = -18.00   diameter = 18   loss = 399.9944
+Train Episode 1048: step = 40   Total Reward = -17.00   diameter = 17   loss = 399.2391
+Train Episode 1049: step = 40   Total Reward = -19.00   diameter = 19   loss = 396.1719
+Train Episode 1050: step = 40   Total Reward = -22.00   diameter = 22   loss = 407.7635
+Train Episode 1051: step = 40   Total Reward = -16.00   diameter = 16   loss = 402.9096
+Train Episode 1052: step = 40   Total Reward = -18.00   diameter = 18   loss = 394.1662
+Train Episode 1053: step = 38   Total Reward = -16.00   diameter = 16   loss = 374.1393
+Train Episode 1054: step = 40   Total Reward = -21.00   diameter = 21   loss = 390.6548
+Train Episode 1055: step = 40   Total Reward = -20.00   diameter = 20   loss = 396.2470
+Train Episode 1056: step = 38   Total Reward = -17.00   diameter = 17   loss = 411.6206
+Train Episode 1057: step = 40   Total Reward = -17.00   diameter = 17   loss = 399.4198
+Train Episode 1058: step = 39   Total Reward = -20.00   diameter = 20   loss = 390.2024
+Train Episode 1059: step = 40   Total Reward = -23.00   diameter = 23   loss = 408.7868
+Train Episode 1060: step = 40   Total Reward = -18.00   diameter = 18   loss = 399.5852
+Train Episode 1061: step = 38   Total Reward = -22.00   diameter = 22   loss = 378.2620
+Train Episode 1062: step = 40   Total Reward = -18.00   diameter = 18   loss = 383.7567
+Train Episode 1063: step = 40   Total Reward = -19.00   diameter = 19   loss = 401.7574
+Train Episode 1064: step = 40   Total Reward = -22.00   diameter = 22   loss = 390.4594
+Train Episode 1065: step = 38   Total Reward = -20.00   diameter = 20   loss = 360.3003
+Train Episode 1066: step = 40   Total Reward = -19.00   diameter = 19   loss = 382.0831
+Train Episode 1067: step = 40   Total Reward = -24.00   diameter = 24   loss = 368.1579
+Train Episode 1068: step = 40   Total Reward = -18.00   diameter = 18   loss = 381.9706
+Train Episode 1069: step = 40   Total Reward = -17.00   diameter = 17   loss = 389.8529
+Train Episode 1070: step = 40   Total Reward = -19.00   diameter = 19   loss = 400.0228
+Train Episode 1071: step = 40   Total Reward = -21.00   diameter = 21   loss = 376.0356
+Train Episode 1072: step = 40   Total Reward = -21.00   diameter = 21   loss = 417.1838
+Train Episode 1073: step = 38   Total Reward = -21.00   diameter = 21   loss = 363.2497
+Train Episode 1074: step = 40   Total Reward = -21.00   diameter = 21   loss = 389.1023
+Train Episode 1075: step = 40   Total Reward = -18.00   diameter = 18   loss = 377.3069
+Train Episode 1076: step = 40   Total Reward = -19.00   diameter = 19   loss = 387.8655
+Train Episode 1077: step = 39   Total Reward = -15.00   diameter = 15   loss = 367.5536
+Train Episode 1078: step = 40   Total Reward = -16.00   diameter = 16   loss = 399.1679
+Train Episode 1079: step = 40   Total Reward = -20.00   diameter = 20   loss = 367.4020
+Train Episode 1080: step = 40   Total Reward = -23.00   diameter = 23   loss = 405.8346
+Train Episode 1081: step = 40   Total Reward = -21.00   diameter = 21   loss = 394.0045
+Train Episode 1082: step = 40   Total Reward = -19.00   diameter = 19   loss = 387.1784
+Train Episode 1083: step = 40   Total Reward = -16.00   diameter = 16   loss = 382.5223
+Train Episode 1084: step = 40   Total Reward = -18.00   diameter = 18   loss = 388.7203
+Train Episode 1085: step = 40   Total Reward = -16.00   diameter = 16   loss = 371.2550
+Train Episode 1086: step = 40   Total Reward = -21.00   diameter = 21   loss = 373.5848
+Train Episode 1087: step = 40   Total Reward = -18.00   diameter = 18   loss = 352.0866
+Train Episode 1088: step = 40   Total Reward = -17.00   diameter = 17   loss = 406.6465
+Train Episode 1089: step = 40   Total Reward = -14.00   diameter = 14   loss = 371.5295
+Test  Episode 1090: step = 40   Total Reward = -19.00   diameter = 19   loss = 0.0000  
+Test  Episode 1091: step = 38   Total Reward = -20.00   diameter = 20   loss = 0.0000  
+Test  Episode 1092: step = 40   Total Reward = -14.00   diameter = 14   loss = 0.0000  
+Test  Episode 1093: step = 40   Total Reward = -21.00   diameter = 21   loss = 0.0000  
+Test  Episode 1094: step = 40   Total Reward = -21.00   diameter = 21   loss = 0.0000  
+Test  Episode 1095: step = 40   Total Reward = -20.00   diameter = 20   loss = 0.0000  
+Test  Episode 1096: step = 37   Total Reward = -21.00   diameter = 21   loss = 0.0000  
+Test  Episode 1097: step = 40   Total Reward = -17.00   diameter = 17   loss = 0.0000  
+Test  Episode 1098: step = 40   Total Reward = -22.00   diameter = 22   loss = 0.0000  
+Test  Episode 1099: step = 40   Total Reward = -17.00   diameter = 17   loss = 0.0000  
+-19.2 19.2
+Train Episode 1100: step = 40   Total Reward = -16.00   diameter = 16   loss = 382.9553
+Train Episode 1101: step = 40   Total Reward = -21.00   diameter = 21   loss = 372.7495
+Train Episode 1102: step = 40   Total Reward = -15.00   diameter = 15   loss = 378.1854
+Train Episode 1103: step = 40   Total Reward = -19.00   diameter = 19   loss = 365.3361
+Train Episode 1104: step = 40   Total Reward = -19.00   diameter = 19   loss = 368.7292
+Train Episode 1105: step = 40   Total Reward = -20.00   diameter = 20   loss = 372.9795
+Train Episode 1106: step = 40   Total Reward = -17.00   diameter = 17   loss = 389.8846
+Train Episode 1107: step = 40   Total Reward = -16.00   diameter = 16   loss = 364.3580
+Train Episode 1108: step = 38   Total Reward = -19.00   diameter = 19   loss = 354.3335
+Train Episode 1109: step = 39   Total Reward = -20.00   diameter = 20   loss = 363.4843
+Train Episode 1110: step = 40   Total Reward = -21.00   diameter = 21   loss = 405.1484
+Train Episode 1111: step = 40   Total Reward = -18.00   diameter = 18   loss = 375.3273
+Train Episode 1112: step = 40   Total Reward = -22.00   diameter = 22   loss = 386.8064
+Train Episode 1113: step = 38   Total Reward = -23.00   diameter = 23   loss = 366.9707
+Train Episode 1114: step = 40   Total Reward = -17.00   diameter = 17   loss = 362.1175
+Train Episode 1115: step = 40   Total Reward = -18.00   diameter = 18   loss = 384.7129
+Train Episode 1116: step = 40   Total Reward = -21.00   diameter = 21   loss = 377.7527
+Train Episode 1117: step = 40   Total Reward = -18.00   diameter = 18   loss = 364.6424
+Train Episode 1118: step = 40   Total Reward = -18.00   diameter = 18   loss = 367.7211
+Train Episode 1119: step = 40   Total Reward = -22.00   diameter = 22   loss = 363.7655
+Train Episode 1120: step = 40   Total Reward = -23.00   diameter = 23   loss = 357.0112
+Train Episode 1121: step = 39   Total Reward = -22.00   diameter = 22   loss = 354.3682
+Train Episode 1122: step = 40   Total Reward = -20.00   diameter = 20   loss = 392.0846
+Train Episode 1123: step = 40   Total Reward = -18.00   diameter = 18   loss = 362.5782
+Train Episode 1124: step = 40   Total Reward = -21.00   diameter = 21   loss = 369.7538
+Train Episode 1125: step = 40   Total Reward = -18.00   diameter = 18   loss = 372.1148
+Train Episode 1126: step = 40   Total Reward = -18.00   diameter = 18   loss = 369.2404
+Train Episode 1127: step = 40   Total Reward = -16.00   diameter = 16   loss = 348.1153
+Train Episode 1128: step = 40   Total Reward = -19.00   diameter = 19   loss = 355.3201
+Train Episode 1129: step = 40   Total Reward = -22.00   diameter = 22   loss = 362.0962
+Train Episode 1130: step = 40   Total Reward = -21.00   diameter = 21   loss = 370.8381
+Train Episode 1131: step = 38   Total Reward = -16.00   diameter = 16   loss = 327.8988
+Train Episode 1132: step = 40   Total Reward = -19.00   diameter = 19   loss = 353.9725
+Train Episode 1133: step = 40   Total Reward = -18.00   diameter = 18   loss = 365.1716
+Train Episode 1134: step = 40   Total Reward = -14.00   diameter = 14   loss = 384.5417
+Train Episode 1135: step = 40   Total Reward = -21.00   diameter = 21   loss = 360.7670
+Train Episode 1136: step = 38   Total Reward = -20.00   diameter = 20   loss = 342.0761
+Train Episode 1137: step = 40   Total Reward = -22.00   diameter = 22   loss = 347.3737
+Train Episode 1138: step = 40   Total Reward = -21.00   diameter = 21   loss = 350.7793
+Train Episode 1139: step = 40   Total Reward = -18.00   diameter = 18   loss = 375.3861
+Train Episode 1140: step = 40   Total Reward = -20.00   diameter = 20   loss = 361.5625
+Train Episode 1141: step = 40   Total Reward = -22.00   diameter = 22   loss = 365.9887
+Train Episode 1142: step = 39   Total Reward = -19.00   diameter = 19   loss = 349.3426
+Train Episode 1143: step = 38   Total Reward = -20.00   diameter = 20   loss = 341.4262
+Train Episode 1144: step = 38   Total Reward = -22.00   diameter = 22   loss = 341.0668
+Train Episode 1145: step = 40   Total Reward = -15.00   diameter = 15   loss = 359.0503
+Train Episode 1146: step = 40   Total Reward = -18.00   diameter = 18   loss = 374.9627
+Train Episode 1147: step = 40   Total Reward = -21.00   diameter = 21   loss = 361.5837
+Train Episode 1148: step = 40   Total Reward = -18.00   diameter = 18   loss = 338.7065
+Train Episode 1149: step = 40   Total Reward = -17.00   diameter = 17   loss = 353.4511
+Train Episode 1150: step = 40   Total Reward = -19.00   diameter = 19   loss = 353.5726
+Train Episode 1151: step = 40   Total Reward = -22.00   diameter = 22   loss = 360.9963
+Train Episode 1152: step = 38   Total Reward = -17.00   diameter = 17   loss = 324.9773
+Train Episode 1153: step = 40   Total Reward = -15.00   diameter = 15   loss = 342.6023
+Train Episode 1154: step = 40   Total Reward = -16.00   diameter = 16   loss = 357.4821
+Train Episode 1155: step = 40   Total Reward = -19.00   diameter = 19   loss = 360.1452
+Train Episode 1156: step = 38   Total Reward = -17.00   diameter = 17   loss = 355.6602
+Train Episode 1157: step = 40   Total Reward = -18.00   diameter = 18   loss = 361.9859
+Train Episode 1158: step = 40   Total Reward = -18.00   diameter = 18   loss = 340.7517
+Train Episode 1159: step = 40   Total Reward = -22.00   diameter = 22   loss = 339.7520
+Train Episode 1160: step = 40   Total Reward = -19.00   diameter = 19   loss = 351.7379
+Train Episode 1161: step = 40   Total Reward = -18.00   diameter = 18   loss = 346.8981
+Train Episode 1162: step = 40   Total Reward = -18.00   diameter = 18   loss = 358.5718
+Train Episode 1163: step = 40   Total Reward = -17.00   diameter = 17   loss = 336.4695
+Train Episode 1164: step = 40   Total Reward = -19.00   diameter = 19   loss = 336.4282
+Train Episode 1165: step = 40   Total Reward = -18.00   diameter = 18   loss = 350.3217
+Train Episode 1166: step = 40   Total Reward = -19.00   diameter = 19   loss = 340.8726
+Train Episode 1167: step = 40   Total Reward = -14.00   diameter = 14   loss = 358.3477
+Train Episode 1168: step = 40   Total Reward = -20.00   diameter = 20   loss = 359.4590
+Train Episode 1169: step = 40   Total Reward = -21.00   diameter = 21   loss = 351.4309
+Train Episode 1170: step = 40   Total Reward = -20.00   diameter = 20   loss = 357.0411
+Train Episode 1171: step = 39   Total Reward = -20.00   diameter = 20   loss = 336.8621
+Train Episode 1172: step = 38   Total Reward = -24.00   diameter = 24   loss = 344.0298
+Train Episode 1173: step = 40   Total Reward = -14.00   diameter = 14   loss = 411.8567
+Train Episode 1174: step = 39   Total Reward = -16.00   diameter = 16   loss = 4682.3718
+Train Episode 1175: step = 40   Total Reward = -18.00   diameter = 18   loss = 631.3860
+Train Episode 1176: step = 40   Total Reward = -19.00   diameter = 19   loss = 477.8914
+Train Episode 1177: step = 40   Total Reward = -18.00   diameter = 18   loss = 476.2024
+Train Episode 1178: step = 39   Total Reward = -23.00   diameter = 23   loss = 416.1697
+Train Episode 1179: step = 40   Total Reward = -19.00   diameter = 19   loss = 426.2243
+Train Episode 1180: step = 40   Total Reward = -20.00   diameter = 20   loss = 418.7090
+Train Episode 1181: step = 40   Total Reward = -22.00   diameter = 22   loss = 398.8623
+Train Episode 1182: step = 40   Total Reward = -16.00   diameter = 16   loss = 418.8441
+Train Episode 1183: step = 40   Total Reward = -19.00   diameter = 19   loss = 416.2374
+Train Episode 1184: step = 40   Total Reward = -17.00   diameter = 17   loss = 376.6390
+Train Episode 1185: step = 40   Total Reward = -15.00   diameter = 15   loss = 385.0205
+Train Episode 1186: step = 40   Total Reward = -19.00   diameter = 19   loss = 399.1572
+Train Episode 1187: step = 40   Total Reward = -21.00   diameter = 21   loss = 372.1661
+Train Episode 1188: step = 40   Total Reward = -14.00   diameter = 14   loss = 372.8200
+Train Episode 1189: step = 39   Total Reward = -17.00   diameter = 17   loss = 361.9618
+Test  Episode 1190: step = 40   Total Reward = -16.00   diameter = 16   loss = 0.0000  
+Test  Episode 1191: step = 40   Total Reward = -21.00   diameter = 21   loss = 0.0000  
+Test  Episode 1192: step = 39   Total Reward = -16.00   diameter = 16   loss = 0.0000  
+Test  Episode 1193: step = 40   Total Reward = -23.00   diameter = 23   loss = 0.0000  
+Test  Episode 1194: step = 40   Total Reward = -19.00   diameter = 19   loss = 0.0000  
+Test  Episode 1195: step = 40   Total Reward = -18.00   diameter = 18   loss = 0.0000  
+Test  Episode 1196: step = 40   Total Reward = -24.00   diameter = 24   loss = 0.0000  
+Test  Episode 1197: step = 40   Total Reward = -16.00   diameter = 16   loss = 0.0000  
+Test  Episode 1198: step = 40   Total Reward = -22.00   diameter = 22   loss = 0.0000  
+Test  Episode 1199: step = 40   Total Reward = -16.00   diameter = 16   loss = 0.0000  
+-19.1 19.1
+Train Episode 1200: step = 40   Total Reward = -15.00   diameter = 15   loss = 368.8235
+Train Episode 1201: step = 40   Total Reward = -17.00   diameter = 17   loss = 354.0453
+Train Episode 1202: step = 40   Total Reward = -18.00   diameter = 18   loss = 370.5566
+Train Episode 1203: step = 40   Total Reward = -18.00   diameter = 18   loss = 361.0772
+Train Episode 1204: step = 40   Total Reward = -20.00   diameter = 20   loss = 361.6094
+Train Episode 1205: step = 40   Total Reward = -17.00   diameter = 17   loss = 363.7360
+Train Episode 1206: step = 40   Total Reward = -21.00   diameter = 21   loss = 370.0968
+Train Episode 1207: step = 40   Total Reward = -26.00   diameter = 26   loss = 366.9057
+Train Episode 1208: step = 40   Total Reward = -18.00   diameter = 18   loss = 348.6627
+Train Episode 1209: step = 40   Total Reward = -17.00   diameter = 17   loss = 357.5023
+Train Episode 1210: step = 40   Total Reward = -18.00   diameter = 18   loss = 376.1448
+Train Episode 1211: step = 40   Total Reward = -21.00   diameter = 21   loss = 356.3631
+Train Episode 1212: step = 40   Total Reward = -22.00   diameter = 22   loss = 352.6903
+Train Episode 1213: step = 38   Total Reward = -23.00   diameter = 23   loss = 341.8492
+Train Episode 1214: step = 40   Total Reward = -20.00   diameter = 20   loss = 365.4219
+Train Episode 1215: step = 40   Total Reward = -13.00   diameter = 13   loss = 356.2055
+Train Episode 1216: step = 40   Total Reward = -23.00   diameter = 23   loss = 362.6221
+Train Episode 1217: step = 40   Total Reward = -16.00   diameter = 16   loss = 352.2205
+Train Episode 1218: step = 40   Total Reward = -24.00   diameter = 24   loss = 383.1559
+Train Episode 1219: step = 40   Total Reward = -21.00   diameter = 21   loss = 368.6523
+Train Episode 1220: step = 40   Total Reward = -18.00   diameter = 18   loss = 368.1085
+Train Episode 1221: step = 39   Total Reward = -20.00   diameter = 20   loss = 344.9665
+Train Episode 1222: step = 40   Total Reward = -19.00   diameter = 19   loss = 366.5828
+Train Episode 1223: step = 40   Total Reward = -18.00   diameter = 18   loss = 364.9751
+Train Episode 1224: step = 40   Total Reward = -16.00   diameter = 16   loss = 352.9767
+Train Episode 1225: step = 40   Total Reward = -19.00   diameter = 19   loss = 361.4747
+Train Episode 1226: step = 40   Total Reward = -20.00   diameter = 20   loss = 360.2972
+Train Episode 1227: step = 40   Total Reward = -18.00   diameter = 18   loss = 354.1811
+Train Episode 1228: step = 39   Total Reward = -21.00   diameter = 21   loss = 334.5444
+Train Episode 1229: step = 40   Total Reward = -21.00   diameter = 21   loss = 347.3019
+Train Episode 1230: step = 40   Total Reward = -18.00   diameter = 18   loss = 368.7404
+Train Episode 1231: step = 40   Total Reward = -18.00   diameter = 18   loss = 355.5321
+Train Episode 1232: step = 39   Total Reward = -18.00   diameter = 18   loss = 351.5274
+Train Episode 1233: step = 38   Total Reward = -17.00   diameter = 17   loss = 323.6984
+Train Episode 1234: step = 40   Total Reward = -20.00   diameter = 20   loss = 345.9323
+Train Episode 1235: step = 40   Total Reward = -16.00   diameter = 16   loss = 363.7121
+Train Episode 1236: step = 40   Total Reward = -21.00   diameter = 21   loss = 354.1994
+Train Episode 1237: step = 40   Total Reward = -23.00   diameter = 23   loss = 346.2372
+Train Episode 1238: step = 40   Total Reward = -16.00   diameter = 16   loss = 346.1516
+Train Episode 1239: step = 40   Total Reward = -23.00   diameter = 23   loss = 328.9088
+Train Episode 1240: step = 40   Total Reward = -16.00   diameter = 16   loss = 342.2600
+Train Episode 1241: step = 40   Total Reward = -23.00   diameter = 23   loss = 344.7108
+Train Episode 1242: step = 40   Total Reward = -17.00   diameter = 17   loss = 344.3537
+Train Episode 1243: step = 40   Total Reward = -20.00   diameter = 20   loss = 349.9636
+Train Episode 1244: step = 40   Total Reward = -17.00   diameter = 17   loss = 352.2918
+Train Episode 1245: step = 40   Total Reward = -21.00   diameter = 21   loss = 337.4838
+Train Episode 1246: step = 40   Total Reward = -23.00   diameter = 23   loss = 348.3221
+Train Episode 1247: step = 40   Total Reward = -17.00   diameter = 17   loss = 350.3666
+Train Episode 1248: step = 40   Total Reward = -20.00   diameter = 20   loss = 341.7261
+Train Episode 1249: step = 40   Total Reward = -17.00   diameter = 17   loss = 342.8059
+Train Episode 1250: step = 40   Total Reward = -18.00   diameter = 18   loss = 340.0679
+Train Episode 1251: step = 40   Total Reward = -16.00   diameter = 16   loss = 358.7245
+Train Episode 1252: step = 40   Total Reward = -18.00   diameter = 18   loss = 345.0156
+Train Episode 1253: step = 40   Total Reward = -22.00   diameter = 22   loss = 347.0329
+Train Episode 1254: step = 37   Total Reward = -23.00   diameter = 23   loss = 313.3317
+Train Episode 1255: step = 39   Total Reward = -19.00   diameter = 19   loss = 338.1905
+Train Episode 1256: step = 40   Total Reward = -17.00   diameter = 17   loss = 337.7545
+Train Episode 1257: step = 40   Total Reward = -18.00   diameter = 18   loss = 338.3958
+Train Episode 1258: step = 40   Total Reward = -17.00   diameter = 17   loss = 339.8844
+Train Episode 1259: step = 40   Total Reward = -20.00   diameter = 20   loss = 337.4394
+Train Episode 1260: step = 38   Total Reward = -15.00   diameter = 15   loss = 325.0641
+Train Episode 1261: step = 38   Total Reward = -20.00   diameter = 20   loss = 301.2244
+Train Episode 1262: step = 39   Total Reward = -19.00   diameter = 19   loss = 343.6260
+Train Episode 1263: step = 39   Total Reward = -19.00   diameter = 19   loss = 345.8611
+Train Episode 1264: step = 40   Total Reward = -17.00   diameter = 17   loss = 348.1140
+Train Episode 1265: step = 40   Total Reward = -17.00   diameter = 17   loss = 336.5612
+Train Episode 1266: step = 40   Total Reward = -16.00   diameter = 16   loss = 362.4254
+Train Episode 1267: step = 40   Total Reward = -19.00   diameter = 19   loss = 387.3553
+Train Episode 1268: step = 38   Total Reward = -19.00   diameter = 19   loss = 321.9404
+Train Episode 1269: step = 40   Total Reward = -19.00   diameter = 19   loss = 353.2415
+Train Episode 1270: step = 39   Total Reward = -22.00   diameter = 22   loss = 324.8836
+Train Episode 1271: step = 40   Total Reward = -23.00   diameter = 23   loss = 328.9285
+Train Episode 1272: step = 40   Total Reward = -23.00   diameter = 23   loss = 341.5328
+Train Episode 1273: step = 38   Total Reward = -22.00   diameter = 22   loss = 320.6855
+Train Episode 1274: step = 40   Total Reward = -20.00   diameter = 20   loss = 336.0104
+Train Episode 1275: step = 40   Total Reward = -17.00   diameter = 17   loss = 333.2766
+Train Episode 1276: step = 40   Total Reward = -18.00   diameter = 18   loss = 329.8143
+Train Episode 1277: step = 40   Total Reward = -18.00   diameter = 18   loss = 333.7131
+Train Episode 1278: step = 40   Total Reward = -18.00   diameter = 18   loss = 360.9331
+Train Episode 1279: step = 39   Total Reward = -21.00   diameter = 21   loss = 328.5662
+Train Episode 1280: step = 40   Total Reward = -20.00   diameter = 20   loss = 347.4268
+Train Episode 1281: step = 40   Total Reward = -20.00   diameter = 20   loss = 343.5088
+Train Episode 1282: step = 40   Total Reward = -18.00   diameter = 18   loss = 334.7833
+Train Episode 1283: step = 40   Total Reward = -17.00   diameter = 17   loss = 330.6876
+Train Episode 1284: step = 40   Total Reward = -23.00   diameter = 23   loss = 328.9530
+Train Episode 1285: step = 40   Total Reward = -16.00   diameter = 16   loss = 332.8115
+Train Episode 1286: step = 40   Total Reward = -16.00   diameter = 16   loss = 346.9629
+Train Episode 1287: step = 38   Total Reward = -26.00   diameter = 26   loss = 336.5499
+Train Episode 1288: step = 40   Total Reward = -15.00   diameter = 15   loss = 334.9382
+Train Episode 1289: step = 39   Total Reward = -16.00   diameter = 16   loss = 311.2712
+Test  Episode 1290: step = 38   Total Reward = -19.00   diameter = 19   loss = 0.0000  
+Test  Episode 1291: step = 40   Total Reward = -19.00   diameter = 19   loss = 0.0000  
+Test  Episode 1292: step = 40   Total Reward = -18.00   diameter = 18   loss = 0.0000  
+Test  Episode 1293: step = 38   Total Reward = -27.00   diameter = 27   loss = 0.0000  
+Test  Episode 1294: step = 40   Total Reward = -19.00   diameter = 19   loss = 0.0000  
+Test  Episode 1295: step = 40   Total Reward = -18.00   diameter = 18   loss = 0.0000  
+Test  Episode 1296: step = 40   Total Reward = -14.00   diameter = 14   loss = 0.0000  
+Test  Episode 1297: step = 38   Total Reward = -20.00   diameter = 20   loss = 0.0000  
+Test  Episode 1298: step = 39   Total Reward = -18.00   diameter = 18   loss = 0.0000  
+Test  Episode 1299: step = 38   Total Reward = -18.00   diameter = 18   loss = 0.0000  
+-19.0 19.0
+Train Episode 1300: step = 40   Total Reward = -23.00   diameter = 23   loss = 7798.2655
+Train Episode 1301: step = 40   Total Reward = -18.00   diameter = 18   loss = 5386.7965
+Train Episode 1302: step = 40   Total Reward = -25.00   diameter = 25   loss = 2520.5257
+Train Episode 1303: step = 40   Total Reward = -17.00   diameter = 17   loss = 779.5643
+Train Episode 1304: step = 39   Total Reward = -19.00   diameter = 19   loss = 526.6858
+Train Episode 1305: step = 40   Total Reward = -16.00   diameter = 16   loss = 506.4361
+Train Episode 1306: step = 39   Total Reward = -19.00   diameter = 19   loss = 479.1238
+Train Episode 1307: step = 40   Total Reward = -17.00   diameter = 17   loss = 464.3262
+Train Episode 1308: step = 40   Total Reward = -14.00   diameter = 14   loss = 444.9475
+Train Episode 1309: step = 40   Total Reward = -15.00   diameter = 15   loss = 432.1997
+Train Episode 1310: step = 40   Total Reward = -21.00   diameter = 21   loss = 429.9179
+Train Episode 1311: step = 40   Total Reward = -19.00   diameter = 19   loss = 411.4152
+Train Episode 1312: step = 40   Total Reward = -19.00   diameter = 19   loss = 408.8711
+Train Episode 1313: step = 40   Total Reward = -25.00   diameter = 25   loss = 441.9102
+Train Episode 1314: step = 40   Total Reward = -22.00   diameter = 22   loss = 406.6589
+Train Episode 1315: step = 40   Total Reward = -21.00   diameter = 21   loss = 397.1929
+Train Episode 1316: step = 40   Total Reward = -24.00   diameter = 24   loss = 436.8498
+Train Episode 1317: step = 40   Total Reward = -17.00   diameter = 17   loss = 413.4287
+Train Episode 1318: step = 40   Total Reward = -20.00   diameter = 20   loss = 373.7652
+Train Episode 1319: step = 40   Total Reward = -14.00   diameter = 14   loss = 394.7194
+Train Episode 1320: step = 38   Total Reward = -24.00   diameter = 24   loss = 374.0242
+Train Episode 1321: step = 40   Total Reward = -16.00   diameter = 16   loss = 396.2419
+Train Episode 1322: step = 39   Total Reward = -16.00   diameter = 16   loss = 395.6839
+Train Episode 1323: step = 40   Total Reward = -18.00   diameter = 18   loss = 382.1817
+Train Episode 1324: step = 40   Total Reward = -16.00   diameter = 16   loss = 380.1234
+Train Episode 1325: step = 39   Total Reward = -23.00   diameter = 23   loss = 377.5043
+Train Episode 1326: step = 40   Total Reward = -18.00   diameter = 18   loss = 402.5005
+Train Episode 1327: step = 40   Total Reward = -20.00   diameter = 20   loss = 385.2996
+Train Episode 1328: step = 38   Total Reward = -14.00   diameter = 14   loss = 362.5244
+Train Episode 1329: step = 40   Total Reward = -19.00   diameter = 19   loss = 356.1434
+Train Episode 1330: step = 38   Total Reward = -19.00   diameter = 19   loss = 366.6074
+Train Episode 1331: step = 40   Total Reward = -21.00   diameter = 21   loss = 400.3578
+Train Episode 1332: step = 38   Total Reward = -22.00   diameter = 22   loss = 361.4925
+Train Episode 1333: step = 40   Total Reward = -22.00   diameter = 22   loss = 357.8023
+Train Episode 1334: step = 40   Total Reward = -18.00   diameter = 18   loss = 390.0093
+Train Episode 1335: step = 40   Total Reward = -20.00   diameter = 20   loss = 382.8081
+Train Episode 1336: step = 40   Total Reward = -19.00   diameter = 19   loss = 372.1203
+Train Episode 1337: step = 40   Total Reward = -21.00   diameter = 21   loss = 381.5866
+Train Episode 1338: step = 40   Total Reward = -21.00   diameter = 21   loss = 374.3531
+Train Episode 1339: step = 40   Total Reward = -22.00   diameter = 22   loss = 382.3094
+Train Episode 1340: step = 40   Total Reward = -19.00   diameter = 19   loss = 376.6182
+Train Episode 1341: step = 40   Total Reward = -18.00   diameter = 18   loss = 372.7236
+Train Episode 1342: step = 40   Total Reward = -20.00   diameter = 20   loss = 362.2633
+Train Episode 1343: step = 40   Total Reward = -18.00   diameter = 18   loss = 363.8021
+Train Episode 1344: step = 40   Total Reward = -21.00   diameter = 21   loss = 362.2040
+Train Episode 1345: step = 40   Total Reward = -15.00   diameter = 15   loss = 380.7445
+Train Episode 1346: step = 40   Total Reward = -18.00   diameter = 18   loss = 361.9542
+Train Episode 1347: step = 40   Total Reward = -20.00   diameter = 20   loss = 365.5280
+Train Episode 1348: step = 40   Total Reward = -25.00   diameter = 25   loss = 375.1748
+Train Episode 1349: step = 40   Total Reward = -14.00   diameter = 14   loss = 395.9268
+Train Episode 1350: step = 40   Total Reward = -17.00   diameter = 17   loss = 362.2322
+Train Episode 1351: step = 40   Total Reward = -25.00   diameter = 25   loss = 359.5077
+Train Episode 1352: step = 40   Total Reward = -19.00   diameter = 19   loss = 371.5770
+Train Episode 1353: step = 40   Total Reward = -18.00   diameter = 18   loss = 371.3826
+Train Episode 1354: step = 40   Total Reward = -19.00   diameter = 19   loss = 374.6458
+Train Episode 1355: step = 40   Total Reward = -21.00   diameter = 21   loss = 368.3367
+Train Episode 1356: step = 40   Total Reward = -21.00   diameter = 21   loss = 364.2946
+Train Episode 1357: step = 40   Total Reward = -21.00   diameter = 21   loss = 361.1829
+Train Episode 1358: step = 40   Total Reward = -20.00   diameter = 20   loss = 371.3327
+Train Episode 1359: step = 40   Total Reward = -21.00   diameter = 21   loss = 366.3232
+Train Episode 1360: step = 40   Total Reward = -18.00   diameter = 18   loss = 365.0634
+Train Episode 1361: step = 40   Total Reward = -21.00   diameter = 21   loss = 383.1069
+Train Episode 1362: step = 40   Total Reward = -22.00   diameter = 22   loss = 374.9524
+Train Episode 1363: step = 38   Total Reward = -16.00   diameter = 16   loss = 343.9432
+Train Episode 1364: step = 40   Total Reward = -22.00   diameter = 22   loss = 372.7403
+Train Episode 1365: step = 40   Total Reward = -16.00   diameter = 16   loss = 372.3184
+Train Episode 1366: step = 38   Total Reward = -20.00   diameter = 20   loss = 345.2617
+Train Episode 1367: step = 40   Total Reward = -16.00   diameter = 16   loss = 357.0226
+Train Episode 1368: step = 40   Total Reward = -19.00   diameter = 19   loss = 371.9297
+Train Episode 1369: step = 40   Total Reward = -17.00   diameter = 17   loss = 359.8399
+Train Episode 1370: step = 40   Total Reward = -16.00   diameter = 16   loss = 370.6220
+Train Episode 1371: step = 40   Total Reward = -14.00   diameter = 14   loss = 369.1394
+Train Episode 1372: step = 40   Total Reward = -22.00   diameter = 22   loss = 358.5503
+Train Episode 1373: step = 40   Total Reward = -20.00   diameter = 20   loss = 371.3220
+Train Episode 1374: step = 40   Total Reward = -16.00   diameter = 16   loss = 348.4085
+Train Episode 1375: step = 40   Total Reward = -16.00   diameter = 16   loss = 358.0090
+Train Episode 1376: step = 40   Total Reward = -18.00   diameter = 18   loss = 355.0173
+Train Episode 1377: step = 40   Total Reward = -19.00   diameter = 19   loss = 349.2415
+Train Episode 1378: step = 40   Total Reward = -17.00   diameter = 17   loss = 342.1338
+Train Episode 1379: step = 40   Total Reward = -20.00   diameter = 20   loss = 373.2460
+Train Episode 1380: step = 40   Total Reward = -17.00   diameter = 17   loss = 351.5885
+Train Episode 1381: step = 40   Total Reward = -21.00   diameter = 21   loss = 347.2284
+Train Episode 1382: step = 40   Total Reward = -20.00   diameter = 20   loss = 350.8317
+Train Episode 1383: step = 37   Total Reward = -21.00   diameter = 21   loss = 318.3199
+Train Episode 1384: step = 40   Total Reward = -14.00   diameter = 14   loss = 349.9215
+Train Episode 1385: step = 40   Total Reward = -16.00   diameter = 16   loss = 351.6747
+Train Episode 1386: step = 40   Total Reward = -20.00   diameter = 20   loss = 353.2129
+Train Episode 1387: step = 40   Total Reward = -18.00   diameter = 18   loss = 337.2914
+Train Episode 1388: step = 40   Total Reward = -18.00   diameter = 18   loss = 331.5334
+Train Episode 1389: step = 40   Total Reward = -19.00   diameter = 19   loss = 351.6399
+Test  Episode 1390: step = 40   Total Reward = -18.00   diameter = 18   loss = 0.0000  
+Test  Episode 1391: step = 38   Total Reward = -20.00   diameter = 20   loss = 0.0000  
+Test  Episode 1392: step = 38   Total Reward = -18.00   diameter = 18   loss = 0.0000  
+Test  Episode 1393: step = 40   Total Reward = -19.00   diameter = 19   loss = 0.0000  
+Test  Episode 1394: step = 40   Total Reward = -17.00   diameter = 17   loss = 0.0000  
+Test  Episode 1395: step = 40   Total Reward = -18.00   diameter = 18   loss = 0.0000  
+Test  Episode 1396: step = 40   Total Reward = -18.00   diameter = 18   loss = 0.0000  
+Test  Episode 1397: step = 40   Total Reward = -17.00   diameter = 17   loss = 0.0000  
+Test  Episode 1398: step = 40   Total Reward = -16.00   diameter = 16   loss = 0.0000  
+Test  Episode 1399: step = 40   Total Reward = -18.00   diameter = 18   loss = 0.0000  
+-17.9 17.9
+Train Episode 1400: step = 40   Total Reward = -14.00   diameter = 14   loss = 359.2612
+Train Episode 1401: step = 40   Total Reward = -18.00   diameter = 18   loss = 355.5786
+Train Episode 1402: step = 40   Total Reward = -19.00   diameter = 19   loss = 338.8359
+Train Episode 1403: step = 40   Total Reward = -19.00   diameter = 19   loss = 349.6571
+Train Episode 1404: step = 40   Total Reward = -17.00   diameter = 17   loss = 331.1462
+Train Episode 1405: step = 40   Total Reward = -17.00   diameter = 17   loss = 356.7331
+Train Episode 1406: step = 40   Total Reward = -18.00   diameter = 18   loss = 350.0703
+Train Episode 1407: step = 40   Total Reward = -18.00   diameter = 18   loss = 339.3165
+Train Episode 1408: step = 40   Total Reward = -18.00   diameter = 18   loss = 353.1058
+Train Episode 1409: step = 40   Total Reward = -15.00   diameter = 15   loss = 350.0568
+Train Episode 1410: step = 40   Total Reward = -18.00   diameter = 18   loss = 346.0528
+Train Episode 1411: step = 38   Total Reward = -17.00   diameter = 17   loss = 325.5904
+Train Episode 1412: step = 39   Total Reward = -22.00   diameter = 22   loss = 336.2450
+Train Episode 1413: step = 40   Total Reward = -20.00   diameter = 20   loss = 356.9596
+Train Episode 1414: step = 40   Total Reward = -22.00   diameter = 22   loss = 336.0457
+Train Episode 1415: step = 40   Total Reward = -17.00   diameter = 17   loss = 349.2271
+Train Episode 1416: step = 40   Total Reward = -17.00   diameter = 17   loss = 350.4153
+Train Episode 1417: step = 40   Total Reward = -20.00   diameter = 20   loss = 335.7998
+Train Episode 1418: step = 40   Total Reward = -16.00   diameter = 16   loss = 336.4440
+Train Episode 1419: step = 40   Total Reward = -22.00   diameter = 22   loss = 334.0114
+Train Episode 1420: step = 40   Total Reward = -20.00   diameter = 20   loss = 350.8416
+Train Episode 1421: step = 40   Total Reward = -19.00   diameter = 19   loss = 335.3865
+Train Episode 1422: step = 40   Total Reward = -20.00   diameter = 20   loss = 343.3975
+Train Episode 1423: step = 40   Total Reward = -21.00   diameter = 21   loss = 344.8842
+Train Episode 1424: step = 40   Total Reward = -17.00   diameter = 17   loss = 344.3091
+Train Episode 1425: step = 40   Total Reward = -17.00   diameter = 17   loss = 358.0212
+Train Episode 1426: step = 40   Total Reward = -20.00   diameter = 20   loss = 348.2381
+Train Episode 1427: step = 40   Total Reward = -20.00   diameter = 20   loss = 364.0776
+Train Episode 1428: step = 40   Total Reward = -23.00   diameter = 23   loss = 343.7059
+Train Episode 1429: step = 37   Total Reward = -25.00   diameter = 25   loss = 307.0553
+Train Episode 1430: step = 40   Total Reward = -20.00   diameter = 20   loss = 347.6300
+Train Episode 1431: step = 40   Total Reward = -22.00   diameter = 22   loss = 338.8428
+Train Episode 1432: step = 40   Total Reward = -18.00   diameter = 18   loss = 341.4285
+Train Episode 1433: step = 39   Total Reward = -18.00   diameter = 18   loss = 325.5642
+Train Episode 1434: step = 40   Total Reward = -20.00   diameter = 20   loss = 342.0177
+Train Episode 1435: step = 40   Total Reward = -20.00   diameter = 20   loss = 344.9452
+Train Episode 1436: step = 40   Total Reward = -17.00   diameter = 17   loss = 328.5715
+Train Episode 1437: step = 40   Total Reward = -17.00   diameter = 17   loss = 339.0484
+Train Episode 1438: step = 40   Total Reward = -21.00   diameter = 21   loss = 335.3062
+Train Episode 1439: step = 40   Total Reward = -19.00   diameter = 19   loss = 327.0845
+Train Episode 1440: step = 40   Total Reward = -18.00   diameter = 18   loss = 330.3761
+Train Episode 1441: step = 40   Total Reward = -18.00   diameter = 18   loss = 358.8621
+Train Episode 1442: step = 40   Total Reward = -21.00   diameter = 21   loss = 334.9170
+Train Episode 1443: step = 40   Total Reward = -18.00   diameter = 18   loss = 351.6246
+Train Episode 1444: step = 38   Total Reward = -20.00   diameter = 20   loss = 371.2655
+Train Episode 1445: step = 40   Total Reward = -17.00   diameter = 17   loss = 339.2414
+Train Episode 1446: step = 40   Total Reward = -16.00   diameter = 16   loss = 340.7375
+Train Episode 1447: step = 40   Total Reward = -23.00   diameter = 23   loss = 344.3501
+Train Episode 1448: step = 40   Total Reward = -20.00   diameter = 20   loss = 334.4195
+Train Episode 1449: step = 40   Total Reward = -18.00   diameter = 18   loss = 343.6214
+Train Episode 1450: step = 40   Total Reward = -18.00   diameter = 18   loss = 332.4377
+Train Episode 1451: step = 40   Total Reward = -19.00   diameter = 19   loss = 325.5971
+Train Episode 1452: step = 40   Total Reward = -19.00   diameter = 19   loss = 334.1770
+Train Episode 1453: step = 40   Total Reward = -19.00   diameter = 19   loss = 316.3655
+Train Episode 1454: step = 40   Total Reward = -17.00   diameter = 17   loss = 328.4229
+Train Episode 1455: step = 40   Total Reward = -19.00   diameter = 19   loss = 332.9280
+Train Episode 1456: step = 40   Total Reward = -21.00   diameter = 21   loss = 333.2567
+Train Episode 1457: step = 40   Total Reward = -17.00   diameter = 17   loss = 322.2952
+Train Episode 1458: step = 40   Total Reward = -20.00   diameter = 20   loss = 328.3945
+Train Episode 1459: step = 40   Total Reward = -22.00   diameter = 22   loss = 326.4349
+Train Episode 1460: step = 38   Total Reward = -24.00   diameter = 24   loss = 324.4613
+Train Episode 1461: step = 40   Total Reward = -18.00   diameter = 18   loss = 336.4156
+Train Episode 1462: step = 40   Total Reward = -13.00   diameter = 13   loss = 332.1057
+Train Episode 1463: step = 40   Total Reward = -17.00   diameter = 17   loss = 320.7662
+Train Episode 1464: step = 40   Total Reward = -20.00   diameter = 20   loss = 330.2431
+Train Episode 1465: step = 40   Total Reward = -21.00   diameter = 21   loss = 340.5530
+Train Episode 1466: step = 40   Total Reward = -19.00   diameter = 19   loss = 340.1036
+Train Episode 1467: step = 40   Total Reward = -21.00   diameter = 21   loss = 327.2411
+Train Episode 1468: step = 40   Total Reward = -19.00   diameter = 19   loss = 319.6786
+Train Episode 1469: step = 40   Total Reward = -22.00   diameter = 22   loss = 334.6206
+Train Episode 1470: step = 40   Total Reward = -17.00   diameter = 17   loss = 340.6551
+Train Episode 1471: step = 40   Total Reward = -19.00   diameter = 19   loss = 316.1632
+Train Episode 1472: step = 40   Total Reward = -19.00   diameter = 19   loss = 344.6654
+Train Episode 1473: step = 40   Total Reward = -19.00   diameter = 19   loss = 346.0962
+Train Episode 1474: step = 39   Total Reward = -23.00   diameter = 23   loss = 322.4226
+Train Episode 1475: step = 38   Total Reward = -26.00   diameter = 26   loss = 307.3069
+Train Episode 1476: step = 40   Total Reward = -19.00   diameter = 19   loss = 331.3372
+Train Episode 1477: step = 40   Total Reward = -20.00   diameter = 20   loss = 328.4082
+Train Episode 1478: step = 40   Total Reward = -18.00   diameter = 18   loss = 343.5692
+Train Episode 1479: step = 38   Total Reward = -18.00   diameter = 18   loss = 328.1274
+Train Episode 1480: step = 40   Total Reward = -22.00   diameter = 22   loss = 331.0293
+Train Episode 1481: step = 40   Total Reward = -19.00   diameter = 19   loss = 324.3345
+Train Episode 1482: step = 40   Total Reward = -17.00   diameter = 17   loss = 324.1295
+Train Episode 1483: step = 40   Total Reward = -18.00   diameter = 18   loss = 328.4584
+Train Episode 1484: step = 40   Total Reward = -15.00   diameter = 15   loss = 341.0409
+Train Episode 1485: step = 40   Total Reward = -16.00   diameter = 16   loss = 345.0015
+Train Episode 1486: step = 40   Total Reward = -23.00   diameter = 23   loss = 331.3624
+Train Episode 1487: step = 40   Total Reward = -16.00   diameter = 16   loss = 332.0210
+Train Episode 1488: step = 40   Total Reward = -20.00   diameter = 20   loss = 339.6144
+Train Episode 1489: step = 38   Total Reward = -24.00   diameter = 24   loss = 310.7523
+Test  Episode 1490: step = 40   Total Reward = -18.00   diameter = 18   loss = 0.0000  
+Test  Episode 1491: step = 39   Total Reward = -18.00   diameter = 18   loss = 0.0000  
+Test  Episode 1492: step = 38   Total Reward = -22.00   diameter = 22   loss = 0.0000  
+Test  Episode 1493: step = 40   Total Reward = -20.00   diameter = 20   loss = 0.0000  
+Test  Episode 1494: step = 40   Total Reward = -14.00   diameter = 14   loss = 0.0000  
+Test  Episode 1495: step = 40   Total Reward = -20.00   diameter = 20   loss = 0.0000  
+Test  Episode 1496: step = 40   Total Reward = -19.00   diameter = 19   loss = 0.0000  
+Test  Episode 1497: step = 40   Total Reward = -20.00   diameter = 20   loss = 0.0000  
+Test  Episode 1498: step = 38   Total Reward = -24.00   diameter = 24   loss = 0.0000  
+Test  Episode 1499: step = 38   Total Reward = -18.00   diameter = 18   loss = 0.0000  
+-19.3 19.3
+Train Episode 1500: step = 40   Total Reward = -18.00   diameter = 18   loss = 355.2201
+Train Episode 1501: step = 40   Total Reward = -16.00   diameter = 16   loss = 331.5120
+Train Episode 1502: step = 40   Total Reward = -20.00   diameter = 20   loss = 333.8366
+Train Episode 1503: step = 40   Total Reward = -23.00   diameter = 23   loss = 328.4740
+Train Episode 1504: step = 40   Total Reward = -19.00   diameter = 19   loss = 333.4807
+Train Episode 1505: step = 40   Total Reward = -19.00   diameter = 19   loss = 320.0139
+Train Episode 1506: step = 40   Total Reward = -16.00   diameter = 16   loss = 329.1837
+Train Episode 1507: step = 40   Total Reward = -14.00   diameter = 14   loss = 326.2705
+Train Episode 1508: step = 40   Total Reward = -20.00   diameter = 20   loss = 320.5381
+Train Episode 1509: step = 38   Total Reward = -22.00   diameter = 22   loss = 305.7595
+Train Episode 1510: step = 40   Total Reward = -16.00   diameter = 16   loss = 332.6427
+Train Episode 1511: step = 40   Total Reward = -20.00   diameter = 20   loss = 343.4632
+Train Episode 1512: step = 39   Total Reward = -19.00   diameter = 19   loss = 308.5519
+Train Episode 1513: step = 40   Total Reward = -19.00   diameter = 19   loss = 335.0103
+Train Episode 1514: step = 40   Total Reward = -19.00   diameter = 19   loss = 326.3416
+Train Episode 1515: step = 40   Total Reward = -16.00   diameter = 16   loss = 337.3839
+Train Episode 1516: step = 40   Total Reward = -18.00   diameter = 18   loss = 332.5513
+Train Episode 1517: step = 40   Total Reward = -19.00   diameter = 19   loss = 330.4863
+Train Episode 1518: step = 40   Total Reward = -20.00   diameter = 20   loss = 336.1462
+Train Episode 1519: step = 38   Total Reward = -19.00   diameter = 19   loss = 302.6058
+Train Episode 1520: step = 40   Total Reward = -21.00   diameter = 21   loss = 325.7778
+Train Episode 1521: step = 40   Total Reward = -16.00   diameter = 16   loss = 326.8667
+Train Episode 1522: step = 40   Total Reward = -17.00   diameter = 17   loss = 327.2174
+Train Episode 1523: step = 39   Total Reward = -19.00   diameter = 19   loss = 313.3980
+Train Episode 1524: step = 40   Total Reward = -16.00   diameter = 16   loss = 353.2279
+Train Episode 1525: step = 40   Total Reward = -21.00   diameter = 21   loss = 339.0369
+Train Episode 1526: step = 40   Total Reward = -21.00   diameter = 21   loss = 333.2760
+Train Episode 1527: step = 40   Total Reward = -21.00   diameter = 21   loss = 325.5193
+Train Episode 1528: step = 39   Total Reward = -20.00   diameter = 20   loss = 314.1038
+Train Episode 1529: step = 38   Total Reward = -18.00   diameter = 18   loss = 313.5368
+Train Episode 1530: step = 40   Total Reward = -15.00   diameter = 15   loss = 326.1650
+Train Episode 1531: step = 40   Total Reward = -17.00   diameter = 17   loss = 321.2414
+Train Episode 1532: step = 40   Total Reward = -17.00   diameter = 17   loss = 328.5751
+Train Episode 1533: step = 40   Total Reward = -19.00   diameter = 19   loss = 331.5723
+Train Episode 1534: step = 40   Total Reward = -21.00   diameter = 21   loss = 324.4482
+Train Episode 1535: step = 40   Total Reward = -15.00   diameter = 15   loss = 328.5938
+Train Episode 1536: step = 40   Total Reward = -19.00   diameter = 19   loss = 332.9428
+Train Episode 1537: step = 40   Total Reward = -17.00   diameter = 17   loss = 328.1262
+Train Episode 1538: step = 40   Total Reward = -21.00   diameter = 21   loss = 332.7044
+Train Episode 1539: step = 40   Total Reward = -21.00   diameter = 21   loss = 326.7917
+Train Episode 1540: step = 40   Total Reward = -17.00   diameter = 17   loss = 327.8741
+Train Episode 1541: step = 40   Total Reward = -20.00   diameter = 20   loss = 328.9050
+Train Episode 1542: step = 40   Total Reward = -17.00   diameter = 17   loss = 326.5119
+Train Episode 1543: step = 40   Total Reward = -18.00   diameter = 18   loss = 316.3815
+Train Episode 1544: step = 40   Total Reward = -21.00   diameter = 21   loss = 328.6397
+Train Episode 1545: step = 40   Total Reward = -15.00   diameter = 15   loss = 334.0952
+Train Episode 1546: step = 40   Total Reward = -17.00   diameter = 17   loss = 345.7519
+Train Episode 1547: step = 40   Total Reward = -17.00   diameter = 17   loss = 330.1435
+Train Episode 1548: step = 40   Total Reward = -16.00   diameter = 16   loss = 325.6963
+Train Episode 1549: step = 38   Total Reward = -19.00   diameter = 19   loss = 311.9576
+Train Episode 1550: step = 40   Total Reward = -20.00   diameter = 20   loss = 327.1868
+Train Episode 1551: step = 40   Total Reward = -16.00   diameter = 16   loss = 327.4872
+Train Episode 1552: step = 40   Total Reward = -16.00   diameter = 16   loss = 333.5403
+Train Episode 1553: step = 40   Total Reward = -17.00   diameter = 17   loss = 328.3338
+Train Episode 1554: step = 38   Total Reward = -20.00   diameter = 20   loss = 333.1305
+Train Episode 1555: step = 40   Total Reward = -18.00   diameter = 18   loss = 335.1237
+Train Episode 1556: step = 40   Total Reward = -21.00   diameter = 21   loss = 316.7816
+Train Episode 1557: step = 40   Total Reward = -23.00   diameter = 23   loss = 323.1228
+Train Episode 1558: step = 38   Total Reward = -19.00   diameter = 19   loss = 302.3508
+Train Episode 1559: step = 40   Total Reward = -18.00   diameter = 18   loss = 348.1444
+Train Episode 1560: step = 40   Total Reward = -19.00   diameter = 19   loss = 326.2031
+Train Episode 1561: step = 38   Total Reward = -21.00   diameter = 21   loss = 303.2964
+Train Episode 1562: step = 40   Total Reward = -19.00   diameter = 19   loss = 318.2961
+Train Episode 1563: step = 40   Total Reward = -15.00   diameter = 15   loss = 317.1479
+Train Episode 1564: step = 40   Total Reward = -18.00   diameter = 18   loss = 328.6342
+Train Episode 1565: step = 40   Total Reward = -14.00   diameter = 14   loss = 321.7206
+Train Episode 1566: step = 40   Total Reward = -19.00   diameter = 19   loss = 318.8287
+Train Episode 1567: step = 40   Total Reward = -17.00   diameter = 17   loss = 317.6080
+Train Episode 1568: step = 40   Total Reward = -19.00   diameter = 19   loss = 320.7434
+Train Episode 1569: step = 40   Total Reward = -17.00   diameter = 17   loss = 317.8997
+Train Episode 1570: step = 40   Total Reward = -21.00   diameter = 21   loss = 338.0870
+Train Episode 1571: step = 40   Total Reward = -16.00   diameter = 16   loss = 314.7981
+Train Episode 1572: step = 40   Total Reward = -22.00   diameter = 22   loss = 325.6681
+Train Episode 1573: step = 40   Total Reward = -20.00   diameter = 20   loss = 338.7502
+Train Episode 1574: step = 40   Total Reward = -21.00   diameter = 21   loss = 318.0525
+Train Episode 1575: step = 40   Total Reward = -20.00   diameter = 20   loss = 333.9638
+Train Episode 1576: step = 40   Total Reward = -20.00   diameter = 20   loss = 328.7062
+Train Episode 1577: step = 40   Total Reward = -21.00   diameter = 21   loss = 334.3724
+Train Episode 1578: step = 40   Total Reward = -21.00   diameter = 21   loss = 334.5278
+Train Episode 1579: step = 40   Total Reward = -19.00   diameter = 19   loss = 317.9171
+Train Episode 1580: step = 40   Total Reward = -22.00   diameter = 22   loss = 322.9115
+Train Episode 1581: step = 40   Total Reward = -17.00   diameter = 17   loss = 341.8674
+Train Episode 1582: step = 40   Total Reward = -21.00   diameter = 21   loss = 320.9542
+Train Episode 1583: step = 40   Total Reward = -22.00   diameter = 22   loss = 326.1596
+Train Episode 1584: step = 40   Total Reward = -15.00   diameter = 15   loss = 323.8571
+Train Episode 1585: step = 38   Total Reward = -22.00   diameter = 22   loss = 297.1618
+Train Episode 1586: step = 40   Total Reward = -17.00   diameter = 17   loss = 314.1802
+Train Episode 1587: step = 40   Total Reward = -18.00   diameter = 18   loss = 323.3606
+Train Episode 1588: step = 40   Total Reward = -17.00   diameter = 17   loss = 326.0599
+Train Episode 1589: step = 40   Total Reward = -21.00   diameter = 21   loss = 321.0365
+Test  Episode 1590: step = 39   Total Reward = -18.00   diameter = 18   loss = 0.0000  
+Test  Episode 1591: step = 39   Total Reward = -19.00   diameter = 19   loss = 0.0000  
+Test  Episode 1592: step = 38   Total Reward = -18.00   diameter = 18   loss = 0.0000  
+Test  Episode 1593: step = 40   Total Reward = -19.00   diameter = 19   loss = 0.0000  
+Test  Episode 1594: step = 40   Total Reward = -18.00   diameter = 18   loss = 0.0000  
+Test  Episode 1595: step = 38   Total Reward = -18.00   diameter = 18   loss = 0.0000  
+Test  Episode 1596: step = 40   Total Reward = -20.00   diameter = 20   loss = 0.0000  
+Test  Episode 1597: step = 38   Total Reward = -18.00   diameter = 18   loss = 0.0000  
+Test  Episode 1598: step = 40   Total Reward = -16.00   diameter = 16   loss = 0.0000  
+Test  Episode 1599: step = 40   Total Reward = -19.00   diameter = 19   loss = 0.0000  
+-18.3 18.3
+Train Episode 1600: step = 39   Total Reward = -24.00   diameter = 24   loss = 312.9366
+Train Episode 1601: step = 40   Total Reward = -19.00   diameter = 19   loss = 331.0202
+Train Episode 1602: step = 40   Total Reward = -22.00   diameter = 22   loss = 331.7574
+Train Episode 1603: step = 40   Total Reward = -20.00   diameter = 20   loss = 329.2428
+Train Episode 1604: step = 40   Total Reward = -17.00   diameter = 17   loss = 315.6377
+Train Episode 1605: step = 40   Total Reward = -18.00   diameter = 18   loss = 309.3845
+Train Episode 1606: step = 40   Total Reward = -19.00   diameter = 19   loss = 326.7987
+Train Episode 1607: step = 38   Total Reward = -21.00   diameter = 21   loss = 302.7755
+Train Episode 1608: step = 40   Total Reward = -21.00   diameter = 21   loss = 321.6196
+Train Episode 1609: step = 40   Total Reward = -15.00   diameter = 15   loss = 333.2688
+Train Episode 1610: step = 40   Total Reward = -16.00   diameter = 16   loss = 339.6615
+Train Episode 1611: step = 40   Total Reward = -19.00   diameter = 19   loss = 328.7428
+Train Episode 1612: step = 40   Total Reward = -19.00   diameter = 19   loss = 317.4416
+Train Episode 1613: step = 40   Total Reward = -19.00   diameter = 19   loss = 321.1262
+Train Episode 1614: step = 40   Total Reward = -15.00   diameter = 15   loss = 328.3357
+Train Episode 1615: step = 40   Total Reward = -18.00   diameter = 18   loss = 323.4653
+Train Episode 1616: step = 40   Total Reward = -16.00   diameter = 16   loss = 312.7804
+Train Episode 1617: step = 39   Total Reward = -16.00   diameter = 16   loss = 301.8739
+Train Episode 1618: step = 39   Total Reward = -20.00   diameter = 20   loss = 301.8795
+Train Episode 1619: step = 40   Total Reward = -22.00   diameter = 22   loss = 315.5191
+Train Episode 1620: step = 40   Total Reward = -16.00   diameter = 16   loss = 330.2757
+Train Episode 1621: step = 40   Total Reward = -21.00   diameter = 21   loss = 329.2500
+Train Episode 1622: step = 40   Total Reward = -17.00   diameter = 17   loss = 320.5760
+Train Episode 1623: step = 40   Total Reward = -20.00   diameter = 20   loss = 308.2746
+Train Episode 1624: step = 38   Total Reward = -23.00   diameter = 23   loss = 311.2121
+Train Episode 1625: step = 40   Total Reward = -20.00   diameter = 20   loss = 329.4863
+Train Episode 1626: step = 40   Total Reward = -17.00   diameter = 17   loss = 321.0455
+Train Episode 1627: step = 40   Total Reward = -17.00   diameter = 17   loss = 317.3963
+Train Episode 1628: step = 40   Total Reward = -13.00   diameter = 13   loss = 337.1291
+Train Episode 1629: step = 40   Total Reward = -19.00   diameter = 19   loss = 330.9275
+Train Episode 1630: step = 40   Total Reward = -18.00   diameter = 18   loss = 326.8430
+Train Episode 1631: step = 40   Total Reward = -25.00   diameter = 25   loss = 319.5496
+Train Episode 1632: step = 40   Total Reward = -20.00   diameter = 20   loss = 321.3287
+Train Episode 1633: step = 40   Total Reward = -17.00   diameter = 17   loss = 324.5182
+Train Episode 1634: step = 40   Total Reward = -15.00   diameter = 15   loss = 321.7377
+Train Episode 1635: step = 40   Total Reward = -17.00   diameter = 17   loss = 333.9097
+Train Episode 1636: step = 40   Total Reward = -15.00   diameter = 15   loss = 319.3712
+Train Episode 1637: step = 40   Total Reward = -17.00   diameter = 17   loss = 318.3771
+Train Episode 1638: step = 40   Total Reward = -20.00   diameter = 20   loss = 310.0857
+Train Episode 1639: step = 40   Total Reward = -17.00   diameter = 17   loss = 314.8262
+Train Episode 1640: step = 40   Total Reward = -15.00   diameter = 15   loss = 324.2415

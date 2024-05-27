@@ -4,10 +4,11 @@ import itertools
 import os
 import pickle as pkl
 import numpy as np
+import torch as th
 from tqdm import tqdm
 from scipy import stats
 import statistics
-
+import matplotlib.pyplot as plt
 def create_fully_connected_graph(n):
     """ Create a fully connected weighted graph with n nodes """
     G = nx.complete_graph(n)
@@ -17,7 +18,7 @@ def create_fully_connected_graph(n):
         G.edges[v,u]['weight'] = G.edges[u,v]['weight']  # Assign random positive weights
     return G
 
-def find_regular_subgraph(G, k,  graph_name=None, iterations=1):
+def find_regular_subgraph(G, k,  graph_name=None, iterations=10000):
     """ Attempt to find a k-regular subgraph with the minimum diameter from a fully connected graph """
     n = G.number_of_nodes()
     best_diameter = float('inf')
@@ -50,6 +51,9 @@ def find_regular_subgraph(G, k,  graph_name=None, iterations=1):
         except nx.NetworkXError:
             # Graph is not connected, skip it
             continue
+    histogram = [0 for i in range(0, 100)]
+    for i in diameter_list:
+        histogram[i] += 1
     # mean_value = np.mean(diameter_list)
 
     # # Calculating the median
@@ -66,19 +70,95 @@ def find_regular_subgraph(G, k,  graph_name=None, iterations=1):
     # print("Median:", median_value)
     # print("Mode (scipy.stats):", mode_value)
     # print("Mode (statistics):", mode_value_statistics)
-    return best_subgraph, best_diameter
+    return best_subgraph, best_diameter, histogram
+
+def plot_histo(means=None, std_devs=None):
+    # Indices for the bars
+    indices = np.arange(len(means))
+
+    # Creating the bar graph
+    plt.figure(figsize=(10, 5))
+    plt.bar(indices, means, color='skyblue', label='Mean Values')
+
+    # Adding error bars for the standard deviation
+    plt.errorbar(indices, means, yerr=std_devs, fmt='+', color='red', label='Standard Deviation')
+
+    # Adding labels and title
+    plt.xlabel('Index')
+    plt.ylabel('Values')
+    plt.title('Bar Graph with Standard Deviation')
+    plt.legend()
+
+    plt.savefig('histogram.png')
+
+def plot_pdf(sample_counts):
+    # Calculate total number of samples
+    total_samples = np.sum(sample_counts)
+
+    # Normalize the counts to get probabilities
+    probabilities = sample_counts / total_samples
+
+    # Create an array of indices (i.e., the values)
+    values = np.arange(len(sample_counts))
+
+    # Plotting the PDF
+    plt.figure(figsize=(10, 5))
+    plt.bar(values, probabilities, color='blue')  # Using a bar chart
+    plt.xlabel('Value')
+    plt.ylabel('Probability')
+    plt.title('Probability Density Function (PDF)')
+    plt.grid(True)
+    plt.savefig('pdf.png')
+
+def plot_cdf(sample_counts):
+    total_samples = np.sum(sample_counts)
+    probabilities = sample_counts / total_samples
+
+    # Calculate the CDF using cumulative sum
+    cdf = np.cumsum(probabilities)
+
+    # Values for plotting (same as for the PDF)
+    values = np.arange(len(probabilities))
+
+    # Plotting the CDF
+    plt.figure(figsize=(10, 5))
+    plt.plot(values, cdf, drawstyle='steps-post', marker='o', color='red', label='CDF')
+    plt.xlabel('Value')
+    plt.ylabel('Cumulative Probability')
+    plt.title('Cumulative Distribution Function (CDF)')
+    plt.grid(True)
+    plt.legend()
+    plt.savefig('cdf.png')
 
 # Main execution
 if __name__ == '__main__':
+    
+    # plot_histo()
+    
     N = 20
     k = 4
-    graph_name = f'G_N={N}.pkl'
-    if graph_name not in os.listdir('.'):
-        G = create_fully_connected_graph(20)
-        with open(graph_name, 'wb') as f:
-            pkl.dump(G, f)
-    else:
-        with open(graph_name, 'rb') as f:
-            G = pkl.load(f)
-    best_subgraph, best_diameter = find_regular_subgraph(G, k, graph_name)
-    print(f"Best diameter found: {best_diameter}")
+    # graph_name = f'G_N={N}.pkl'
+    # if graph_name not in os.listdir('.'):
+    #     G = create_fully_connected_graph(20)
+    #     with open(graph_name, 'wb') as f:
+    #         pkl.dump(G, f)
+    # else:
+    #     with open(graph_name, 'rb') as f:
+    #         G = pkl.load(f)
+    histo_tensor = th.zeros(10, 100)
+    histo_tensor = np.loadtxt('tensor_data.txt')
+
+    # Convert the numpy array to a torch tensor
+    histo_tensor = th.from_numpy(histo_tensor)
+
+    # for i in range(10):
+    #     best_subgraph, best_diameter, histo = find_regular_subgraph(G, k, graph_name)
+    #     histo_tensor[i] = th.as_tensor(histo)
+        # print(f"Best diameter found: {best_diameter}")  
+    histo_avg = th.mean(histo_tensor, dim=0).reshape(-1)[0:30]
+    histo_std = th.std(histo_tensor, dim=0).reshape(-1)[0:30]
+    # np.savetxt('tensor_data.txt', histo_tensor.numpy(), fmt='%.6f')
+    plot_histo(histo_avg, histo_std)
+    plot_pdf(histo_avg.numpy())
+    plot_cdf(histo_avg.numpy())
+    

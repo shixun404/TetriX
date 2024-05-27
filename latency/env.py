@@ -63,6 +63,7 @@ class GraphEnv(gym.Env):
             largest_cc = max(nx.connected_components(self.graph), key=len)
             subgraph = self.graph.subgraph(largest_cc)
             self.cur_diameter = nx.diameter(subgraph)
+            # self.cur_diameter = 0
         reward = self.prev_diameter - self.cur_diameter
         # if self.start_id == action:
         #     reward = 0
@@ -124,7 +125,9 @@ class GraphEnv(gym.Env):
         else:
             done = False
         # print(self.num_steps, self.mask, mask)
-        state = {'initial_graph': self.initial_adjacency_matrix, 'graph': adjacency_matrix, 'start_id': self.start_id, 'mask': mask}
+        degree = [self.K - self.mask[i] for i in range(self.num_nodes)]
+        state = {'initial_graph': self.initial_adjacency_matrix, 'graph': adjacency_matrix, 
+                'start_id': self.start_id, 'mask': mask, 'degree': degree}
 
         return state, reward, done, {}
 
@@ -152,8 +155,9 @@ class GraphEnv(gym.Env):
         
         self.initial_adjacency_matrix = nx.to_numpy_array(self.initial_graph, nodelist=sorted(self.initial_graph.nodes()))
         adjacency_matrix = nx.to_numpy_array(self.graph, nodelist=sorted(self.initial_graph.nodes()))
+        degree = [self.K - self.mask[i] for i in range(self.num_nodes)]
         return {'initial_graph': self.initial_adjacency_matrix, 
-                'graph': adjacency_matrix, 'start_id': self.start_id, 'mask': mask}
+                'graph': adjacency_matrix, 'start_id': self.start_id, 'mask': mask, 'degree': degree}
 
     def render(self, mode='console'):
         if mode == 'console':
