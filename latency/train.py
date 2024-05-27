@@ -1,4 +1,4 @@
-from DQNAgent import DQNAgent
+from DQNAgent_graph import DQNAgent
 from collections import deque
 from env import GraphEnv
 import random
@@ -13,8 +13,8 @@ class ReplayBuffer:
     def __init__(self, capacity):
         self.buffer = deque(maxlen=capacity)
     
-    def push(self, state, action, reward, next_state, done, mask):
-        self.buffer.append((state, action, reward, next_state, done, mask))
+    def push(self, state, action, reward, next_state, done, mask, steps):
+        self.buffer.append((state, action, reward, next_state, done, mask, steps))
     
     def sample(self, batch_size):
         return random.sample(self.buffer, batch_size)
@@ -30,15 +30,17 @@ def get_graph_embeddings(graph, id, dim=64):
     vec_sum = np.sum(vectors, axis=0)
 
     return model.wv[f'{id}'], vec_sum, vectors
+
+
 def train():
     parser = argparse.ArgumentParser(description="Process some integers.")
 
     # 添加参数
     parser.add_argument("--N", type=int, help="Number of nodes", default=20)
     parser.add_argument("--K", type=int, help="Degree", default=4)
-    parser.add_argument("--bs", type=int, help="Batch size", default=32)
+    parser.add_argument("--bs", type=int, help="Batch size", default=256)
     parser.add_argument("--feature_dim", type=int, help="Feature dimension", default=64)
-    parser.add_argument("--lr", type=float, help="Learning rate", default=1e-3)
+    parser.add_argument("--lr", type=float, help="Learning rate", default=5e-4)
     parser.add_argument("--seed", type=int, help="Random seed", default=123)
     parser.add_argument("--load_path", type=str, help="Path to load the model", default=None)
     args = parser.parse_args()
@@ -48,25 +50,27 @@ def train():
     np.random.seed(args.seed)
     device = torch.device("cuda:0")
     env = GraphEnv(num_nodes=args.N, K=args.K)
-    agent = DQNAgent(state_size=args.feature_dim * 3, action_size=args.N, replay_buffer=ReplayBuffer(1000000)
+    agent = DQNAgent(state_size=args.feature_dim, action_size=args.N, replay_buffer=ReplayBuffer(1000000)
                     , device=device)
     # agent = DQNAgent(state_size=args.N * args.N * 2 + 1, action_size=args.N, replay_buffer=ReplayBuffer(1000000)
     #                 , device=device)
-    episodes = 5000
+    episodes = 400000
     batch_size = args.bs
 
     test_reward = []
     test_diameter = []
+    cnt_test = 0
     for episode in range(episodes):
         if_test = ((episode % 100 >= 90) and env.test_id < 10)
-        
-        epsilon = 0 if if_test else max((1 - episode/1000), 0.05)
+        cnt_test += 1 if if_test else 0
+        epsilon = 0 if if_test else max((1 - (episode - cnt_test)/10000), 0.05)
         # epsilon = 0 if if_test else 0.01
         state_dict = env.reset(if_test=if_test)
         # pos_vec = np.zeros(args.N)
         # # pos_vec[state_dict['start_id']] = 1
-        # state = np.append(state_dict['initial_graph'].flatten(), state_dict['graph'].flatten())  # Flatten the adjacency matrix to fit the network input
-        # state = np.append(state, state_dict['start_id'])
+        state = np.append(state_dict['initial_graph'].flatten(), state_dict['graph'].flatten())  # Flatten the adjacency matrix to fit the network input
+        state = np.append(state, state_dict['degree'])
+        state = np.append(state, state_dict['start_id'])
         # print(state.shape)
         
         mask = state_dict['mask']
@@ -76,30 +80,40 @@ def train():
         total_loss = 0
 
         
-        vector_initial, vector_sum_initial, vectors = get_graph_embeddings(env.initial_graph, 0, args.feature_dim)
+        # vector_initial, vector_sum_initial, vectors = get_graph_embeddings(env.initial_graph, 0, args.feature_dim)
         # vector, vector_sum = get_graph_embeddings(env.graph, 0, args.feature_dim)
-        selected_rows = vectors[mask]
-        selected_sum = np.sum(selected_rows, axis=0)
+        # selected_rows = vectors[mask]
+        # selected_sum = np.sum(selected_rows, axis=0)
 
 
-        state = np.concatenate((vector_initial, vector_sum_initial, vector, vector_sum)).reshape(-1)
-        state = np.concatenate((vector_initial, vector_sum_initial, selected_sum)).reshape(-1)
+        # state = np.concatenate((vector_initial, vector_sum_initial, vector, vector_sum)).reshape(-1)
+        # state = np.concatenate((vector_initial, vector_sum_initial, selected_sum)).reshape(-1)
+        state_list_n = []
+        reward_list_n = []
+        action_list_n = []
         while True:
             t += 1
             
             action = agent.act(state, env.graph.degree, env.graph, mask, K=args.K, epsilon=epsilon)
             
             next_state_dict, reward, done, _ = env.step(action)
+            state_list_n.append(state)
+            reward_list_n.append(reward)
+            action_list_n.append(action)
             mask = np.array(next_state_dict['mask'])
-            # next_state = np.append(next_state_dict['initial_graph'].flatten(), next_state_dict['graph'].flatten())
-            # next_state = np.append(next_state, next_state_dict['start_id'])
+            next_state = np.append(next_state_dict['initial_graph'].flatten(), next_state_dict['graph'].flatten())
+            next_state = np.append(next_state, next_state_dict['degree'])
+            next_state = np.append(next_state, next_state_dict['start_id'])
             # vector, vector_sum, = get_graph_embeddings(env.graph, action, args.feature_dim)
             # next_state = np.concatenate((vector_initial, vector_sum_initial, vector, vector_sum)).reshape(-1)
-            selected_rows = vectors[mask]
-            selected_sum = np.sum(selected_rows, axis=0)
-            next_state = np.concatenate((vector_initial, vector_sum_initial, selected_sum)).reshape(-1)
+            # selected_rows = vectors[mask]
+            # selected_sum = np.sum(selected_rows, axis=0)
+            # next_state = np.concatenate((vector_initial, vector_sum_initial, selected_sum)).reshape(-1)
+            # if not if_test and t >= args.N:
             if not if_test:
-                agent.replay_buffer.push(state, action, reward, next_state, done, mask)
+                # agent.replay_buffer.push(state_list_n[-args.N], action_list_n[-args.N],
+                #                          sum(reward_list_n[-args.N:]), next_state, done, mask, args.N)
+                agent.replay_buffer.push(state, action, reward, next_state, done, mask, 1)
             state = next_state
             total_reward += reward
 
@@ -108,9 +122,9 @@ def train():
             
             if len(agent.replay_buffer) > batch_size and not if_test:
                 total_loss += agent.learn(batch_size)
-        _, best_diameter = find_regular_subgraph(env.initial_graph, args.K)
+        # _, best_diameter = find_regular_subgraph(env.initial_graph, args.K)
         episode_name = 'Test ' if if_test else 'Train'
-        print(f"{episode_name} Episode {episode:<4}: step = {t:<4} Total Reward = {total_reward:<8.2f} diameter = {env.cur_diameter:<4} brute_force = {best_diameter:<4} fully_diameter = {nx.diameter(env.initial_graph, weight='weight'):<4} loss = {total_loss:<8.4f}", flush=True)
+        print(f"{episode_name} Episode {episode:<4}: step = {t:<4} Total Reward = {total_reward:<8.2f} diameter = {env.cur_diameter:<4} loss = {total_loss:<8.4f}", flush=True)
         # print(env.test_id)
         if if_test:
             test_reward.append(total_reward)
