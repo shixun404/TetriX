@@ -4,3 +4,4 @@ rl/figs
 rl/wandb
 *.tar.gz
 *.png
+*.txt

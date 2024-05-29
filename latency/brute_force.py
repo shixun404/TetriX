@@ -91,7 +91,7 @@ def plot_histo(means=None, std_devs=None):
 
     plt.savefig('histogram.png')
 
-def plot_pdf(sample_counts):
+def plot_pdf(sample_counts, N, k):
     # Calculate total number of samples
     total_samples = np.sum(sample_counts)
 
@@ -104,13 +104,13 @@ def plot_pdf(sample_counts):
     # Plotting the PDF
     plt.figure(figsize=(10, 5))
     plt.bar(values, probabilities, color='blue')  # Using a bar chart
-    plt.xlabel('Value')
+    plt.xlabel('Diameter')
     plt.ylabel('Probability')
     plt.title('Probability Density Function (PDF)')
     plt.grid(True)
-    plt.savefig('pdf.png')
+    plt.savefig(f'pdf_{N}_{k}.pdf', bbox_inches='tight')
 
-def plot_cdf(sample_counts):
+def plot_cdf(sample_counts, N, k):
     total_samples = np.sum(sample_counts)
     probabilities = sample_counts / total_samples
 
@@ -122,13 +122,13 @@ def plot_cdf(sample_counts):
 
     # Plotting the CDF
     plt.figure(figsize=(10, 5))
-    plt.plot(values, cdf, drawstyle='steps-post', marker='o', color='red', label='CDF')
-    plt.xlabel('Value')
+    plt.plot(values, cdf, drawstyle='steps-post', marker='o', color='red', label='Random 4-Regular Graph')
+    plt.xlabel('Diameter')
     plt.ylabel('Cumulative Probability')
     plt.title('Cumulative Distribution Function (CDF)')
     plt.grid(True)
     plt.legend()
-    plt.savefig('cdf.png')
+    plt.savefig(f'cdf_{N}_{k}.pdf', bbox_inches='tight')
 
 # Main execution
 if __name__ == '__main__':
@@ -137,28 +137,20 @@ if __name__ == '__main__':
     
     N = 20
     k = 4
-    # graph_name = f'G_N={N}.pkl'
-    # if graph_name not in os.listdir('.'):
-    #     G = create_fully_connected_graph(20)
-    #     with open(graph_name, 'wb') as f:
-    #         pkl.dump(G, f)
-    # else:
-    #     with open(graph_name, 'rb') as f:
-    #         G = pkl.load(f)
     histo_tensor = th.zeros(10, 100)
-    histo_tensor = np.loadtxt('tensor_data.txt')
-
-    # Convert the numpy array to a torch tensor
-    histo_tensor = th.from_numpy(histo_tensor)
-
-    # for i in range(10):
-    #     best_subgraph, best_diameter, histo = find_regular_subgraph(G, k, graph_name)
-    #     histo_tensor[i] = th.as_tensor(histo)
-        # print(f"Best diameter found: {best_diameter}")  
+    # histo_tensor = np.loadtxt('tensor_data.txt')
+    # histo_tensor = th.from_numpy(histo_tensor)
+    for i in range(10):
+        graph_name = f'N={N}_{i}.pkl'
+        with open(os.path.join('.', 'test_dataset', graph_name), 'rb') as f:
+            G = pkl.load(f)
+        best_subgraph, best_diameter, histo = find_regular_subgraph(G, k, graph_name)
+        histo_tensor[i] = th.as_tensor(histo)
+        print(f"Best diameter found: {best_diameter}")  
     histo_avg = th.mean(histo_tensor, dim=0).reshape(-1)[0:30]
     histo_std = th.std(histo_tensor, dim=0).reshape(-1)[0:30]
-    # np.savetxt('tensor_data.txt', histo_tensor.numpy(), fmt='%.6f')
+    np.savetxt('tensor_data_{N}_{k}.txt', histo_tensor.numpy(), fmt='%.6f')
     plot_histo(histo_avg, histo_std)
-    plot_pdf(histo_avg.numpy())
-    plot_cdf(histo_avg.numpy())
-    
+    plot_pdf(histo_avg.numpy(), N, k)
+    plot_cdf(histo_avg.numpy(), N, k)
+        
