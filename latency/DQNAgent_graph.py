@@ -17,11 +17,11 @@ def graph_to_edge_index(G):
 
 
 class DQNNetwork(nn.Module):
-    def __init__(self, feature_dim, output_dim, T=5, N=20,
+    def __init__(self, feature_dim, output_dim, T=2, N=20,
                     device=torch.device('cuda:0')):
         super(DQNNetwork, self).__init__()
         self.T = T
-        self.N = 20
+        self.N = N
         self.p = feature_dim
         self.device = device
         self.theta_1 = nn.Linear(1, feature_dim)
@@ -45,8 +45,8 @@ class DQNNetwork(nn.Module):
         self.fc_theta_8 = nn.Linear(feature_dim, feature_dim)
         # self.fc_theta_9 = nn.Linear(feature_dim, feature_dim)
 
-        # self.theta_5 = nn.Linear(4 * feature_dim, 1)
-        self.theta_5 = nn.Linear(6 * feature_dim, feature_dim)
+        # self.theta_5 = nn.Linear(1 + 6 * feature_dim, 1)
+        self.theta_5 = nn.Linear(1 + 6 * feature_dim, feature_dim)
         self.theta_10 = nn.Linear(feature_dim, 32)
         self.theta_11 = nn.Linear(32, 32)
         self.output = nn.Linear(32, 1)
@@ -59,7 +59,9 @@ class DQNNetwork(nn.Module):
         x = torch.zeros(bs, self.N, self.p, device=self.device)
         adj_fc = state[:, :self.N * self.N].reshape(-1, self.N, self.N)
         adj = state[:, self.N * self.N:self.N * self.N * 2].reshape(-1, self.N, self.N)
+        adj_fc_ = adj_fc
         adj_fc = (adj_fc - 5) / 10
+        
         adj = (adj - 5) / 10
         
         start_id = state[:, -1].to(torch.int64)
@@ -97,10 +99,13 @@ class DQNNetwork(nn.Module):
 
         # Gather selected elements based on indices
         fc_selected_elements = torch.gather(x_fc, 1, start_id.view(-1, 1, 1).expand(bs, 1, self.p))
+        fc_selected_adj = torch.gather(adj_fc_, 1, start_id.view(-1, 1, 1).expand(bs, 1, self.N)).reshape(-1, self.N, 1)
+        
         selected_elements = torch.gather(x, 1, start_id.view(-1, 1, 1).expand(bs, 1, self.p))
 
         # Expand to match the original dimensions
         fc_id_x = fc_selected_elements.repeat(1, self.N, 1)
+        
         id_x = selected_elements.repeat(1, self.N, 1)
         
         
@@ -112,12 +117,13 @@ class DQNNetwork(nn.Module):
         theta_8_o = self.theta_8(x)
         
         # Concatenate along the last dimension
-        theta_5_in = torch.relu(torch.cat([theta_6_o, fc_theta_7_o, fc_theta_8_o, theta_7_o, theta_8_o, theta_9_o], dim=2))
-        # theta_5_in = torch.relu(torch.cat([theta_8_o, theta_9_o], dim=2))
+        theta_5_in = torch.relu(torch.cat([fc_selected_adj, theta_6_o, fc_theta_7_o, fc_theta_8_o, theta_7_o, theta_8_o, theta_9_o], dim=2))
+        
         theta_10_in = torch.relu(self.theta_5(theta_5_in))
         theta_11_in = torch.relu(self.theta_10(theta_10_in))
         theta_11_out = torch.relu(self.theta_11(theta_11_in))
         output = self.output(theta_11_out).reshape(-1, self.N)
+        
         # output = self.theta_5(theta_5_in).reshape(-1, self.N)
         # print(output[0])
         return output
@@ -131,7 +137,7 @@ class DQNAgent:
         self.state_size = state_size
         self.N = action_size
         self.replay_buffer = replay_buffer
-        self.model = DQNNetwork(state_size, action_size).to(device)
+        self.model = DQNNetwork(state_size, action_size, N=action_size).to(device)
         # self.model = GCN(64, action_size).to(device)
         self.optimizer = optim.Adam(self.model.parameters())
         self.criterion = nn.MSELoss()
@@ -153,6 +159,7 @@ class DQNAgent:
             
             action_values = torch.where(mask, self.model(state), torch.tensor(float('-inf')))
             action = torch.argmax(action_values).item()
+            # action_values = torch.where(mask, state[-1, :self.N * self.N].reshape(self.N, self.N)[int(state[-1, -1])], torch.tensor(float('inf')))
             # action = torch.argmin(action_values).item()
             
 
@@ -194,7 +201,7 @@ class DQNAgent:
         
         
         # expected_q = rewards + 0.99 * next_q * (1 - dones)
-        expected_q = rewards + (0.9 ** steps) * next_q * (1 - dones)
+        expected_q = rewards + (0.1 ** steps) * next_q * (1 - dones)
 
 
         # print(current_q, expected_q)

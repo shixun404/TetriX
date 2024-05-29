@@ -25,16 +25,19 @@ class GraphEnv(gym.Env):
         for i in range(50):
             test_graph = nx.complete_graph(self.num_nodes)
             for (u, v) in self.initial_graph.edges():
-                test_graph.edges[u,v]['weight'] = random.randint(1, 10)  # Assign random positive weights
+                test_graph.edges[u,v]['weight'] = random.randint(4, 7)  # Assign random positive weights
             for (u, v) in self.initial_graph.edges():
                 test_graph.edges[v,u]['weight'] = test_graph.edges[u,v]['weight']  # Assign random positive weights
+            graph_name = f'N={self.num_nodes}_{i}.pkl'
             if graph_name not in os.listdir(os.path.join('.', 'test_dataset')):
-                with open(graph_name, 'wb') as f:
+                with open(os.path.join('.', 'test_dataset', graph_name), 'wb') as f:
                     pkl.dump(test_graph, f)
                 self.test_graphs.append(test_graph)
+                # assert 0
             else:
-                with open(graph_name, 'rb') as f:
+                with open(os.path.join('.', 'test_dataset', graph_name), 'rb') as f:
                     self.test_graphs.append(pkl.load(f))
+                # assert 0
         self.graph.add_nodes_from(range(num_nodes))
         self.start_id = 0  # Starting node for edge connection
         self.num_steps = 0
