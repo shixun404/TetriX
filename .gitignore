@@ -1,7 +1,9 @@
 rl/figs
 *.pkl
 *.pth
-rl/wandb
+**/wandb
 *.tar.gz
 *.png
-*.txt
+*.pdf
+**/logs
+**/__pycache__/
