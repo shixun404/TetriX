@@ -114,4 +114,22 @@ def train():
         
 
 if __name__ == '__main__':
+    config = {
+        'N': args.N,
+        'fan_out': args.fan_out,
+        'num_hop': args.num_hop,
+        'lr': args.lr,
+        'seed': args.seed,
+        'bs': args.bs,
+    }
+    print(config)
+    # assert 0
+    wandb.init(
+            project=f'gossip',
+            sync_tensorboard=True,
+            config=config,
+            name=f"N={args.N}_fanout={args.fan_out}_numhop={args.num_hop}_seed={args.seed}.pth",
+            # monitor_gym=True,
+            save_code=True,
+    )
     train()
