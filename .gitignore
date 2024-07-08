@@ -10,3 +10,4 @@ rl/figs
 latency/__pycache__/*
 *.output
 *.out
+*.txt
