@@ -7,3 +7,5 @@ rl/figs
 *.pdf
 **/logs
 **/__pycache__/
+*.output
+*.out
