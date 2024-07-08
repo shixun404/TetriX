@@ -7,5 +7,6 @@ rl/figs
 *.pdf
 **/logs
 **/__pycache__/
+latency/__pycache__/*
 *.output
 *.out
