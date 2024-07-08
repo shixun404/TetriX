@@ -18,7 +18,7 @@ def create_fully_connected_graph(n):
         G.edges[v,u]['weight'] = G.edges[u,v]['weight']  # Assign random positive weights
     return G
 
-def find_regular_subgraph(G, k,  graph_name=None, iterations=10000):
+def find_regular_subgraph(G, k,  graph_name=None, iterations=100):
     """ Attempt to find a k-regular subgraph with the minimum diameter from a fully connected graph """
     n = G.number_of_nodes()
     best_diameter = float('inf')
@@ -135,8 +135,8 @@ if __name__ == '__main__':
     
     # plot_histo()
     
-    N = 20
-    k = 4
+    N = 100
+    k = 6
     histo_tensor = th.zeros(10, 100)
     # histo_tensor = np.loadtxt('tensor_data.txt')
     # histo_tensor = th.from_numpy(histo_tensor)

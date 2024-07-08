@@ -3,6 +3,7 @@ import torch.nn as nn
 import torch.optim as optim
 import random
 import numpy as np
+import os
 from torch.optim.lr_scheduler import StepLR
 
 from torch_geometric.nn import GCNConv
@@ -132,18 +133,23 @@ class DQNNetwork(nn.Module):
 
 
 class DQNAgent:
-    def __init__(self, state_size, action_size, replay_buffer, device):
+    def __init__(self, state_size, action_size, replay_buffer, decay_gamma, device, experiment_name):
         
         self.state_size = state_size
         self.N = action_size
         self.replay_buffer = replay_buffer
-        self.model = DQNNetwork(state_size, action_size, N=action_size).to(device)
+        self.device = device
+        self.model = DQNNetwork(state_size, action_size, N=action_size, device=device).to(self.device)
         # self.model = GCN(64, action_size).to(device)
         self.optimizer = optim.Adam(self.model.parameters())
         self.criterion = nn.MSELoss()
-        self.device = device
         self.scheduler = StepLR(self.optimizer, step_size=2000, gamma=0.95)
         self.min_lr = 1e-5
+        self.decay_gamma = decay_gamma
+        self.experiment_name = experiment_name    
+        if not os.path.exists(experiment_name):
+            # Create the directory
+            os.makedirs(experiment_name)
 
     def act(self, state, degree, G, mask, vector=None, K=4, epsilon=0.95):
         # epsilon = 0
@@ -152,13 +158,18 @@ class DQNAgent:
             state = torch.tensor(state, dtype=torch.float32, device=self.device).unsqueeze(0)
             mask = torch.tensor(mask, dtype=torch.bool, device=self.device)
             # action_values = self.model(state)
-            # probabilities = torch.softmax(action_values, dim=0)
             # action_values = torch.where(mask, probabilities, torch.tensor(float(0)))
             # print(action_values)
             # assert 0
             
             action_values = torch.where(mask, self.model(state), torch.tensor(float('-inf')))
             action = torch.argmax(action_values).item()
+            
+            # action_values = torch.softmax(self.model(state), dim=1)
+            # probabilities = torch.where(mask, action_values, torch.tensor(float(0)))
+            # action = torch.multinomial(probabilities, num_samples=1).item()
+            # print(action)
+            # assert 0
             # action_values = torch.where(mask, state[-1, :self.N * self.N].reshape(self.N, self.N)[int(state[-1, -1])], torch.tensor(float('inf')))
             # action = torch.argmin(action_values).item()
             
@@ -201,7 +212,7 @@ class DQNAgent:
         
         
         # expected_q = rewards + 0.99 * next_q * (1 - dones)
-        expected_q = rewards + (0.1 ** steps) * next_q * (1 - dones)
+        expected_q = rewards + (self.decay_gamma ** steps) * next_q * (1 - dones)
 
 
         # print(current_q, expected_q)
@@ -220,3 +231,16 @@ class DQNAgent:
             if param_group['lr'] < self.min_lr:
                 param_group['lr'] = self.min_lr
         return loss.item()
+    def save(self,):
+        save_path = os.path.join(self.experiment_name, 'model.pth')
+        torch.save(self.model.state_dict(), save_path)
+
+    def load(self, load_path=None):
+        if load_path is None:
+            file_list = os.listdir(self.experiment_name)
+            for file in file_list:
+                if '.pth' in file:
+                    load_path = file
+                    break
+            load_path = os.path.join(self.experiment_name, load_path)
+        self.model.load_state_dict(torch.load(load_path, map_location=self.device))
