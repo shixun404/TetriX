@@ -303,7 +303,7 @@ if __name__ == '__main__':
     # k = 8
     N = 500
     k = 8
-    num_tests = 1
+    num_tests = 20
     num_steps = k * N // 2
     graph_name = f'G_N={N}_Gaussian.pkl'
     G = nx.Graph()
@@ -356,20 +356,21 @@ if __name__ == '__main__':
 
     diameter_list = []
     for i in range(num_tests):
-        # graph_name = f'N={N}_{i}.pkl'
-        # with open(os.path.join('.', 'test_dataset', graph_name), 'rb') as f:
-        #     G = pkl.load(f)test_graph = nx.complete_graph(self.num_nodes)
-        G = nx.complete_graph(N )
-        values = [1, 1.25, 1.5, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+        graph_name = f'N={N}_{i}_Gaussian.pkl'
+        with open(os.path.join('.', 'test_dataset', graph_name), 'rb') as f:
+            G = pkl.load(f)
+        # test_graph = nx.complete_graph(self.num_nodes)
+        # G = nx.complete_graph(N )
+        # values = [1, 1.25, 1.5, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 
         # Uniformly sampling a single value from the list
-        sampled_value = np.random.choice(values)
+        # sampled_value = np.random.choice(values)
 
-        for (u, v) in G.edges():
-            # G.edges[u,v]['weight'] = random.randint(4, 7) / 4 # Assign random positive weights
-            G.edges[u,v]['weight'] = np.random.choice(values) # Assign random positive weights
-        for (u, v) in G.edges():
-            G.edges[v,u]['weight'] = G.edges[u,v]['weight']  # Assign random positive weights
+        # for (u, v) in G.edges():
+        #     # G.edges[u,v]['weight'] = random.randint(4, 7) / 4 # Assign random positive weights
+        #     G.edges[u,v]['weight'] = np.random.choice(values) # Assign random positive weights
+        # for (u, v) in G.edges():
+        #     G.edges[v,u]['weight'] = G.edges[u,v]['weight']  # Assign random positive weights
         print('chord')
         diameter = KNN(G, N, k, random_ring=True, chord=True)
         print('random_ring', diameter)
