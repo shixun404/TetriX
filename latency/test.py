@@ -8,7 +8,7 @@ import os
 import torch
 import numpy as np
 from brute_force import *
-from node2vec import Node2Vec
+# from node2vec import Node2Vec
 import time
 
 class ReplayBuffer:
@@ -25,7 +25,7 @@ class ReplayBuffer:
         return len(self.buffer)
 
 
-def test(args, num_tests=5, agent=None, env=None, log_file=None, if_plot=False):
+def test(args, num_tests=2, agent=None, env=None, log_file=None, if_plot=False):
 
     
     torch.manual_seed(args.seed)
@@ -77,7 +77,7 @@ def test(args, num_tests=5, agent=None, env=None, log_file=None, if_plot=False):
                 action = agent.act(state, env.graph.degree, env.graph, mask, K=args.K, epsilon=epsilon)
                 special_edge = (env.start_id, action)
                 next_time = time.time()
-                print(t, next_time - cur_time)
+                # print(t, next_time - cur_time)
                 cumulative_time += next_time - cur_time
                 next_state_dict, reward, done, _ = env.step(action)
                 # state_list_n.append(state)
@@ -106,7 +106,9 @@ def test(args, num_tests=5, agent=None, env=None, log_file=None, if_plot=False):
                     ax.axis('off') 
                 if done:
                     break
-            diameter_list.append(env.cur_diameter)
+            cur_time = time.time()
+            diameter_list.append(nx.diameter(env.graph, weight='weight'))
+            # print('Test last step cacalculate diamater', time.time() - cur_time)
         if if_plot:
             plt.tight_layout()
             plt.savefig(f'figures/GNN_N=20_{i}.png')

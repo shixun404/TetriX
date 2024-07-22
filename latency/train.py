@@ -37,6 +37,7 @@ def init(path=None):
     parser.add_argument("--reward_mode", type=str, help="Reward Mode", default='diameter')
     parser.add_argument("--seed", type=int, help="Random seed", default=123)
     parser.add_argument("--load_path", type=str, help="Path to load the model", default=path)
+    parser.add_argument("--if_wandb", type=bool, help="Wandb on or off", default=False)
     args = parser.parse_args()
     config = {
         'num_nodes': args.N,
@@ -48,6 +49,7 @@ def init(path=None):
         'decay_gamma':args.decay_gamma,
         'reward_mode':args.reward_mode
     }
+    print(args.if_wandb)
     name = ''
     for k, v in config.items():
         name = name + f"{k}={v}_"
@@ -70,14 +72,15 @@ def init(path=None):
     args_json = json.dumps(args_dict, indent=4)
     with open(config_file_path, 'w') as config_file:
         json.dump(args_json, config_file, indent=4)
-    wandb.init(
-            project=f'gossip',
-            sync_tensorboard=True,
-            config=config,
-            name=name,
-            # monitor_gym=True,
-            save_code=True,
-    )
+    if args.if_wandb:
+        wandb.init(
+                project=f'gossip',
+                sync_tensorboard=True,
+                config=config,
+                name=name,
+                # monitor_gym=True,
+                save_code=True,
+        )
 
     return args
 def train(args):
@@ -158,9 +161,10 @@ def train(args):
                     print('Best Test Diameter', best_test_diameter)
                     log_file.write('Best Test Diameter'+ str(best_test_diameter))
                     log_file.flush()
-                    wandb.log({ 
-                        "loss": cur_loss, 
-                        "test diameter": test_diameter})
+                    if args.if_wandb:
+                        wandb.log({ 
+                            "loss": cur_loss, 
+                            "test diameter": test_diameter})
 
         # total_loss /= t
         # episode_name = 'Train'
