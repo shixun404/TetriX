@@ -39,3 +39,17 @@ tetrix/
 ├── README.md            # Project overview and setup instructions
 └── LICENSE              # License information
 ```
+
+## Current Progress
+### Todo List
+1. Test K-Ring, Q-learning, Chord, Nearest-Neighbor, Perigee on the Bitnodes network Dataset.
+    - 2020. Bitnodes network. Data drawn from website, https://bitnodes.earn.com/.
+    - Topology
+    - Ring Neigbor Selection
+2. Q-learning:
+    - Weakness:
+        - Centralized: Require global knowledge. However, I think this is not an issue. A strong-consistent membership protocol requires synchronization intrinsically.
+        - Scalability: not scalable for 500 nodes.
+    - Strongness:
+        - 10%-20% lower diameter compared to greedy selection when latency are closed to each other.
+        - Self Adaptive: The model can be distributed to all nodes. Once the number of inactive nodes exceeds a threshold, each node can inference the same topology individually.

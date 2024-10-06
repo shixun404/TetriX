@@ -119,7 +119,6 @@ def KNN(G, num_nodes, K, random_ring=True, chord=True, greedy=True):
     try:
         d = nx.diameter(subgraph, weight='weight')
     except:
-        assert 0
         scc = nx.strongly_connected_components(subgraph)
         cnt = 0
         for i in scc:
@@ -131,52 +130,86 @@ def KNN(G, num_nodes, K, random_ring=True, chord=True, greedy=True):
     return d
 
 
-def generate_k_directed_rings(G, num_nodes, K, random_ring=True, greedy=True):
+def generate_k_directed_rings(G, num_nodes, K, random_ring=True, greedy=True, num_random_ring=0):
     nodes = list(G.nodes())
     rings = []
-    K = K if random_ring else K - 1
-    for _ in range(K):
+    for _ in range(num_random_ring):
         ring_nodes = nodes.copy()
         random.shuffle(ring_nodes)
         ring = [(ring_nodes[i], ring_nodes[(i+1) % len(ring_nodes)]) for i in range(len(ring_nodes))]
         rings.append(ring)
     H = nx.DiGraph()
     H.add_nodes_from(G.nodes())
-    if not random_ring:
-        degree = [0 for i in range(num_nodes)]
-        current_node = 0
-        new_order = []
-        for _ in range(num_nodes):
-            new_order.append(current_node)
-            degree[current_node] += 1
-            neighbors = list(G.neighbors(current_node))
-            # Sort neighbors first by degree (lower degree first), then by latency (lower weight first)
-            neighbors.sort(key=lambda x: (degree[x], G.edges[current_node, x]['weight']))
+    # if not random_ring:
+    degree = [0 for i in range(num_nodes)]
+    current_node = 0
+    # for j in range(K - num_random_ring):
+    #     new_order = []
+    #     for _ in range(num_nodes):
+    #         new_order.append(current_node)
+    #         neighbors = list(G.neighbors(current_node))
+    #         # Sort neighbors first by degree (lower degree first), then by latency (lower weight first)
+    #         neighbors.sort(key=lambda x: (degree[x], G.edges[current_node, x]['weight']))
             
-            # Move to the neighbor with the highest priority
-            i = 0
-            while _ != num_nodes - 1:
-                # if H.has_edge(current_node, neighbors[i]) or current_node == neighbors[i]:
-                # print(i)
-                if neighbors[i % len(neighbors)] in new_order or current_node == neighbors[i % len(neighbors)]:
-                    i += 1
-                    continue
-                else:
-                    if random.random() < 0.99:
-                        next_node = neighbors[i % len(neighbors)]
-                        break
+    #         # Move to the neighbor with the highest priority
+    #         i = 0
+    #         while _ != num_nodes - 1:
+    #             # if H.has_edge(current_node, neighbors[i]) or current_node == neighbors[i]:
+    #             # print(i)
+    #             if neighbors[i % len(neighbors)] in new_order or current_node == neighbors[i % len(neighbors)]:
+    #                 i += 1
+    #                 continue
+    #             else:
+    #                 if random.random() < 0.99:
+    #                     next_node = neighbors[i % len(neighbors)]
+    #                     break
+    #             i += 1
+    #         if _ == num_nodes - 1:
+    #             # next_node = 0
+    #             next_node = np.random.randint(low=0, high=num_nodes, size=1)[0]
+    #             while next_node == current_node:
+    #                 next_node = np.random.randint(low=0, high=num_nodes, size=1)[0]
+    #         H.add_edge(current_node, next_node)
+    #         H.edges[current_node, next_node]['weight'] = G.edges[current_node, next_node]['weight']
+    #         current_node = next_node
+    #         degree[current_node] += 1
+
+    for _ in range((K - num_random_ring) * N):
+        if _ % num_nodes == 0:
+            new_order = []
+        new_order.append(current_node)
+        degree[current_node] += 1
+        neighbors = list(G.neighbors(current_node))
+        # Sort neighbors first by degree (lower degree first), then by latency (lower weight first)
+        neighbors.sort(key=lambda x: (degree[x], G.edges[current_node, x]['weight']))
+        
+        # Move to the neighbor with the highest priority
+        i = 0
+        while (_ % num_nodes) != num_nodes - 1:
+            if H.has_edge(current_node, neighbors[i % len(neighbors)]) or current_node == neighbors[i % len(neighbors)]:
+            # if neighbors[i % len(neighbors)] in new_order or  neighbors[i % len(neighbors)] == current_node:
                 i += 1
-            if _ == num_nodes - 1:
-                next_node = 0
-            H.add_edge(current_node, next_node)
-            H.edges[current_node, next_node]['weight'] = G.edges[current_node, next_node]['weight']
-            current_node = next_node
+                continue
+            else:
+                if  greedy or random.random() < 0.5:
+                    next_node = neighbors[i % len(neighbors)]
+                    break
+            i += 1
+        
+        if _ % num_nodes == num_nodes - 1:
+            next_node = np.random.randint(low=0, high=num_nodes, size=1)[0]
+            while next_node == current_node:
+                next_node = np.random.randint(low=0, high=num_nodes, size=1)[0]
+        # print(new_order, next_node, current_node)
+        H.add_edge(current_node, next_node)
+        H.edges[current_node, next_node]['weight'] = G.edges[current_node, next_node]['weight']
+        current_node = next_node
         
         
     for ring in rings:
         for u, v in ring:
             H.add_edge(u, v, weight=G[u][v]['weight'])
-
+    # print(H.in_degree, H.out_degree)
     return H
 
 
@@ -215,6 +248,9 @@ def generate_k_directed_rings_distributed(G, num_nodes, K, stride=1):
             next_node = ring[end_id - 1][1]
             H.add_edge(cur_node, next_node)
             H.edges[cur_node, next_node]['weight'] = G.edges[cur_node, next_node]['weight']
+            # if stride > num_nodes:
+            #     H.add_edge(next_node, ring[start_id][0])
+            #     H.edges[next_node, ring[start_id][0]]['weight'] = G.edges[next_node, ring[start_id][0]]['weight']
     # for id, d in H.in_degree():
     #     if d > 4:
     #         print(id, d)
@@ -284,6 +320,8 @@ def perform_random_walk(G, num_nodes, start_node, num_steps, if_plot=False, gree
         
         if _ % num_nodes == num_nodes - 1:
             next_node = np.random.randint(low=0, high=num_nodes, size=1)[0]
+            while next_node == current_node:
+                next_node = np.random.randint(low=0, high=num_nodes, size=1)[0]
         # print(new_order, next_node, current_node)
         subgraph.add_edge(current_node, next_node)
         subgraph.edges[current_node, next_node]['weight'] = G.edges[current_node, next_node]['weight']
@@ -323,6 +361,46 @@ def perform_random_walk(G, num_nodes, start_node, num_steps, if_plot=False, gree
     d = nx.diameter(subgraph, weight='weight')
     return d
 
+def perform_random_walk_directed(G, num_nodes, start_node, num_steps, if_plot=False, greedy=True):
+    
+    current_node = start_node
+    degree = [0 for i in range(num_nodes)]
+    subgraph = nx.DiGraph()
+    subgraph.add_nodes_from(range(num_nodes))
+    for _ in range(num_steps - 1):
+        if _ % num_nodes == 0:
+            new_order = []
+        new_order.append(current_node)
+        degree[current_node] += 1
+        neighbors = list(G.neighbors(current_node))
+        # Sort neighbors first by degree (lower degree first), then by latency (lower weight first)
+        neighbors.sort(key=lambda x: (degree[x], G.edges[current_node, x]['weight']))
+        
+        # Move to the neighbor with the highest priority
+        i = 0
+        while (_ % num_nodes) != num_nodes - 1:
+            if subgraph.has_edge(current_node, neighbors[i % len(neighbors)]) or current_node == neighbors[i % len(neighbors)]:
+            # if neighbors[i % len(neighbors)] in new_order or  neighbors[i % len(neighbors)] == current_node:
+                i += 1
+                continue
+            else:
+                if  greedy or random.random() < 0.5:
+                    next_node = neighbors[i % len(neighbors)]
+                    break
+            i += 1
+        
+        if _ % num_nodes == num_nodes - 1:
+            next_node = np.random.randint(low=0, high=num_nodes, size=1)[0]
+            while next_node == current_node:
+                next_node = np.random.randint(low=0, high=num_nodes, size=1)[0]
+        # print(new_order, next_node, current_node)
+        subgraph.add_edge(current_node, next_node)
+        subgraph.edges[current_node, next_node]['weight'] = G.edges[current_node, next_node]['weight']
+        # subgraph.edges[next_node, current_node]['weight'] = G.edges[next_node, current_node]['weight']
+        current_node = next_node
+    # print(subgraph.in_degree, subgraph.out_degree)
+    d = nx.diameter(subgraph, weight='weight')
+    return d
 
 def chord(G, num_nodes, degree):
     subgraph = nx.Graph()
@@ -338,7 +416,7 @@ def chord(G, num_nodes, degree):
             subgraph.edges[next_node, current_node]['weight'] = G.edges[next_node, current_node]['weight']
             j += 1
 
-    print(subgraph.degree())
+    # print(subgraph.degree())
     return nx.diameter(subgraph, weight='weight')
 
 def random_permutation(n):
@@ -376,11 +454,14 @@ def K_ring(G, num_nodes, degree):
 
 # Main execution
 
-def test_synthetic_graph(num_tests, N, k):
+def test_synthetic_graph(num_tests, N, k, mode="gaussian"):
     diameter_list = []
+    if mode == "FABRIC":
+        N = ((N + 16) // 17) * 17
+        k = int(np.log2(N))
     for i in range(num_tests):
-        graph_name = f'N={N}_{i}_Gaussian.pkl'
-        with open(os.path.join('.', 'test_dataset', graph_name), 'rb') as f:
+        graph_name = f'N={N}_{i}_{mode}.pkl'
+        with open(os.path.join('.', 'test_graph', graph_name), 'rb') as f:
             G = pkl.load(f)
         test_methods(G, N, k)
 
@@ -429,17 +510,32 @@ def test_methods(G, N, k):
    
     for s in range(1, 2):
         random.seed(s)
-        diameter_list['K_ring_random_ring'].append(nx.diameter(generate_k_directed_rings(G, N, k, random_ring=True), weight='weight'))
-        diameter_list['K_ring_shortest_ring'].append(nx.diameter(generate_k_directed_rings(G, N, k, random_ring=False), weight='weight'))
+        diameter_list['K_ring_random_ring'].append(nx.diameter(generate_k_directed_rings(G, N, k, random_ring=True, num_random_ring=k), weight='weight'))
+        diameter_list['K_ring_shortest_ring'].append(nx.diameter(generate_k_directed_rings(G, N, k, random_ring=False, num_random_ring=k-1), weight='weight'))
         # diameter_list['K_ring_distributed'].append(nx.diameter(generate_k_directed_rings_distributed(G, N, k, N_cluster=1), weight='weight'))
         diameter_list['K_ring_greedy'].append(perform_random_walk(G, N, 0, num_steps))
+        # diameter_list['K_ring_greedy'].append(perform_random_walk_directed(G, N, 0, num_steps * 2))
         diameter_list['K_ring_epsilon_greedy'].append(perform_random_walk(G, N, 0, num_steps, greedy=False))
-        print(diameter_list)
+        
+        # for i in range(k + 1):
+        #     if f'K_ring_{i}_random' not in diameter_list:
+        #         diameter_list[f'K_ring_{i}_random'] = []
+        #     diameter_list[f'K_ring_{i}_random'].append(nx.diameter(generate_k_directed_rings(G, N, k, 
+        # random_ring=False, num_random_ring=i), weight='weight'))
+        # for i in range(k + 1, 10):
+        #     if f'K_ring_{i}_random' not in diameter_list:
+        #         diameter_list[f'K_ring_{i}_random'] = []
+        #     diameter_list[f'K_ring_{i}_random'].append(0)
+        # print(diameter_list)
+        
         # for stride in [1, 2, 4, 8, 16, 32, 64, 128, 256, 512]:
+        #     if f'K_ring_random_distributed_stride_{stride}' not in diameter_list:
+        #         diameter_list[f'K_ring_random_distributed_stride_{stride}'] = []
         #     H = generate_k_directed_rings_distributed(G, N, k, stride=stride)
         #     d = nx.diameter(H, weight='weight')
         #     max_in_degree_node, max_in_degree = max(H.in_degree(), key=lambda x: x[1])
         #     max_out_degree_node, max_out_degree = max(H.out_degree(), key=lambda x: x[1])
+        #     diameter_list[f'K_ring_random_distributed_stride_{stride}'].append(d)
         #     print(stride, d, f"max_in_degree={max_in_degree}, max_out_degree={max_out_degree}")
 
 if __name__ == '__main__':
@@ -447,9 +543,8 @@ if __name__ == '__main__':
     N = 500
     k = 8
     M = 4
-    file_path = '/global/homes/s/swu264/perigee/linkdelay.npy'
-    N_list = [100]
-    for i in range(500, 5001, 500):
+    N_list = [10]
+    for i in range(50, 1001, 50):
         N_list.append(i)
     seed = 1
     # for N in range (1000, 5001, 1000):
@@ -457,11 +552,12 @@ if __name__ == '__main__':
         random.seed(seed)
         np.random.seed(seed)
         th.manual_seed(seed)
-        num_tests = 20
-        test_synthetic_graph(num_tests, N, k)
+        num_tests = 1
+        test_synthetic_graph(num_tests, N, int(np.log2(N)))
         # test_bitnode_graph(file_path, N, k) 
         # test_cluster(N, k, M)
         print(N, diameter_list)
+        # assert 0
         # with open(f"N={N}_cluster_gaussian_exploration.pkl", 'wb') as f:
         #     pkl.dump(diameter_list, f)
         

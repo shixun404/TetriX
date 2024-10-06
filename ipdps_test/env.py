@@ -61,26 +61,12 @@ class GraphEnv(gym.Env):
         return {'initial_graph': self.initial_adjacency_matrix, 
                 'graph': adjacency_matrix, 'start_id': self.start_id, 'mask': mask, 'degree': degree}
     
-    def load_graph(self,):
+    def load_graph(self, mode='gaussian'):
         # graph_name=f'G_N={self.num_nodes}_Gaussian.pkl'
-        for i in range(20):
-            graph_name = f'N={self.num_nodes}_{i}_uniform.pkl'
-            if graph_name not in os.listdir(os.path.join('.', 'test_dataset')):
-                test_graph = nx.complete_graph(self.num_nodes)
-                for (u, v) in self.initial_graph.edges():
-                    test_graph.edges[u,v]['weight'] = random.randint(1, 10)  # Assign random positive weights
-                    #  test_graph.edges[u, v]['weight'] = np.random.normal(self.mean, self.std_dev)
-                for (u, v) in self.initial_graph.edges():
-                    test_graph.edges[v,u]['weight'] = test_graph.edges[u,v]['weight']  # Assign random positive weights
-                with open(os.path.join('.', 'test_dataset', graph_name), 'wb') as f:
-                    pkl.dump(test_graph, f)
-                adj_matrix = nx.adjacency_matrix(test_graph, weight='weight')
-                weights_list = adj_matrix.tocoo().data.tolist()
-                weight_counts = Counter(weights_list)
-                self.test_graphs.append(test_graph)
-            else:
-                with open(os.path.join('.', 'test_dataset', graph_name), 'rb') as f:
-                    self.test_graphs.append(pkl.load(f))
+        for i in range(1):
+            graph_name = f'N={self.num_nodes}_{i}_{mode}.pkl'
+            with open(os.path.join('.', 'test_graph', graph_name), 'rb') as f:
+                self.test_graphs.append(pkl.load(f))
         # assert 0
 
     def step(self, action): 
