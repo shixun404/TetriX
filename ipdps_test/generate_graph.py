@@ -58,7 +58,7 @@ def FABRIC(node_per_cluster=4):
         for j in range(num_nodes):
             if i != j:
                 dst = location_name[j // node_per_cluster]
-                latency = np.random.normal(5, 1) + locations[src][dst]
+                latency = max(1, np.random.normal(5, 1)) + locations[src][dst]
                 test_graph.edges[i,j]['weight'] = latency 
 
     return test_graph
