@@ -25,7 +25,7 @@ class ReplayBuffer:
         return len(self.buffer)
 
 
-def test(args, num_tests=2, agent=None, env=None, log_file=None, if_plot=False):
+def test(args, num_tests=1, agent=None, env=None, log_file=None, if_plot=False):
 
     
     torch.manual_seed(args.seed)

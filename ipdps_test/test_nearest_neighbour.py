@@ -128,6 +128,8 @@ def KNN(G, num_nodes, K, random_ring=True, chord=True, greedy=True):
         largest_cc = max(nx.strongly_connected_components(subgraph), key=len)
         subgraph = subgraph.subgraph(largest_cc)
         d = nx.diameter(subgraph)
+    weight_sum = sum(data['weight'] for u, v, data in subgraph.edges(data=True))
+    print("KNN sum of the graph:", weight_sum / K)
     return d
 
 
@@ -504,15 +506,49 @@ def test_cluster(N, k, M):
     test_methods(G, N, k)
 
 
+def random_edges_weight_sum(G, k):
+    total_weight_sum = 0
+    min_weight_sum = 0
+
+    for node in G.nodes():
+        # Get the edges connected to the node
+        edges = list(G.edges(node, data=True))
+        
+        if len(edges) >= k:
+            # Randomly select 3 edges
+            selected_edges = random.sample(edges, k)
+        else:
+            # If less than 3 edges, select all available edges
+            selected_edges = edges
+        
+        selected_edges_sorted = sorted(selected_edges, key=lambda edge: edge[2]['weight'])
+
+        # Calculate total weight sum for the selected edges
+        total_weight_sum += sum(edge[2]['weight'] for edge in selected_edges)
+        min_weight = 0
+        i = 0
+        # Calculate the minimum weight among the selected edges
+        while i < (k // 2):
+            min_weight += selected_edges_sorted[i][2]['weight']
+            i += 1
+        min_weight_sum += min_weight
+
+    return total_weight_sum, min_weight_sum
+
 def test_methods(G, N, k):
     num_steps = k * N // 2
-    # diameter_list['chord_random_ring'].append(KNN(G, N, k, random_ring=True, chord=True))
-    
-    # diameter_list['chord_shortest_ring'].append(KNN(G, N, k, random_ring=False, chord=True))
-    # diameter_list['nearest_neighbour_random_ring'].append(KNN(G, N, k, random_ring=True, chord=False))
-    
-    # diameter_list['nearest_neighbour_shortest_ring'].append(KNN(G, N, k, random_ring=False, chord=False))
-
+    total_weight, min_weight = random_edges_weight_sum(G, k)
+    print(total_weight / k, min_weight / (k // 2))
+    print("Chord Random Ring")
+    diameter_list['chord_random_ring'].append(KNN(G, N, k, random_ring=True, chord=True))
+    print("Chord Shortest Ring")
+    diameter_list['chord_shortest_ring'].append(KNN(G, N, k, random_ring=False, chord=True))
+    # Assuming G is your graph
+    print("NN Random Ring")
+    diameter_list['nearest_neighbour_random_ring'].append(KNN(G, N, k, random_ring=True, chord=False))
+    print("NN Shortest Ring")
+    diameter_list['nearest_neighbour_shortest_ring'].append(KNN(G, N, k, random_ring=False, chord=False))
+    assert 0
    
     for s in range(1, 2):
         random.seed(s)
@@ -556,13 +592,14 @@ if __name__ == '__main__':
         N_list.append(i)
     seed = 1
     # for N in range (1000, 5001, 1000):
-    for N in N_list:
+    # for N in N_list:
+    for N in [500]:
         random.seed(seed)
         np.random.seed(seed)
         th.manual_seed(seed)
         num_tests = 1
-        # test_synthetic_graph(num_tests, N, int(np.log2(N)))
-        test_bitnode_graph(file_path, N, int(np.log2(N))) 
+        test_synthetic_graph(num_tests, N, int(np.log2(N)))
+        # test_bitnode_graph(file_path, N, int(np.log2(N))) 
         # test_cluster(N, k, M)
         print(N, diameter_list)
         # assert 0

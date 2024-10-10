@@ -35,7 +35,7 @@ def init(path=None):
     parser.add_argument("--decay_gamma", type=int, help="Q decay", default=0.9)
     parser.add_argument("--lr", type=float, help="Learning rate", default=5e-4)
     parser.add_argument("--reward_mode", type=str, help="Reward Mode", default='diameter')
-    parser.add_argument("--seed", type=int, help="Random seed", default=123)
+    parser.add_argument("--seed", type=int, help="Random seed", default=1)
     parser.add_argument("--load_path", type=str, help="Path to load the model", default=path)
     parser.add_argument("--if_wandb", type=bool, help="Wandb on or off", default=False)
     args = parser.parse_args()
@@ -103,7 +103,7 @@ def train(args):
     log_file = open(log_file_path, 'w')
     best_test_diameter = 1e8
     for episode in range(episodes):
-        epsilon = max((1 - episode * args.N * args.K / 10000), 0.05)
+        epsilon = max((1 - epoch / 2000), 0.05)
         state_dict = env.reset()
         
         state = np.append(state_dict['initial_graph'].flatten(), state_dict['graph'].flatten())  # Flatten the adjacency matrix to fit the network input
@@ -141,15 +141,14 @@ def train(args):
             state = next_state
             total_reward += reward
 
-                        
-            if done:
-                break
                             
             if len(agent.replay_buffer) > batch_size:
                 cur_loss = agent.learn(batch_size)
                 total_loss += cur_loss 
                 epoch += 1
-                if epoch % 100 == 0 or done:
+                
+                if epoch % 500 == 0 or done:
+                # if done:
                     print(f"Train Epoch {epoch:<4}: step = {t:<4} Cumulative Reward = {total_reward:<8.2f} loss = {cur_loss:<8.4f}")
                     log_file.write(f"Train Epoch {epoch:<4}: step = {t:<4} Cumulative Reward = {total_reward:<8.2f} loss = {cur_loss:<8.4f}")
                     test_diameter = test(args, agent=agent, log_file=log_file)
@@ -166,6 +165,8 @@ def train(args):
                         wandb.log({ 
                             "loss": cur_loss, 
                             "test diameter": test_diameter})
+            if done:
+                break
 
         # total_loss /= t
         # episode_name = 'Train'

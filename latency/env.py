@@ -19,7 +19,7 @@ class GraphEnv(gym.Env):
         self.observation_space = spaces.Dict({
             'graph': spaces.Box(low=0, high=1, shape=(num_nodes, num_nodes), dtype=np.uint8)
         })
-        self.graph = nx.Graph()
+        self.graph = nx.DiGraph()
         self.initial_graph = nx.complete_graph(self.num_nodes)
         self.test_graphs = []
         self.test_id = -1
@@ -45,15 +45,22 @@ class GraphEnv(gym.Env):
         self.prev_diameter = 0
         self.cur_diameter = 0
         self.num_steps = 0
+        with open('../ipdps_test/test_graph/N=200_0_FABRIC.pkl', 'rb') as f:
+            graph_background = pkl.load(f)
         if if_test:        
             self.initial_graph = nx.Graph(self.test_graphs[self.test_id])  
+            # self.initial_graph = nx.DiGraph(self.test_graphs[self.test_id])  
         else:
             self.initial_graph = nx.complete_graph(self.num_nodes)
+            # self.initial_graph = nx.DiGraph()
+            self.initial_graph.add_nodes_from(range(self.num_nodes))
             for (u, v) in self.initial_graph.edges():
                 # self.initial_graph.edges[u, v]['weight'] = random.randint(1, 10)  # Assign random positive weights
-                self.initial_graph.edges[u, v]['weight'] = np.random.normal(self.mean,
-                                                                             self.std_dev)
+                self.initial_graph.edges[u, v]['weight'] = graph_background.edges[u, v]['weight']
+                # self.initial_graph.add_edge(u, v)
+                # self.initial_graph.edges[u, v]['weight'] = self.test_graphs[0].edges[u, v]['weight']
             for (u, v) in self.initial_graph.edges():
+                # self.initial_graph.add_edge(v, u)
                 self.initial_graph.edges[v,u]['weight'] = self.initial_graph.edges[u,v]['weight']  # Assign random positive weights
         self.initial_adjacency_matrix = nx.to_numpy_array(self.initial_graph, nodelist=sorted(self.initial_graph.nodes()))
         adjacency_matrix = nx.to_numpy_array(self.graph, nodelist=sorted(self.initial_graph.nodes()))
@@ -63,14 +70,22 @@ class GraphEnv(gym.Env):
     
     def load_graph(self,):
         # graph_name=f'G_N={self.num_nodes}_Gaussian.pkl'
-        for i in range(20):
+        with open(f'../ipdps_test/test_graph/N=200_0_FABRIC.pkl', 'rb') as f:
+            graph_background = pkl.load(f)
+        # print(graph_background.number_of_nodes())
+        # assert 0
+        for i in range(1):
             graph_name = f'N={self.num_nodes}_{i}_uniform.pkl'
             if graph_name not in os.listdir(os.path.join('.', 'test_dataset')):
-                test_graph = nx.complete_graph(self.num_nodes)
+                # test_graph = nx.complete_graph(self.num_nodes)
+                test_graph = nx.DiGraph()
+                test_graph.add_nodes_from(range(self.num_nodes))
                 for (u, v) in self.initial_graph.edges():
-                    test_graph.edges[u,v]['weight'] = random.randint(1, 10)  # Assign random positive weights
-                    #  test_graph.edges[u, v]['weight'] = np.random.normal(self.mean, self.std_dev)
+                    # test_graph.edges[u,v]['weight'] = random.randint(1, 10)  # Assign random positive weights
+                    test_graph.add_edge(u, v)
+                    test_graph.edges[u, v]['weight'] = graph_background.edges[u, v]['weight']
                 for (u, v) in self.initial_graph.edges():
+                    test_graph.add_edge(v, u)
                     test_graph.edges[v,u]['weight'] = test_graph.edges[u,v]['weight']  # Assign random positive weights
                 with open(os.path.join('.', 'test_dataset', graph_name), 'wb') as f:
                     pkl.dump(test_graph, f)
@@ -88,7 +103,7 @@ class GraphEnv(gym.Env):
             raise ValueError("Invalid action: {}".format(action))
         self.graph.add_edge(self.start_id, action)
         self.graph.edges[self.start_id, action]['weight'] = self.initial_graph.edges[self.start_id, action]['weight']
-        self.graph.edges[action, self.start_id]['weight'] =  self.initial_graph.edges[action, self.start_id]['weight']
+        # self.graph.edges[action, self.start_id]['weight'] =  self.initial_graph.edges[action, self.start_id]['weight']
         if self.if_test == False:
             try:
                 # self.cur_diameter = nx.diameter(self.graph, weight='weight')
@@ -101,7 +116,7 @@ class GraphEnv(gym.Env):
                 shortest_length = nx.shortest_path_length(subgraph, source=0, weight='weight')
                 self.cur_diameter = max(shortest_length.values())
                 # self.cur_diameter = 0
-            reward = self.prev_diameter - self.cur_diameter -   self.initial_graph.edges[self.start_id, action]['weight']
+            reward = self.prev_diameter - self.cur_diameter -  self.initial_graph.edges[self.start_id, action]['weight']
         else:
             reward = 0
         adjacency_matrix = nx.to_numpy_array(self.graph, nodelist=sorted(self.graph.nodes()))
@@ -126,7 +141,7 @@ class GraphEnv(gym.Env):
             mask[action] = 0
         self.start_id = action
         
-        if self.num_steps >= ((self.num_nodes) * self.K / 2) or sum(mask) == 0:
+        if self.num_steps >= ((self.num_nodes) * self.K) or sum(mask) == 0:
             mask = [1 for i in range(self.num_nodes)]
             done = True  # You can define your own condition
             

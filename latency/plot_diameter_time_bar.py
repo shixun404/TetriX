@@ -44,7 +44,7 @@ print(q_learning_data)
 # assert 0
 print(nearest_neighbor_data)
 
-x = np.array([i * 2 for i in range(ga.size)])[:2]
+x = np.array([i * 2 for i in range(ga.size)])
 print(x.shape, q_learning_data.size)
 
 # Creating the bar plot for each data point
@@ -58,17 +58,17 @@ values = [min(q_learning_data),max(q_learning_data),
              min(sa), max(sa)]
 bars = []
 
-b = plt.bar(x - 0.6, ga_without[:2], width=0.4, label='Random', hatch='//', edgecolor=color[2], color="none")
+b = plt.bar(x - 0.6, ga_without, width=0.4, label='Random', hatch='//', edgecolor=color[2], color="none")
 bars.append(b)
-b = plt.bar(x - 0.6, ga[:2], width=0.4, label='Genetic Algorithm w/ exploration over 1e5 graphs', edgecolor='black', color=color[2])
+b = plt.bar(x - 0.6, ga, width=0.4, label='Genetic Algorithm w/ exploration over 1e5 graphs', edgecolor='black', color=color[2])
 bars.append(b)
-b = plt.bar(x - 0.2, nearest_neighbor_data_without_exploration[:2], width=0.4, hatch='//', edgecolor=color[1], label='d-Hamilton + greedy w/o exploration', color="none")
+b = plt.bar(x - 0.2, nearest_neighbor_data_without_exploration, width=0.4, hatch='//', edgecolor=color[1], label='d-Hamilton + greedy w/o exploration', color="none")
 bars.append(b)
-b = plt.bar(x + 0.2, q_learning_data_without_exploration[:2], width=0.4, hatch='//', edgecolor=color[0], label='d-Hamilton + Q-Learning w/o exploration', color="none")
+b = plt.bar(x + 0.2, q_learning_data_without_exploration, width=0.4, hatch='//', edgecolor=color[0], label='d-Hamilton + Q-Learning w/o exploration', color="none")
 bars.append(b)
-b = plt.bar(x - 0.2, nearest_neighbor_data[:2], width=0.4, label='d-Hamilton + greedy w/ exploration',edgecolor='black',  color=color[1])
+b = plt.bar(x - 0.2, nearest_neighbor_data, width=0.4, label='d-Hamilton + greedy w/ exploration',edgecolor='black',  color=color[1])
 bars.append(b)
-b = plt.bar(x + 0.2, q_learning_data[:2], width=0.4, label='d-Hamilton + Q-Learning w/ exploration',edgecolor='black',  color=color[0])
+b = plt.bar(x + 0.2, q_learning_data, width=0.4, label='d-Hamilton + Q-Learning w/ exploration',edgecolor='black',  color=color[0])
 bars.append(b)
 
 for bar in bars:
@@ -85,12 +85,12 @@ plt.ylim(min(values) - 1, max(values) + 4)
 plt.legend(loc='upper right', bbox_to_anchor=(-0.2, 0.5))
 
 
-x = np.array([i * 2 for i in range(q_learning_data.size + 1)])[:2]
+x = np.array([i * 2 for i in range(q_learning_data.size + 1)])
 ax2 = ax.twinx()
 # ax2.plot(x, t_q_without_exploration, label='Q-Learning w/o exploration', color='k', linestyle='--', marker='*')
-ax2.plot(x, t_ga[:2], color='k', label='Genetic Algorithm',  linestyle='-.', marker='o')
-ax2.plot(x, t_q[:2], color='k', label='Q-Learning', marker='+')
-ax2.plot(x, t_nn[:2], color='k', label='d-Hamilton Cycle w/ greedy',linestyle='--', marker='*')
+ax2.plot(x, t_ga, color='k', label='Genetic Algorithm',  linestyle='-.', marker='o')
+ax2.plot(x, t_q, color='k', label='Q-Learning', marker='+')
+ax2.plot(x, t_nn, color='k', label='d-Hamilton Cycle w/ greedy',linestyle='--', marker='*')
 
 
 ax2.set_yscale('log')
