@@ -28,10 +28,10 @@ class ReplayBuffer:
 def init(path=None):
     parser = argparse.ArgumentParser(description="Process some integers.")
     # 添加参数
-    parser.add_argument("--N", type=int, help="Number of nodes", default=20)
-    parser.add_argument("--K", type=int, help="Degree", default=4)
+    parser.add_argument("--N", type=int, help="Number of nodes", default=100)
+    parser.add_argument("--K", type=int, help="Degree", default=3)
     parser.add_argument("--bs", type=int, help="Batch size", default=32)
-    parser.add_argument("--feature_dim", type=int, help="Feature dimension", default=64)
+    parser.add_argument("--feature_dim", type=int, help="Feature dimension", default=4)
     parser.add_argument("--decay_gamma", type=int, help="Q decay", default=0.9)
     parser.add_argument("--lr", type=float, help="Learning rate", default=5e-4)
     parser.add_argument("--reward_mode", type=str, help="Reward Mode", default='diameter')
@@ -102,6 +102,7 @@ def train(args):
     log_file_path = os.path.join(args.experiment_name, 'output')
     log_file = open(log_file_path, 'w')
     best_test_diameter = 1e8
+    best_test_graph = None
     for episode in range(episodes):
         epsilon = max((1 - epoch / 2000), 0.05)
         state_dict = env.reset()
@@ -151,12 +152,15 @@ def train(args):
                 # if done:
                     print(f"Train Epoch {epoch:<4}: step = {t:<4} Cumulative Reward = {total_reward:<8.2f} loss = {cur_loss:<8.4f}")
                     log_file.write(f"Train Epoch {epoch:<4}: step = {t:<4} Cumulative Reward = {total_reward:<8.2f} loss = {cur_loss:<8.4f}")
-                    test_diameter = test(args, agent=agent, log_file=log_file)
+                    test_diameter, test_graph = test(args, agent=agent, log_file=log_file)
                     if test_diameter < best_test_diameter:
+                        best_test_graph = test_graph
                         best_test_diameter = test_diameter
                         metadata = {}
                         metadata['epoch'] = epoch
                         metadata['testDiameter'] = best_test_diameter
+                        with open(os.path.join('..', 'sc_test', 'best_test_graph.pkl'), 'wb') as f:
+                            pkl.dump(best_test_graph, f)
                         agent.save()
                     print('Best Test Diameter', best_test_diameter)
                     log_file.write('Best Test Diameter'+ str(best_test_diameter))

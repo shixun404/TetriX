@@ -365,7 +365,7 @@ def perform_random_walk(G, num_nodes, start_node, num_steps, if_plot=False, gree
         # plt.savefig(f'nn_N=20_{gid}.png')
     # print(time.time() - t) 
     d = nx.diameter(subgraph, weight='weight')
-    return d
+    return d, subgraph
 
 def perform_random_walk_directed(G, num_nodes, start_node, num_steps, if_plot=False, greedy=True):
     
@@ -461,15 +461,17 @@ def K_ring(G, num_nodes, degree):
 
 # Main execution
 
-def test_synthetic_graph(num_tests, N, k, mode="FABRIC"):
+# def test_synthetic_graph(num_tests, N, k, mode="FABRIC"):
+def test_synthetic_graph(num_tests, N, k, mode=None):
     diameter_list = []
     N_ = N
     if mode == "FABRIC":
         N = ((N + 16) // 17) * 17
         k = int(np.log2(N))
     for i in range(num_tests):
-        graph_name = f'N={N_}_{i}_{mode}.pkl'
-        with open(os.path.join('.', 'test_graph', graph_name), 'rb') as f:
+        graph_name = f'G_{N_}.pkl'
+        print(N_)
+        with open(os.path.join('.', graph_name), 'rb') as f:
             G = pkl.load(f)
         test_methods(G, N, k)
 
@@ -538,8 +540,8 @@ def random_edges_weight_sum(G, k):
 def test_methods(G, N, k):
     num_steps = k * N // 2
     total_weight, min_weight = random_edges_weight_sum(G, k)
-    print(total_weight / k, min_weight / (k // 2))
-    print("Chord Random Ring")
+    print('total_weight / k = ', total_weight / k, 'min_weight / (k // 2) = ', min_weight / (k // 2))
+    print("Chord Random Ring, N=", N)
     diameter_list['chord_random_ring'].append(KNN(G, N, k, random_ring=True, chord=True))
     print("Chord Shortest Ring")
     diameter_list['chord_shortest_ring'].append(KNN(G, N, k, random_ring=False, chord=True))
@@ -548,16 +550,16 @@ def test_methods(G, N, k):
     diameter_list['nearest_neighbour_random_ring'].append(KNN(G, N, k, random_ring=True, chord=False))
     print("NN Shortest Ring")
     diameter_list['nearest_neighbour_shortest_ring'].append(KNN(G, N, k, random_ring=False, chord=False))
-    assert 0
+    # assert 0
    
     for s in range(1, 2):
         random.seed(s)
-        # diameter_list['K_ring_random_ring'].append(nx.diameter(generate_k_directed_rings(G, N, k, random_ring=True, num_random_ring=k), weight='weight'))
-        # diameter_list['K_ring_shortest_ring'].append(nx.diameter(generate_k_directed_rings(G, N, k, random_ring=False, num_random_ring=k-1), weight='weight'))
+        diameter_list['K_ring_random_ring'].append(nx.diameter(generate_k_directed_rings(G, N, k, random_ring=True, num_random_ring=k), weight='weight'))
+        diameter_list['K_ring_shortest_ring'].append(nx.diameter(generate_k_directed_rings(G, N, k, random_ring=False, num_random_ring=k-1), weight='weight'))
         # # diameter_list['K_ring_distributed'].append(nx.diameter(generate_k_directed_rings_distributed(G, N, k, N_cluster=1), weight='weight'))
         # diameter_list['K_ring_greedy'].append(perform_random_walk(G, N, 0, num_steps))
-        # diameter_list['K_ring_greedy'].append(perform_random_walk_directed(G, N, 0, num_steps * 2))
-        # diameter_list['K_ring_epsilon_greedy'].append(perform_random_walk(G, N, 0, num_steps, greedy=False))
+        diameter_list['K_ring_greedy'].append(perform_random_walk_directed(G, N, 0, num_steps * 2))
+        diameter_list['K_ring_epsilon_greedy'].append(perform_random_walk(G, N, 0, num_steps, greedy=False))
         
         # for i in range(k + 1):
         # # for i in range(1):
@@ -579,18 +581,20 @@ def test_methods(G, N, k):
             max_out_degree_node, max_out_degree = max(H.out_degree(), key=lambda x: x[1])
             diameter_list[f'K_ring_random_distributed_stride_{stride}'].append(d)
             print(stride, d, f"max_in_degree={max_in_degree}, max_out_degree={max_out_degree}")
-        print(diameter_list)
+    for key, value in diameter_list.items():
+        print(key, value)
+    # print(diameter_list)
 
 if __name__ == '__main__':
     
-    N = 500
+    N = 100
     k = 8
     M = 4
     file_path = '/global/homes/s/swu264/perigee/linkdelay.npy'
     N_list = [10]
     for i in range(50, 1001, 50):
         N_list.append(i)
-    seed = 42
+    seed = 1
     # for N in range (1000, 5001, 1000):
     # for N in N_list:
     for N in [100]:
@@ -598,10 +602,11 @@ if __name__ == '__main__':
         np.random.seed(seed)
         th.manual_seed(seed)
         num_tests = 1
-        test_synthetic_graph(num_tests, N, int(np.log2(N)))
+        test_synthetic_graph(num_tests, N, 3)
+        # test_synthetic_graph(num_tests, N, int(np.log2(N)))
         # test_bitnode_graph(file_path, N, int(np.log2(N))) 
         # test_cluster(N, k, M)
-        print(N, diameter_list)
+        # print(N, diameter_list)
         # assert 0
         # with open(f"N={N}_cluster_gaussian_exploration.pkl", 'wb') as f:
         #     pkl.dump(diameter_list, f)

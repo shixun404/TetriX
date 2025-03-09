@@ -109,6 +109,7 @@ def test(args, num_tests=1, agent=None, env=None, log_file=None, if_plot=False):
             cur_time = time.time()
             diameter_list.append(nx.diameter(env.graph, weight='weight'))
             # print('Test last step cacalculate diamater', time.time() - cur_time)
+        print("graph in_degree = ", env.graph.in_degree(), "graph out_degree = ", env.graph.out_degree())
         if if_plot:
             plt.tight_layout()
             plt.savefig(f'figures/GNN_N=20_{i}.png')
@@ -129,7 +130,7 @@ def test(args, num_tests=1, agent=None, env=None, log_file=None, if_plot=False):
     print(f"Test Time " + str(time_list), 'average_time = ', sum(time_list) / len(time_list) )
     log_file.write(f"Test Time" + str(time_list))
 
-    return sum(min_test_diameter) / len(min_test_diameter)
+    return sum(min_test_diameter) / len(min_test_diameter), env.graph
 
 
 def init():

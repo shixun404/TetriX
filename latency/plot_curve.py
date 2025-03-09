@@ -1,6 +1,6 @@
 import matplotlib.pyplot as plt
 
-file_name = 'N_100_bs_32.txt'
+file_name = 'logs/N_100_bs_32.txt'
 train_loss = []
 test_diameter = []
 tmp_test = []
@@ -27,31 +27,31 @@ with open(file_name, 'r') as f:
 
 
 # Creating the plot
-fig, ax = plt.subplots(nrows=2, figsize=(10, 6))
+fig, ax = plt.subplots(ncols=2, figsize=(10, 4))
 
 # Plotting the training loss curve
-ax[0].plot(train_x, train_loss, label='Training Loss', marker='o', ms=1, linewidth=1)
+ax[0].plot(train_x[:6000], train_loss[:6000], label='Training Loss', marker='o', ms=1, linewidth=1)
 
 
 # Plotting the test diameter curve
-ax[1].plot(test_x, test_diameter, label='Test Diameter', marker='o', ms=1, linewidth=1)
+ax[1].plot(test_x[:6000], test_diameter[:6000], label='Test Diameter', marker='o', ms=1, linewidth=1)
 
 
 # Adding title and labels
-ax[0].set_title('Training Loss vs #Epoch')
-ax[1].set_title('Test Diameter vs #Epoch')
+ax[0].set_title('Training Loss vs #Epoch', weight='bold')
+ax[1].set_title('Test Diameter vs #Epoch', weight='bold')
 ax[0].set_xlabel('#Epoch')
 ax[1].set_xlabel('#Epoch')
 ax[0].set_ylabel('Training Loss')
 ax[1].set_ylabel('Test Diameter')
 ax[0].grid(True)
 ax[1].grid(True)
-ax[0].set_xlim(0, 1e4)
-ax[1].set_xlim(0, 1e4)
+ax[0].set_xlim(0, 6e3)
+ax[1].set_xlim(0, 6e3)
 # ax[0].set_ylim(-1, 1050)
-ax[1].set_ylim(7, 26)
-ax[1].set_yticks([7, 10, 15, 20, 25])
-fig.subplots_adjust(hspace=0.5, wspace = 0)
+ax[1].set_ylim(0, 26)
+ax[1].set_yticks([5, 10, 15, 20, 25])
+fig.subplots_adjust( wspace = 0.2)
 plt.legend()
 
 # Show the plot
