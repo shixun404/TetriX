@@ -110,7 +110,7 @@ def generate_weight_prioritized_digraph(G, N, K, seed=None, perm=None):
 
     return new_G
 
-def generate_weight_prioritized_digraph(G, N, K, seed=None, perm_list=None, epsilon=0.8):
+def generate_weight_prioritized_digraph(G, N, K, seed=None, perm_list=None, epsilon=0.95):
     """
     Generate a directed graph where:
     - Each node has exactly K outgoing edges (prioritizing lower weight edges)
