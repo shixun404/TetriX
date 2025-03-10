@@ -367,7 +367,7 @@ def perform_random_walk(G, num_nodes, start_node, num_steps, if_plot=False, gree
     d = nx.diameter(subgraph, weight='weight')
     return d, subgraph
 
-def perform_random_walk_directed(G, num_nodes, start_node, num_steps, if_plot=False, greedy=True):
+def perform_random_walk_directed(G, num_nodes, start_node, num_steps, if_plot=False, greedy=True, epsilon=0.9):
     
     current_node = start_node
     degree = [0 for i in range(num_nodes)]
@@ -390,7 +390,7 @@ def perform_random_walk_directed(G, num_nodes, start_node, num_steps, if_plot=Fa
                 i += 1
                 continue
             else:
-                if  greedy or random.random() < 0.5:
+                if  greedy or random.random() < epsilon:
                     next_node = neighbors[i % len(neighbors)]
                     break
             i += 1
@@ -407,7 +407,7 @@ def perform_random_walk_directed(G, num_nodes, start_node, num_steps, if_plot=Fa
         current_node = next_node
     # print(subgraph.in_degree, subgraph.out_degree)
     d = nx.diameter(subgraph, weight='weight')
-    return d
+    return d, subgraph
 
 def chord(G, num_nodes, degree):
     subgraph = nx.Graph()
@@ -559,7 +559,7 @@ def test_methods(G, N, k):
         # # diameter_list['K_ring_distributed'].append(nx.diameter(generate_k_directed_rings_distributed(G, N, k, N_cluster=1), weight='weight'))
         # diameter_list['K_ring_greedy'].append(perform_random_walk(G, N, 0, num_steps))
         diameter_list['K_ring_greedy'].append(perform_random_walk_directed(G, N, 0, num_steps * 2))
-        diameter_list['K_ring_epsilon_greedy'].append(perform_random_walk(G, N, 0, num_steps, greedy=False))
+        diameter_list['K_ring_epsilon_greedy'].append(perform_random_walk_directed(G, N, 0, num_steps * 2, greedy=False, epsilon = 0.8))
         
         # for i in range(k + 1):
         # # for i in range(1):

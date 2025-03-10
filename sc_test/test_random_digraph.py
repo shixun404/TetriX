@@ -1,4 +1,5 @@
 import numpy as np
+import sys
 import networkx as nx
 import pickle as pkl
 import os
@@ -6,6 +7,8 @@ import time
 import random
 import torch
 import matplotlib.pyplot as plt
+from test_nn import perform_random_walk_directed
+
 
 def generate_fixed_degree_digraph(G, N, K, seed=42, perm=None):
     """
@@ -176,6 +179,7 @@ if __name__ == '__main__':
     K = 3   # Fixed in-degree and out-degree per node
     M = 1
     seed = 42
+    epsilon = float(sys.argv[1])
 
     # Generate a fully connected directed graph
     with open(f'G_{N}.pkl', 'rb') as f:
@@ -186,17 +190,20 @@ if __name__ == '__main__':
     for i in range(M):
         perm = random.sample(range(N), N)
         perm_list.append(perm)
-    for i in range(10000):
+    for i in range(3000):
         # new_G = generate_fixed_degree_digraph(G, N, K - 1, seed=seed, perm=perm)
-        new_G = generate_weight_prioritized_digraph(G, N, K - M, seed=seed, perm_list=perm_list)
+        # new_G = generate_weight_prioritized_digraph(G, N, K - M, seed=seed, perm_list=perm_list)
+        d, new_G = perform_random_walk_directed(G, N, 0, K * N, greedy=False, epsilon=epsilon)
         # new_G = generate_weight_prioritized_digraph(G, N, K - 1, seed=seed, perm=perm)
-        diameter_list.append(nx.diameter(new_G, weight='weight'))
+        diameter_list.append(d)
         if i % 500 == 0:
             diameter_tensor = torch.tensor(diameter_list)
             print(f"diameter mean={diameter_tensor.mean()}, std={diameter_tensor.std()}, max={diameter_tensor.max()}, min={diameter_tensor.min()}")
             plt.figure()
-            plt.hist(diameter_list, bins=20)
+            plt.hist(diameter_list, bins=50)
             plt.xlabel('Diameter')
             plt.ylabel('Frequency')
-            plt.title(f'Diameter Distribution for {N} nodes with K={K}')
-            plt.savefig(f'diameter_distribution_{N}_{K}.png')
+            plt.title(f'Diameter Distribution for {N} nodes with K={K} DGRO epsilon={epsilon}')
+            plt.savefig(f'diameter_distribution_{N}_{K}_DGRO_epsilon_greedy_eps={epsilon}.png')
+            with open(f'diameter_list_{N}_{K}_DGRO_epsilon_greedy_eps={epsilon}.pkl', 'wb') as f:
+                pkl.dump(diameter_list, f)

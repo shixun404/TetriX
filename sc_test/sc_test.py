@@ -158,9 +158,9 @@ def soft_diameter(A: torch.Tensor,
 # Demo: 在 GPU 上训练, 用 networkx 对比结果
 ############################################
 if __name__ == "__main__":
-    save_graph = False
+    save_graph = True
     # 0) 选择设备: GPU 或 CPU
-    seed = 42  # 你可以更改这个值
+    seed = 43  # 你可以更改这个值
     random.seed(seed)  # 设置 Python random 库的种子
     np.random.seed(seed)  # 设置 NumPy 的种子
     torch.manual_seed(seed)  # 设置 PyTorch 的种子
@@ -242,6 +242,7 @@ if __name__ == "__main__":
     A_optimized_clamped = torch.clamp(A_optimized, -1, 1)
     A_optimized_01 = (A_optimized_clamped + 1.0) / 2.0  # [0,1]
     perm = random.sample(range(N), N)
+    
     # 用 networkx 计算直径
     print(A_init.sum(dim=0))
     # assert 0
