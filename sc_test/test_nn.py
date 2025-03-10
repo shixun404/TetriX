@@ -390,7 +390,7 @@ def perform_random_walk_directed(G, num_nodes, start_node, num_steps, if_plot=Fa
                 i += 1
                 continue
             else:
-                if  greedy or random.random() < epsilon:
+                if  greedy or random.random() <= epsilon:
                     next_node = neighbors[i % len(neighbors)]
                     break
             i += 1

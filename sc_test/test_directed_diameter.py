@@ -21,7 +21,7 @@ if __name__ == "__main__":
     N = 100
     with open('G_100.pkl', 'rb') as f:
         graph = pkl.load(f)
-    with open('best_test_graph.pkl', 'rb') as f:
+    with open('best_test_graph_seed=10086.pkl', 'rb') as f:
         rl_graph = pkl.load(f)
     cnt = 0
     for i in range(N):

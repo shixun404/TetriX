@@ -182,7 +182,7 @@ if __name__ == '__main__':
     epsilon = float(sys.argv[1])
 
     # Generate a fully connected directed graph
-    with open(f'G_{N}.pkl', 'rb') as f:
+    with open(f'G_{N}_seed={seed}.pkl', 'rb') as f:
         G = pkl.load(f)
     diameter_list = []
     random.seed(seed)
@@ -190,13 +190,13 @@ if __name__ == '__main__':
     for i in range(M):
         perm = random.sample(range(N), N)
         perm_list.append(perm)
-    for i in range(3000):
+    for i in range(N):
         # new_G = generate_fixed_degree_digraph(G, N, K - 1, seed=seed, perm=perm)
         # new_G = generate_weight_prioritized_digraph(G, N, K - M, seed=seed, perm_list=perm_list)
-        d, new_G = perform_random_walk_directed(G, N, 0, K * N, greedy=False, epsilon=epsilon)
+        d, new_G = perform_random_walk_directed(G, N, i, K * N, greedy=False, epsilon=epsilon)
         # new_G = generate_weight_prioritized_digraph(G, N, K - 1, seed=seed, perm=perm)
         diameter_list.append(d)
-        if i % 500 == 0:
+        if i % 500 == 0 or i == N - 1:
             diameter_tensor = torch.tensor(diameter_list)
             print(f"diameter mean={diameter_tensor.mean()}, std={diameter_tensor.std()}, max={diameter_tensor.max()}, min={diameter_tensor.min()}")
             plt.figure()
@@ -204,6 +204,6 @@ if __name__ == '__main__':
             plt.xlabel('Diameter')
             plt.ylabel('Frequency')
             plt.title(f'Diameter Distribution for {N} nodes with K={K} DGRO epsilon={epsilon}')
-            plt.savefig(f'diameter_distribution_{N}_{K}_DGRO_epsilon_greedy_eps={epsilon}.png')
-            with open(f'diameter_list_{N}_{K}_DGRO_epsilon_greedy_eps={epsilon}.pkl', 'wb') as f:
+            plt.savefig(f'histo_seed={seed}/diameter_distribution_{N}_{K}_DGRO_epsilon_greedy_eps={epsilon}.png')
+            with open(f'histo_seed={seed}/diameter_list_{N}_{K}_DGRO_epsilon_greedy_eps={epsilon}_startnode.pkl', 'wb') as f:
                 pkl.dump(diameter_list, f)

@@ -160,7 +160,7 @@ def soft_diameter(A: torch.Tensor,
 if __name__ == "__main__":
     save_graph = True
     # 0) 选择设备: GPU 或 CPU
-    seed = 43  # 你可以更改这个值
+    seed = 10086  # 你可以更改这个值
     random.seed(seed)  # 设置 Python random 库的种子
     np.random.seed(seed)  # 设置 NumPy 的种子
     torch.manual_seed(seed)  # 设置 PyTorch 的种子
@@ -185,12 +185,12 @@ if __name__ == "__main__":
             G.add_edge(i, j, weight=weight)
             G.add_edge(j, i, weight=weight)
     d_list = []
-    for start_node in range(N):
+    for start_node in range(1):
         d, subgraph = perform_random_walk(G, N, start_node, (3) * N // 2)
         print("Perform random walk diameter:", d)
         d_list.append(d)
     print(torch.tensor(d_list).mean().item(), torch.tensor(d_list).std().item(), torch.tensor(d_list).max().item(), torch.tensor(d_list).min().item())
-    assert 0
+    # assert 0
     A_init = torch.zeros((N, N), dtype=torch.float)
 
     # 建立 node -> index 的映射
@@ -219,6 +219,7 @@ if __name__ == "__main__":
                 weight = W_init[i, j].item()  # 转换为 Python float
                 # if weight != float('inf'):  # 仅添加有限权重的边
                 G.add_edge(i, j, weight=weight)
+                G.add_edge(j, i, weight=weight)
 
         # 保存为 pkl 文件
         with open("G_100.pkl", "wb") as f:
