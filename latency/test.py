@@ -228,7 +228,7 @@ if __name__ == '__main__':
     device = torch.device("cuda")
     # device = torch.device("cpu")
     env = GraphEnv(num_nodes=args.N, K=args.K)
-    seed = 42
+    seed = 10086
     # assert 0
     agent = DQNAgent(state_size=args.feature_dim, action_size=args.N, replay_buffer=ReplayBuffer(1000000)
                     , decay_gamma=args.decay_gamma, device=device, experiment_name=args.experiment_name)
