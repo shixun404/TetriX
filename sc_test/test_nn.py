@@ -469,7 +469,8 @@ def test_synthetic_graph(num_tests, N, k, mode=None):
         N = ((N + 16) // 17) * 17
         k = int(np.log2(N))
     for i in range(num_tests):
-        graph_name = f'G_{N_}.pkl'
+        # graph_name = f'G_{N_}_seed=10086.pkl'
+        graph_name = f'G_{N_}_FABRIC.pkl'
         print(N_)
         with open(os.path.join('.', graph_name), 'rb') as f:
             G = pkl.load(f)
@@ -587,13 +588,13 @@ def test_methods(G, N, k):
 
 if __name__ == '__main__':
     
-    N = 100
-    k = 8
-    M = 4
+    # N = 400
+    # k = 8
+    # M = 4
     file_path = '/global/homes/s/swu264/perigee/linkdelay.npy'
-    N_list = [10]
-    for i in range(50, 1001, 50):
-        N_list.append(i)
+    # N_list = [10]
+    # for i in range(50, 1001, 50):
+    #     N_list.append(i)
     seed = 1
     # for N in range (1000, 5001, 1000):
     # for N in N_list:
