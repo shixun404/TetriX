@@ -45,7 +45,8 @@ class GraphEnv(gym.Env):
         self.prev_diameter = 0
         self.cur_diameter = 0
         self.num_steps = 0
-        with open('../sc_test/G_100_seed=10086.pkl', 'rb') as f:
+        # with open('../sc_test/G_100_seed=10086.pkl', 'rb') as f:
+        with open('../sc_test/G_100_FABRIC.pkl', 'rb') as f:
             graph_background = pkl.load(f)
         if if_test:        
             self.initial_graph = nx.Graph(self.test_graphs[self.test_id])  
@@ -70,9 +71,13 @@ class GraphEnv(gym.Env):
     
     def load_graph(self,):
         # graph_name=f'G_N={self.num_nodes}_Gaussian.pkl'
-        with open(f'../sc_test/G_100_seed=10086.pkl', 'rb') as f:
+        # with open(f'../sc_test/G_100_seed=10086.pkl', 'rb') as f:
+        with open(f'../sc_test/G_100_FABRIC.pkl', 'rb') as f:
             graph_background = pkl.load(f)
             self.test_graphs.append(graph_background)
+        # with open(f'../sc_test/G_400.pkl', 'rb') as f:
+        #     graph_background = pkl.load(f)
+        #     self.test_graphs.append(graph_background)
         # print(graph_background.number_of_nodes())
         # assert 0
         # for i in range(1):

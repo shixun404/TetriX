@@ -26,7 +26,7 @@ class ReplayBuffer:
         return len(self.buffer)
 
 
-def test(args, num_tests=1, agent=None, env=None, log_file=None, if_plot=False, seed=42, epsilon = 0):
+def test(args, num_tests=1, agent=None, env=None, log_file=None, if_plot=False, seed=42, epsilon = 0, num_tests_startnode=1):
 
     
     torch.manual_seed(args.seed)
@@ -51,7 +51,7 @@ def test(args, num_tests=1, agent=None, env=None, log_file=None, if_plot=False, 
         cnt_test += 1 if if_test else 0
         diameter_list = []
         cumulative_time = 0    
-        for _ in range(3000):
+        for _ in range(num_tests_startnode):
             # for start_id in range(args.N):
             for start_id in range(1):
                 # print("asdasdadasdsadadadadasdsad")
@@ -114,10 +114,10 @@ def test(args, num_tests=1, agent=None, env=None, log_file=None, if_plot=False, 
                 plt.figure()
                 plt.hist(diameter_list, bins=50)
                 plt.title('Diameter Distribution RL N=100 K=3')
-                plt.savefig(f'../sc_test/histo_seed={seed}/RL_1.png')
-                with open(f'../sc_test/histo_seed={seed}/RL_1.txt', 'w') as f:
+                plt.savefig(f'../sc_test/{args.N}_histo_seed={seed}_FABRIC/RL_1.png')
+                with open(f'../sc_test/{args.N}_histo_seed={seed}_FABRIC/RL_1.txt', 'w') as f:
                     f.write(str(diameter_list))
-                diameter_tensor = torch.tensor(diameter_list)
+                diameter_tensor = torch.tensor(diameter_list, dtype=torch.float)
                 print(f'diameter mean={diameter_tensor.mean()}, std={diameter_tensor.std()}, min={diameter_tensor.min()}, max={diameter_tensor.max()}')
             # print('Test last step cacalculate diamater', time.time() - cur_time)
         # print("graph in_degree = ", env.graph.in_degree(), "graph out_degree = ", env.graph.out_degree())
@@ -225,10 +225,12 @@ def init(config_path="config.json"):
 if __name__ == '__main__':
     
     args = init('/pscratch/sd/s/swu264/SWARM/model/20250309_030015/config.json')
+    args.N = 400
+    args.K = 3
     device = torch.device("cuda")
     # device = torch.device("cpu")
     env = GraphEnv(num_nodes=args.N, K=args.K)
-    seed = 10086
+    seed = 42
     # assert 0
     agent = DQNAgent(state_size=args.feature_dim, action_size=args.N, replay_buffer=ReplayBuffer(1000000)
                     , decay_gamma=args.decay_gamma, device=device, experiment_name=args.experiment_name)
@@ -237,5 +239,5 @@ if __name__ == '__main__':
     log_file = open(log_file_path, 'w')
     agent.load(model_path)
     d, G = test(args, env=env, agent=agent, log_file=log_file, seed=seed, epsilon=0.01)
-    with open(os.path.join('..', 'sc_test', f'best_test_graph_seed={seed}.pkl'), 'wb') as f:
+    with open(os.path.join('..', 'sc_test', f'best_test_graph_N={args.N}_K={args.K}_seed={seed}.pkl'), 'wb') as f:
         pkl.dump(G, f)

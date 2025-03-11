@@ -30,7 +30,7 @@ def init(path=None):
     # 添加参数
     parser.add_argument("--N", type=int, help="Number of nodes", default=100)
     parser.add_argument("--K", type=int, help="Degree", default=3)
-    parser.add_argument("--bs", type=int, help="Batch size", default=32)
+    parser.add_argument("--bs", type=int, help="Batch size", default=16)
     parser.add_argument("--feature_dim", type=int, help="Feature dimension", default=4)
     parser.add_argument("--decay_gamma", type=int, help="Q decay", default=0.9)
     parser.add_argument("--lr", type=float, help="Learning rate", default=5e-4)
