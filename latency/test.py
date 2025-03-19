@@ -26,7 +26,7 @@ class ReplayBuffer:
         return len(self.buffer)
 
 
-def test(args, num_tests=1, agent=None, env=None, log_file=None, if_plot=False, seed=42, epsilon = 0, num_tests_startnode=1):
+def test(args, num_tests=1, agent=None, env=None, log_file=None, if_plot=False, seed=42, epsilon = 0, num_tests_startnode=3000):
 
     
     torch.manual_seed(args.seed)
@@ -224,7 +224,8 @@ def init(config_path="config.json"):
 
 if __name__ == '__main__':
     
-    args = init('/pscratch/sd/s/swu264/SWARM/model/20250309_030015/config.json')
+    # args = init('/pscratch/sd/s/swu264/SWARM/model/20250309_030015/config.json')
+    args = init('/pscratch/sd/s/swu264/SWARM/model/20250318_141312/config.json')
     args.N = 400
     args.K = 3
     device = torch.device("cuda")
@@ -234,7 +235,9 @@ if __name__ == '__main__':
     # assert 0
     agent = DQNAgent(state_size=args.feature_dim, action_size=args.N, replay_buffer=ReplayBuffer(1000000)
                     , decay_gamma=args.decay_gamma, device=device, experiment_name=args.experiment_name)
-    model_path = '/pscratch/sd/s/swu264/SWARM/model/20250309_030015/model.pth'
+    # model_path = '/pscratch/sd/s/swu264/SWARM/model/20250309_030015/model.pth'
+    # model_path = '/pscratch/sd/s/swu264/SWARM/model/20250311_163010/model.pth'
+    model_path = '/pscratch/sd/s/swu264/SWARM/model/20250318_141312/model.pth'
     log_file_path = os.path.join(args.experiment_name, f'{args.experiment_name}.output')
     log_file = open(log_file_path, 'w')
     agent.load(model_path)

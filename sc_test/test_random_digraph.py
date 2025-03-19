@@ -175,14 +175,17 @@ def generate_weight_prioritized_digraph(G, N, K, seed=None, perm_list=None, epsi
 
 
 if __name__ == '__main__':
-    N = 100  # Number of nodes
+    N = 400  # Number of nodes
     K = 3   # Fixed in-degree and out-degree per node
     M = 1
     seed = 42
+    num_test = 3000
     epsilon = float(sys.argv[1])
 
     # Generate a fully connected directed graph
-    with open(f'G_{N}_seed={seed}.pkl', 'rb') as f:
+    # with open(f'G_{N}_seed={seed}.pkl', 'rb') as f:
+    # with open(f'G_{N}_seed={seed}_FABRIC.pkl', 'rb') as f:
+    with open(f'G_{N}_FABRIC.pkl', 'rb') as f:
         G = pkl.load(f)
     diameter_list = []
     random.seed(seed)
@@ -190,20 +193,20 @@ if __name__ == '__main__':
     for i in range(M):
         perm = random.sample(range(N), N)
         perm_list.append(perm)
-    for i in range(N):
+    for i in range(num_test):
         # new_G = generate_fixed_degree_digraph(G, N, K - 1, seed=seed, perm=perm)
         # new_G = generate_weight_prioritized_digraph(G, N, K - M, seed=seed, perm_list=perm_list)
-        d, new_G = perform_random_walk_directed(G, N, i, K * N, greedy=False, epsilon=epsilon)
+        d, new_G = perform_random_walk_directed(G, N, i % N, K * N, greedy=False, epsilon=epsilon)
         # new_G = generate_weight_prioritized_digraph(G, N, K - 1, seed=seed, perm=perm)
         diameter_list.append(d)
-        if i % 500 == 0 or i == N - 1:
-            diameter_tensor = torch.tensor(diameter_list)
+        if i % 500 == 0 or i == num_test - 1:
+            diameter_tensor = torch.tensor(diameter_list, dtype=torch.float)
             print(f"diameter mean={diameter_tensor.mean()}, std={diameter_tensor.std()}, max={diameter_tensor.max()}, min={diameter_tensor.min()}")
             plt.figure()
             plt.hist(diameter_list, bins=50)
             plt.xlabel('Diameter')
             plt.ylabel('Frequency')
             plt.title(f'Diameter Distribution for {N} nodes with K={K} DGRO epsilon={epsilon}')
-            plt.savefig(f'histo_seed={seed}/diameter_distribution_{N}_{K}_DGRO_epsilon_greedy_eps={epsilon}.png')
-            with open(f'histo_seed={seed}/diameter_list_{N}_{K}_DGRO_epsilon_greedy_eps={epsilon}_startnode.pkl', 'wb') as f:
+            plt.savefig(f'{N}_histo_seed={seed}_FABRIC/diameter_distribution_{N}_{K}_DGRO_epsilon_greedy_eps={epsilon}.png')
+            with open(f'{N}_histo_seed={seed}_FABRIC/diameter_list_{N}_{K}_DGRO_epsilon_greedy_eps={epsilon}_startnode.pkl', 'wb') as f:
                 pkl.dump(diameter_list, f)

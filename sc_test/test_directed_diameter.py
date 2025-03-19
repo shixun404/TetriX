@@ -19,9 +19,9 @@ if __name__ == "__main__":
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     print("Using device:", device)
     N = 100
-    with open('G_100.pkl', 'rb') as f:
+    with open('G_100_seed=42.pkl', 'rb') as f:
         graph = pkl.load(f)
-    with open('best_test_graph_seed=10086.pkl', 'rb') as f:
+    with open('best_test_graph_seed=42.pkl', 'rb') as f:
         rl_graph = pkl.load(f)
     cnt = 0
     for i in range(N):

@@ -406,7 +406,14 @@ def perform_random_walk_directed(G, num_nodes, start_node, num_steps, if_plot=Fa
         # subgraph.edges[next_node, current_node]['weight'] = G.edges[next_node, current_node]['weight']
         current_node = next_node
     # print(subgraph.in_degree, subgraph.out_degree)
+    # 计时开始
+    start_time = time.time()
     d = nx.diameter(subgraph, weight='weight')
+    end_time = time.time()
+
+    # 输出结果
+    print(f"Diameter: {d}")
+    print(f"Execution Time: {end_time - start_time:.6f} seconds")
     return d, subgraph
 
 def chord(G, num_nodes, degree):

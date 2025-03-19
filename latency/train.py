@@ -10,6 +10,7 @@ import numpy as np
 from brute_force import *
 from test import test
 import wandb
+import time
 from datetime import datetime
 import json
 class ReplayBuffer:
@@ -28,9 +29,9 @@ class ReplayBuffer:
 def init(path=None):
     parser = argparse.ArgumentParser(description="Process some integers.")
     # 添加参数
-    parser.add_argument("--N", type=int, help="Number of nodes", default=100)
+    parser.add_argument("--N", type=int, help="Number of nodes", default=400)
     parser.add_argument("--K", type=int, help="Degree", default=3)
-    parser.add_argument("--bs", type=int, help="Batch size", default=16)
+    parser.add_argument("--bs", type=int, help="Batch size", default=64)
     parser.add_argument("--feature_dim", type=int, help="Feature dimension", default=4)
     parser.add_argument("--decay_gamma", type=int, help="Q decay", default=0.9)
     parser.add_argument("--lr", type=float, help="Learning rate", default=5e-4)
@@ -104,7 +105,7 @@ def train(args):
     best_test_diameter = 1e8
     best_test_graph = None
     for episode in range(episodes):
-        epsilon = max((1 - epoch / 2000), 0.05)
+        epsilon = max((1 - epoch / 8000), 0.05)
         state_dict = env.reset()
         
         state = np.append(state_dict['initial_graph'].flatten(), state_dict['graph'].flatten())  # Flatten the adjacency matrix to fit the network input
@@ -121,7 +122,9 @@ def train(args):
         state_list_n = []
         reward_list_n = []
         action_list_n = []
+        start_time = time.time()
         while True:
+            
             t += 1
             # test_diameter = test(args, agent=agent, log_file=log_file)
             # assert 0
@@ -143,16 +146,16 @@ def train(args):
             total_reward += reward
 
                             
-            if len(agent.replay_buffer) > batch_size:
+            if len(agent.replay_buffer) > 4000:
                 cur_loss = agent.learn(batch_size)
                 total_loss += cur_loss 
                 epoch += 1
                 
-                if epoch % 500 == 0 or done:
+                if epoch % 100 == 0 or done:
                 # if done:
                     print(f"Train Epoch {epoch:<4}: step = {t:<4} Cumulative Reward = {total_reward:<8.2f} loss = {cur_loss:<8.4f}")
                     log_file.write(f"Train Epoch {epoch:<4}: step = {t:<4} Cumulative Reward = {total_reward:<8.2f} loss = {cur_loss:<8.4f}")
-                    test_diameter, test_graph = test(args, agent=agent, log_file=log_file)
+                    test_diameter, test_graph = test(args, agent=agent, log_file=log_file, num_tests_startnode=1)
                     if test_diameter < best_test_diameter:
                         best_test_graph = test_graph
                         best_test_diameter = test_diameter
@@ -169,8 +172,15 @@ def train(args):
                         wandb.log({ 
                             "loss": cur_loss, 
                             "test diameter": test_diameter})
+                    end_time = time.time()
+                    print(f"Execution Time: {end_time - start_time:.6f} seconds")
+                    start_time = time.time()
+            
+
             if done:
                 break
+
+
 
         # total_loss /= t
         # episode_name = 'Train'

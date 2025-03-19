@@ -46,7 +46,8 @@ class GraphEnv(gym.Env):
         self.cur_diameter = 0
         self.num_steps = 0
         # with open('../sc_test/G_100_seed=10086.pkl', 'rb') as f:
-        with open('../sc_test/G_100_FABRIC.pkl', 'rb') as f:
+        # with open('../sc_test/G_100_FABRIC.pkl', 'rb') as f:
+        with open('../sc_test/G_400_FABRIC.pkl', 'rb') as f:
             graph_background = pkl.load(f)
         if if_test:        
             self.initial_graph = nx.Graph(self.test_graphs[self.test_id])  
@@ -64,6 +65,9 @@ class GraphEnv(gym.Env):
                 # self.initial_graph.add_edge(v, u)
                 self.initial_graph.edges[v,u]['weight'] = self.initial_graph.edges[u,v]['weight']  # Assign random positive weights
         self.initial_adjacency_matrix = nx.to_numpy_array(self.initial_graph, nodelist=sorted(self.initial_graph.nodes()))
+        # for i in range(self.num_nodes):
+        #     self.graph.add_edge(i, (i + 1) % self.num_nodes)
+        #     self.graph.edges[i, (i + 1) % self.num_nodes]['weight'] = self.initial_graph.edges[i, (i + 1) % self.num_nodes]['weight']
         adjacency_matrix = nx.to_numpy_array(self.graph, nodelist=sorted(self.initial_graph.nodes()))
         degree = [self.K - self.mask[i] for i in range(self.num_nodes)]
         return {'initial_graph': self.initial_adjacency_matrix, 
@@ -72,7 +76,8 @@ class GraphEnv(gym.Env):
     def load_graph(self,):
         # graph_name=f'G_N={self.num_nodes}_Gaussian.pkl'
         # with open(f'../sc_test/G_100_seed=10086.pkl', 'rb') as f:
-        with open(f'../sc_test/G_100_FABRIC.pkl', 'rb') as f:
+        # with open(f'../sc_test/G_100_FABRIC.pkl', 'rb') as f:
+        with open(f'../sc_test/G_400_FABRIC.pkl', 'rb') as f:
             graph_background = pkl.load(f)
             self.test_graphs.append(graph_background)
         # with open(f'../sc_test/G_400.pkl', 'rb') as f:
@@ -80,36 +85,13 @@ class GraphEnv(gym.Env):
         #     self.test_graphs.append(graph_background)
         # print(graph_background.number_of_nodes())
         # assert 0
-        # for i in range(1):
-        #     graph_name = f'N={self.num_nodes}_{i}_uniform.pkl'
-        #     if graph_name not in os.listdir(os.path.join('.', 'test_dataset')):
-        #         # test_graph = nx.complete_graph(self.num_nodes)
-        #         test_graph = nx.DiGraph()
-        #         test_graph.add_nodes_from(range(self.num_nodes))
-        #         for (u, v) in self.initial_graph.edges():
-        #             # test_graph.edges[u,v]['weight'] = random.randint(1, 10)  # Assign random positive weights
-        #             test_graph.add_edge(u, v)
-        #             test_graph.edges[u, v]['weight'] = graph_background.edges[u, v]['weight']
-        #         for (u, v) in self.initial_graph.edges():
-        #             test_graph.add_edge(v, u)
-        #             test_graph.edges[v,u]['weight'] = test_graph.edges[u,v]['weight']  # Assign random positive weights
-        #         with open(os.path.join('.', 'test_dataset', graph_name), 'wb') as f:
-        #             pkl.dump(test_graph, f)
-        #         adj_matrix = nx.adjacency_matrix(test_graph, weight='weight')
-        #         weights_list = adj_matrix.tocoo().data.tolist()
-        #         weight_counts = Counter(weights_list)
-        #         self.test_graphs.append(test_graph)
-        #     else:
-        #         with open(os.path.join('.', 'test_dataset', graph_name), 'rb') as f:
-        #             self.test_graphs.append(pkl.load(f))
-        # assert 0
+
 
     def step(self, action): 
         if action not in range(self.num_nodes + 1):
             raise ValueError("Invalid action: {}".format(action))
         self.graph.add_edge(self.start_id, action)
         self.graph.edges[self.start_id, action]['weight'] = self.initial_graph.edges[self.start_id, action]['weight']
-        # self.graph.edges[action, self.start_id]['weight'] =  self.initial_graph.edges[action, self.start_id]['weight']
         if self.if_test == False:
             try:
                 # self.cur_diameter = nx.diameter(self.graph, weight='weight')

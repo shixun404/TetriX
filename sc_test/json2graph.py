@@ -4,7 +4,7 @@ import pickle as pkl
 import itertools
 
 # **读取 JSON 数据**
-with open("FABRIC_100.json", "r") as f:  # 你的 JSON 文件
+with open("G_100_FABRIC_1.json", "r") as f:  # 你的 JSON 文件
     lines = f.read()
 
 # **解析 JSON**
@@ -21,8 +21,8 @@ def extract_node_id(node_key):
 # **获取所有唯一节点**
 all_nodes = {extract_node_id(node) for node in data.keys()}  # 提取所有 IP:PORT
 # 400
-all_nodes.add("10.131.130.2:1234")
-all_nodes.add("10.141.3.2:1238")
+all_nodes.add("10.131.135.2:1234")
+# all_nodes.add("10.141.3.2:1238")
 # all_nodes.add("10.140.3.2:1248")
 
 # 400
@@ -47,11 +47,11 @@ for src, neighbors in data.items():
             G[src_node][dst_node]['weight'] = float(weight)
 
 # **保存加权图**
-with open("G_100_FABRIC.pkl", "wb") as f:
+with open("G_100_FABRIC_1.pkl", "wb") as f:
     pkl.dump(G, f)
 
 # **保存节点映射 (IP:PORT → 自然数)**
-with open("node_mapping_100.pkl", "wb") as f:
+with open("node_mapping_100_1.pkl", "wb") as f:
     pkl.dump(node_mapping, f)
 
 # **输出图信息**
