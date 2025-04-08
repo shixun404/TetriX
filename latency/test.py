@@ -110,15 +110,22 @@ def test(args, num_tests=1, agent=None, env=None, log_file=None, if_plot=False, 
                         break
             cur_time = time.time()
             diameter_list.append(nx.diameter(env.graph, weight='weight'))
-            if _ % 100 == 0 or _ == 2999:
-                plt.figure()
-                plt.hist(diameter_list, bins=50)
-                plt.title('Diameter Distribution RL N=100 K=3')
-                plt.savefig(f'../sc_test/{args.N}_histo_seed={seed}_FABRIC/RL_1.png')
-                with open(f'../sc_test/{args.N}_histo_seed={seed}_FABRIC/RL_1.txt', 'w') as f:
-                    f.write(str(diameter_list))
+            if num_tests_startnode != 1 and (_ % 100 == 0 or _ == 2999):
                 diameter_tensor = torch.tensor(diameter_list, dtype=torch.float)
                 print(f'diameter mean={diameter_tensor.mean()}, std={diameter_tensor.std()}, min={diameter_tensor.min()}, max={diameter_tensor.max()}')
+                if epsilon == 0:
+                    with open(f'../sc_test/{args.N}_histo_seed={seed}_FABRIC/{args.N}_best_graph.pkl', 'wb') as f:
+                        pkl.dump(env.graph, f)
+                        assert 0
+                else:
+                    plt.figure()
+                    plt.hist(diameter_list, bins=50)
+                    plt.title('Diameter Distribution RL N=100 K=3')
+                    plt.savefig(f'../sc_test/{args.N}_histo_seed={seed}_FABRIC/RL_1.png')
+                    with open(f'../sc_test/{args.N}_histo_seed={seed}_FABRIC/RL_1.txt', 'w') as f:
+                        f.write(str(diameter_list))
+
+               
             # print('Test last step cacalculate diamater', time.time() - cur_time)
         # print("graph in_degree = ", env.graph.in_degree(), "graph out_degree = ", env.graph.out_degree())
         if if_plot:
@@ -225,8 +232,10 @@ def init(config_path="config.json"):
 if __name__ == '__main__':
     
     # args = init('/pscratch/sd/s/swu264/SWARM/model/20250309_030015/config.json')
-    args = init('/pscratch/sd/s/swu264/SWARM/model/20250318_141312/config.json')
-    args.N = 400
+    # args = init('/pscratch/sd/s/swu264/SWARM/model/20250318_141312/config.json')
+    # args = init('/pscratch/sd/s/swu264/SWARM/model/20250319_154043/config.json')
+    args = init('/pscratch/sd/s/swu264/SWARM/model/20250320_135432/config.json')
+    args.N = 100
     args.K = 3
     device = torch.device("cuda")
     # device = torch.device("cpu")
@@ -237,10 +246,12 @@ if __name__ == '__main__':
                     , decay_gamma=args.decay_gamma, device=device, experiment_name=args.experiment_name)
     # model_path = '/pscratch/sd/s/swu264/SWARM/model/20250309_030015/model.pth'
     # model_path = '/pscratch/sd/s/swu264/SWARM/model/20250311_163010/model.pth'
-    model_path = '/pscratch/sd/s/swu264/SWARM/model/20250318_141312/model.pth'
+    # model_path = '/pscratch/sd/s/swu264/SWARM/model/20250318_141312/model.pth'
+    # model_path = '/pscratch/sd/s/swu264/SWARM/model/20250319_154043/model.pth'
+    model_path = '/pscratch/sd/s/swu264/SWARM/model/20250320_135432/model.pth'
     log_file_path = os.path.join(args.experiment_name, f'{args.experiment_name}.output')
     log_file = open(log_file_path, 'w')
     agent.load(model_path)
-    d, G = test(args, env=env, agent=agent, log_file=log_file, seed=seed, epsilon=0.01)
+    d, G = test(args, env=env, agent=agent, log_file=log_file, seed=seed, epsilon=0.00)
     with open(os.path.join('..', 'sc_test', f'best_test_graph_N={args.N}_K={args.K}_seed={seed}.pkl'), 'wb') as f:
         pkl.dump(G, f)

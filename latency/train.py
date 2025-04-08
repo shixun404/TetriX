@@ -29,7 +29,7 @@ class ReplayBuffer:
 def init(path=None):
     parser = argparse.ArgumentParser(description="Process some integers.")
     # 添加参数
-    parser.add_argument("--N", type=int, help="Number of nodes", default=400)
+    parser.add_argument("--N", type=int, help="Number of nodes", default=100)
     parser.add_argument("--K", type=int, help="Degree", default=3)
     parser.add_argument("--bs", type=int, help="Batch size", default=64)
     parser.add_argument("--feature_dim", type=int, help="Feature dimension", default=4)
@@ -105,7 +105,7 @@ def train(args):
     best_test_diameter = 1e8
     best_test_graph = None
     for episode in range(episodes):
-        epsilon = max((1 - epoch / 8000), 0.05)
+        epsilon = max((1 - epoch / 2000), 0.05)
         state_dict = env.reset()
         
         state = np.append(state_dict['initial_graph'].flatten(), state_dict['graph'].flatten())  # Flatten the adjacency matrix to fit the network input
