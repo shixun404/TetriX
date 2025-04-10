@@ -4,7 +4,8 @@ import pickle as pkl
 import itertools
 
 # **读取 JSON 数据**
-with open("G_100_FABRIC_1.json", "r") as f:  # 你的 JSON 文件
+# with open("G_100_FABRIC_1.json", "r") as f:  # 你的 JSON 文件
+with open("FABRIC_400.json", "r") as f:  # 你的 JSON 文件
     lines = f.read()
 
 # **解析 JSON**
@@ -21,21 +22,20 @@ def extract_node_id(node_key):
 # **获取所有唯一节点**
 all_nodes = {extract_node_id(node) for node in data.keys()}  # 提取所有 IP:PORT
 # 400
-all_nodes.add("10.131.132.2:1234")
-all_nodes.add("10.145.5.2:1234")
-# all_nodes.add("10.137.8.2:1234")
-# all_nodes.add("10.140.7.2:1234")
-# all_nodes.add("10.136.6.2:1234")
-# all_nodes.add("10.141.3.2:1238")
-# all_nodes.add("10.140.3.2:1248")
 
 # 400
-# all_nodes.add("10.131.130.2:1234")
+all_nodes.add("10.131.131.2:1234")
+# all_nodes.add("10.131.7.2:1242")
+# all_nodes.add("10.131.7.2:1244")
+# all_nodes.add("10.131.7.2:1241")
+# all_nodes.add("10.131.7.2:1240")
+# all_nodes.add("10.131.7.2:1245")
+# all_nodes.add("10.131.7.2:1241")
 # all_nodes.add("10.145.2.2:1241")
 # all_nodes.add("10.140.3.2:1248")
 # **创建 IP:PORT → 自然数 映射**
 node_mapping = {node: idx for idx, node in enumerate(sorted(all_nodes))}  # 自然数从 0 开始
-
+print(len(node_mapping.keys()))
 # **初始化无向完全图 (Complete Graph)，所有边的 weight = 1000**
 G = nx.Graph()
 for u, v in itertools.combinations(all_nodes, 2):  # 组合所有可能的 (u, v) 边
@@ -51,11 +51,11 @@ for src, neighbors in data.items():
             G[src_node][dst_node]['weight'] = float(weight)
 
 # **保存加权图**
-with open("G_100_FABRIC.pkl", "wb") as f:
+with open("G_400_FABRIC.pkl", "wb") as f:
     pkl.dump(G, f)
 
 # **保存节点映射 (IP:PORT → 自然数)**
-with open("node_mapping_100.pkl", "wb") as f:
+with open("node_mapping_400.pkl", "wb") as f:
     pkl.dump(node_mapping, f)
 
 # **输出图信息**

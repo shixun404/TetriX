@@ -129,7 +129,7 @@ def KNN(G, num_nodes, K, random_ring=True, chord=True, greedy=True):
         subgraph = subgraph.subgraph(largest_cc)
         d = nx.diameter(subgraph)
     weight_sum = sum(data['weight'] for u, v, data in subgraph.edges(data=True))
-    print("KNN sum of the graph:", weight_sum / K)
+    # print("KNN sum of the graph:", weight_sum / K)
     return d
 
 
@@ -413,7 +413,7 @@ def perform_random_walk_directed(G, num_nodes, start_node, num_steps, if_plot=Fa
 
     # 输出结果
     print(f"Diameter: {d}")
-    print(f"Execution Time: {end_time - start_time:.6f} seconds")
+    # print(f"Execution Time: {end_time - start_time:.6f} seconds")
     return d, subgraph
 
 def chord(G, num_nodes, degree):
@@ -475,13 +475,17 @@ def test_synthetic_graph(num_tests, N, k, mode=None):
     if mode == "FABRIC":
         N = ((N + 16) // 17) * 17
         k = int(np.log2(N))
-    for i in range(num_tests):
-        # graph_name = f'G_{N_}_seed=10086.pkl'
-        graph_name = f'G_{N_}_FABRIC.pkl'
-        print(N_)
-        with open(os.path.join('.', graph_name), 'rb') as f:
-            G = pkl.load(f)
-        test_methods(G, N, k)
+    k_list = [2, 4, 6, 8, 10, 12, 14, 16]
+    for k in k_list:
+        print(f"K = {k}")
+        for i in range(num_tests):
+            # graph_name = f'G_{N_}_seed=10086.pkl'
+            # graph_name = f'G_{N_}_FABRIC.pkl'
+            graph_name = f"/pscratch/sd/s/swu264/TetriX/ipdps_test/test_graph/N={N_}_0_gaussian.pkl"
+            print(N_)
+            with open(os.path.join('.', graph_name), 'rb') as f:
+                G = pkl.load(f)
+            test_methods(G, N, k)
 
 def test_bitnode_graph(file_path, N, k):
     G = nx.complete_graph(N )
@@ -547,8 +551,8 @@ def random_edges_weight_sum(G, k):
 
 def test_methods(G, N, k):
     num_steps = k * N // 2
-    total_weight, min_weight = random_edges_weight_sum(G, k)
-    print('total_weight / k = ', total_weight / k, 'min_weight / (k // 2) = ', min_weight / (k // 2))
+    # total_weight, min_weight = random_edges_weight_sum(G, k)
+    # print('total_weight / k = ', total_weight / k, 'min_weight / (k // 2) = ', min_weight / (k // 2))
     print("Chord Random Ring, N=", N)
     diameter_list['chord_random_ring'].append(KNN(G, N, k, random_ring=True, chord=True))
     print("Chord Shortest Ring")
@@ -566,8 +570,8 @@ def test_methods(G, N, k):
         diameter_list['K_ring_shortest_ring'].append(nx.diameter(generate_k_directed_rings(G, N, k, random_ring=False, num_random_ring=k-1), weight='weight'))
         # # diameter_list['K_ring_distributed'].append(nx.diameter(generate_k_directed_rings_distributed(G, N, k, N_cluster=1), weight='weight'))
         # diameter_list['K_ring_greedy'].append(perform_random_walk(G, N, 0, num_steps))
-        diameter_list['K_ring_greedy'].append(perform_random_walk_directed(G, N, 0, num_steps * 2))
-        diameter_list['K_ring_epsilon_greedy'].append(perform_random_walk_directed(G, N, 0, num_steps * 2, greedy=False, epsilon = 0.8))
+        diameter_list['K_ring_greedy'].append(perform_random_walk_directed(G, N, 0, num_steps * 2)[0])
+        diameter_list['K_ring_epsilon_greedy'].append(perform_random_walk_directed(G, N, 0, num_steps * 2, greedy=False, epsilon = 0.8)[0])
         
         # for i in range(k + 1):
         # # for i in range(1):
@@ -588,24 +592,26 @@ def test_methods(G, N, k):
             max_in_degree_node, max_in_degree = max(H.in_degree(), key=lambda x: x[1])
             max_out_degree_node, max_out_degree = max(H.out_degree(), key=lambda x: x[1])
             diameter_list[f'K_ring_random_distributed_stride_{stride}'].append(d)
-            print(stride, d, f"max_in_degree={max_in_degree}, max_out_degree={max_out_degree}")
+            # print(stride, d, f"max_in_degree={max_in_degree}, max_out_degree={max_out_degree}")
     for key, value in diameter_list.items():
         print(key, value)
-    # print(diameter_list)
+    print(f"************ K= {k} ******************")
+    print(diameter_list)
+    print(f"************ K= {k} ******************")
 
 if __name__ == '__main__':
     
     # N = 400
     # k = 8
     # M = 4
-    file_path = '/global/homes/s/swu264/perigee/linkdelay.npy'
+    # file_path = '/global/homes/s/swu264/perigee/linkdelay.npy'
     # N_list = [10]
     # for i in range(50, 1001, 50):
     #     N_list.append(i)
     seed = 1
-    # for N in range (1000, 5001, 1000):
+    for N in range (2000, 2001, 1000):
     # for N in N_list:
-    for N in [100]:
+    # for N in [400]:
         random.seed(seed)
         np.random.seed(seed)
         th.manual_seed(seed)
