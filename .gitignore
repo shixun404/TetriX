@@ -1,5 +1,5 @@
 rl/figs
-*.pkl
+
 *.pth
 **/wandb
 *.tar.gz
