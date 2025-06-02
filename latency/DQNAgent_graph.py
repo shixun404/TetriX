@@ -40,14 +40,8 @@ class DQNNetwork(nn.Module):
         self.theta_7 = nn.Linear(feature_dim, feature_dim)
         self.theta_8 = nn.Linear(feature_dim, feature_dim)
         self.theta_9 = nn.Linear(feature_dim, feature_dim)
-
-        # self.fc_theta_6 = nn.Linear(feature_dim, feature_dim)
         self.fc_theta_7 = nn.Linear(feature_dim, feature_dim)
         self.fc_theta_8 = nn.Linear(feature_dim, feature_dim)
-        # self.fc_theta_9 = nn.Linear(feature_dim, feature_dim)
-
-        # self.theta_5 = nn.Linear(1 + 6 * feature_dim, 1)
-        # self.theta_5 = nn.Linear(1 + 6 * feature_dim, feature_dim)
         self.theta_5 = nn.Linear(1 + 4 * feature_dim, feature_dim)
         self.theta_10 = nn.Linear(feature_dim, feature_dim // 2)
         self.theta_11 = nn.Linear(feature_dim // 2, feature_dim // 2)
@@ -65,68 +59,52 @@ class DQNNetwork(nn.Module):
         adj_fc = (adj_fc - 5) / 10
         
         adj = (adj - 5) / 10
-        reshaped_adj = adj.reshape(-1, 1)
-        theta_4_o = torch.relu(self.theta_4(reshaped_adj)) #  (NxNxp)
-        theta_4_o = theta_4_o.reshape(bs, self.N, self.N, self.p)
+        reshaped_adj = adj.reshape(-1, 1) # [bs, N, N] --> [bs * N * N, 1]
+        theta_4_o = torch.relu(self.theta_4(reshaped_adj)) # [bs * N * N, 1] --> [bs * N * N, p]
+        theta_4_o = theta_4_o.reshape(bs, self.N, self.N, self.p) # [bs * N * N, p] --> [bs, N, N, p]
         start_id = state[:, -1].to(torch.int64)
         m = state[:, self.N * self.N * 2:-1].reshape(-1, self.N, 1)
         fc_reshaped_adj = adj_fc.reshape(-1, 1)
             
         fc_theta_4_o = torch.relu(self.fc_theta_4(fc_reshaped_adj))
 
-        theta_1_o = self.theta_1(m) #  (Nxp)
+        theta_1_o = self.theta_1(m) # degree N, [bs, N, 1] --> [bs, N, p]
+        theta_3_i = torch.relu(theta_4_o).sum(dim=2) # [bs, N, N, p] -- sum --> [bs, N, p]
+        theta_3_o = self.theta_3(theta_3_i) # [bs, N, p] --> [bs, N, p]
         for i in range(self.T):
-            theta_2_o = self.theta_2(torch.bmm(adj, x)) # (NxNxp) + (Nxpxp)
-            theta_3_i = torch.relu(theta_4_o).sum(dim=2) # (NxNxp)
-            theta_3_o = self.theta_3(theta_3_i) #  (Nxpxp)
-            # x = torch.relu(theta_1_o + theta_2_o + theta_3_o)
-            x = torch.relu(theta_1_o + theta_2_o + theta_3_o)
+            theta_2_o = self.theta_2(torch.bmm(adj, x)) # (bs x N x p) <- (bs x N x N) @ (bs x N x p)
+            x = torch.relu(theta_1_o + theta_2_o + theta_3_o) # [bs, N, p]
 
-        # fc_theta_1_o = self.fc_theta_1(m_fc)
-        # for i in range(self.T):
-        #     fc_theta_2_o = self.fc_theta_2(torch.bmm(adj_fc, x_fc))
-        #     fc_theta_4_o = fc_theta_4_o.view(bs, self.N, self.N, self.p)
-        #     fc_theta_3_i = torch.relu(fc_theta_4_o).sum(dim=2)
-        #     fc_theta_3_o = self.fc_theta_3(fc_theta_3_i)
-        #     x_fc = torch.relu(fc_theta_1_o + fc_theta_2_o + fc_theta_3_o)
-        
-        summed_x = torch.sum(x, dim=1, keepdim=True) # Nxp
-        summed_x = summed_x.repeat(1, self.N, 1)
-        # fc_summed_x = torch.sum(x_fc, dim=1, keepdim=True) # Nxp
-        # fc_summed_x = fc_summed_x.repeat(1, self.N, 1)
-        # theta_9_o = self.theta_9(fc_summed_x) # Nxpxp
-        theta_6_o = self.theta_6(summed_x) # Nxpxp
+        summed_x = torch.sum(x, dim=1, keepdim=True) # [bs, N, p] --> [bs, 1, p]
+        summed_x = summed_x.repeat(1, self.N, 1) # [bs, 1, p] --> [bs, N, p]
+        theta_6_o = self.theta_6(summed_x) # [bs, N, p] --> [bs, N, p]
+        fc_selected_adj = torch.gather(adj_fc_, 1,
+                                        start_id.view(-1, 1, 1).expand(
+                                            bs, 1, self.N)).reshape(-1, self.N, 1)
 
-        # Gather selected elements based on indices
-        # fc_selected_elements = torch.gather(x_fc, 1, start_id.view(-1, 1, 1).expand(bs, 1, self.p))
-        fc_selected_adj = torch.gather(adj_fc_, 1, start_id.view(-1, 1, 1).expand(bs, 1, self.N)).reshape(-1, self.N, 1)
-        
-        selected_elements = torch.gather(x, 1, start_id.view(-1, 1, 1).expand(bs, 1, self.p))
 
-        # Expand to match the original dimensions
-        # fc_id_x = fc_selected_elements.repeat(1, self.N, 1)
+        selected_elements = torch.gather(x, 1, start_id.view(-1, 1, 1).expand(bs, 1, self.p)) # x [bs, N, p], start_id [bs], selected_elements [bs, 1, p]
         
-        id_x = selected_elements.repeat(1, self.N, 1)
+        id_x = selected_elements.repeat(1, self.N, 1) # selected_elements [bs, 1, p] --> id_x [bs, N, p]
         
-        
-        
-        # fc_theta_7_o = self.fc_theta_7(fc_id_x) # Nxpxp
-        fc_theta_8_o = self.fc_theta_8(x_fc) # Nxpxp
+        fc_theta_8_o = self.fc_theta_8(x_fc) # Not used, zero tensor [bs, N, p] --> [bs, N, p]
 
-        theta_7_o = self.theta_7(id_x) # Nxpxp
-        theta_8_o = self.theta_8(x) # Nxpxp
+        theta_7_o = self.theta_7(id_x) # id_x [bs, N, p] --> theta_7_o [bs, N, p]
+        theta_8_o = self.theta_8(x) # x [bs, N, p] --> theta_8_o [bs, N, p]
         
         # Concatenate along the last dimension
-        # theta_5_in = torch.relu(torch.cat([fc_selected_adj, theta_6_o, fc_theta_7_o, fc_theta_8_o, theta_7_o, theta_8_o, theta_9_o], dim=2))
-        theta_5_in = torch.relu(torch.cat([fc_selected_adj, theta_6_o, fc_theta_8_o, theta_7_o, theta_8_o], dim=2))
+        theta_5_in = torch.relu(torch.cat([fc_selected_adj, # [bs, N, 1] | weight [start_id, i]
+                                            theta_6_o,      # [bs, N, p] | global summary, repeat N times
+                                            fc_theta_8_o,   # [bs, N, p] | not used
+                                            theta_7_o,      # [bs, N, p] | start id feature vector
+                                            theta_8_o],     # [bs, N, p] | all nodes feature vector 
+                                              dim=2))       # [bs, N, 1 + 4p]
         
-        theta_10_in = torch.relu(self.theta_5(theta_5_in)) # Nx(6p+1)x(6p+1)xp
-        theta_11_in = torch.relu(self.theta_10(theta_10_in)) # Nxpxpx32
-        theta_11_out = torch.relu(self.theta_11(theta_11_in)) # Nx32x32x32
-        output = self.output(theta_11_out).reshape(-1, self.N) # Nx32x32
+        theta_10_in = torch.relu(self.theta_5(theta_5_in)) # [bs, N, 1 + 4p] @ [1 + 4p, p] --> [bs, N, p]
+        theta_11_in = torch.relu(self.theta_10(theta_10_in)) # [bs, N, p] @ [p, p/2] --> [bs, N, p/2]
+        theta_11_out = torch.relu(self.theta_11(theta_11_in)) # [bs, N, p/2] @ [p/2, p/4] --> [bs, N, p/4]
+        output = self.output(theta_11_out).reshape(-1, self.N) # [bs, N, p/4] --> [bs, N, 1]
         
-        # output = self.theta_5(theta_5_in).reshape(-1, self.N)
-        # print(output[0])
         return output
 
 

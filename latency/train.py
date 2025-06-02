@@ -29,7 +29,7 @@ class ReplayBuffer:
 def init(path=None):
     parser = argparse.ArgumentParser(description="Process some integers.")
     # 添加参数
-    parser.add_argument("--N", type=int, help="Number of nodes", default=100)
+    parser.add_argument("--N", type=int, help="Number of nodes", default=400)
     parser.add_argument("--K", type=int, help="Degree", default=3)
     parser.add_argument("--bs", type=int, help="Batch size", default=64)
     parser.add_argument("--feature_dim", type=int, help="Feature dimension", default=4)

@@ -83,7 +83,6 @@ def test(args, num_tests=1, agent=None, env=None, log_file=None, if_plot=False, 
                     next_state = np.append(next_state, next_state_dict['start_id'])
                     state = next_state
                     total_reward += reward
-                    assert 0
                     if done:
                         break
             cur_time = time.time()
