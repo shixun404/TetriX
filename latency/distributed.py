@@ -33,7 +33,7 @@ def directed_to_undirected(directed_graph, method='sum'):
     
     return undirected_graph
 
-def initialize_graph(N, K, if_random_ring=False, if_cluster=False, latency=None):
+def initialize_graph(N, K, if_random_ring=False, if_cluster=False, latency=None, num_random_rings=1):
     graph = nx.DiGraph()
     graph.add_nodes_from(range(N))
     if latency is None:
@@ -68,12 +68,12 @@ def initialize_graph(N, K, if_random_ring=False, if_cluster=False, latency=None)
                 latency.edges[v,u]['weight'] = int(latency_mat[v, u])  # Assign random positive weights
                 
     for i in range(N):
-        connections = random.sample([j for j in range(N) if j != i], K)
+        connections = random.sample([j for j in range(N) if j != i], K - num_random_rings)
         for j in connections:
             graph.add_edge(i, j, weight=latency.edges[i, j]['weight'])
     random_rings = []
     if if_random_ring:
-        for _ in range(4):
+        for _ in range(num_random_rings):
             nodes = list(graph.nodes())
             random.shuffle(nodes)
 
@@ -82,10 +82,14 @@ def initialize_graph(N, K, if_random_ring=False, if_cluster=False, latency=None)
             for i in range(len(nodes)):
                 graph.add_edge(nodes[i], nodes[(i + 1) % len(nodes)], weight=latency.edges[nodes[i], nodes[(i + 1) % len(nodes)]]['weight'])
                 random_ring[nodes[i]] = nodes[(i + 1) % len(nodes)]
+                if len(list(graph.successors(nodes[i]))) > K:
+                    print(f"Node {nodes[i]} has more than {K} successors: {len(graph.successors(nodes[i]))}")
+                    assert 0
             random_rings.append(random_ring)
     return graph, latency, random_rings
 
-def update_graph( graph, latency, random_rings, N, K, M, sample_sources=3, if_diameter_directed=False, max_iterations=20):
+def update_graph( graph, latency, random_rings, N, K, M, sample_sources=3,
+                  if_diameter_directed=False, max_iterations=20, num_random_rings=1, num_drop=1):
     previous_diameter = 0
     try:
         previous_diameter = nx.diameter(graph, weight='weight')
@@ -105,53 +109,70 @@ def update_graph( graph, latency, random_rings, N, K, M, sample_sources=3, if_di
     sources = random.sample(graph.nodes(), sample_sources)
     diameter_list = []
     for itr in range(max_iterations):
+        # print(f'itr={itr}')
         # Step 2: Compute the shortest paths from these sources
         all_paths_lengths = []
         for source in sources:
             lengths = nx.single_source_dijkstra_path_length(graph, source)
             all_paths_lengths.append(lengths)
-            a[itr][:len(list(lengths.values()))] += th.as_tensor(list(lengths.values()))
+            a[itr][:len(list(lengths.values()))] += th.as_tensor(list(lengths.values())) / sample_sources
             # assert 0
         successor = []
         for node in range(N):
+            tmp = []
             if random_rings is not None:
-                successor.append( [ i for i in graph.successors(node) if 
-                                   (i != random_rings[0][node] and 
-                                     i != random_rings[1][node] and
-                                       i != random_rings[2][node] and 
-                                       i != random_rings[3][node]  )] )
+                
+                for i in graph.successors(node):
+                    random_ring_flag = True
+                    for ring_id in range(num_random_rings):
+                        random_ring_flag = random_ring_flag and (i != random_rings[ring_id][node])
+                    if random_ring_flag:
+                        tmp.append(i)
+                successor.append(tmp)
+
             else:
                 successor.append( [ i for i in graph.successors(node)] )
+            if len(successor[node]) > K:
+                print(node, successor[node])
+                assert 0
             # # successors = list(graph.successors(node))
             # print(list(graph.successors(node)))
             # assert 0
         # Step 3: Update scores (example update mechanism)
-       
+        # print(successor)
         scores = th.zeros(N, K)
         for lengths in all_paths_lengths:
             # if len(successor[node]) >= K - 2:
             for node in range(N):
                 neighbor_lengths = th.as_tensor([(latency.edges[neighbor, node]['weight'] + lengths.get(neighbor, float('inf'))) for neighbor in successor[node]])
                 neighbor_lengths = neighbor_lengths - lengths.get(node, float('inf'))
+                # print('neighbor_lengths.shape', neighbor_lengths.shape, neighbor_lengths)
+                # print('succesor', len(successor[node]), successor[node])
+                # print('scores', scores.shape)
                 scores[node][:len(successor[node])] += th.as_tensor(neighbor_lengths)
 
         # Step 2: Find the corresponding outgoing connected nodes id
         # selected_neighbors = [[successor[i][idx] for idx in top2_indices[i]] for i in range(N)]
         remaining_neighbors = []
+        # print('start select neighbour')
         for i in range(N):
-            top2_scores, top2_indices = th.topk(scores[i][:len(successor[i])], 2, dim=0)
+            # print(len(successor[i]), i)
+            try:
+                top2_scores, top2_indices = th.topk(scores[i][:len(successor[i])], num_drop, dim=0)
+                selected_neighbor = [successor[i][idx] for idx in top2_indices]
+                for j in range(num_drop):
+                    # graph.edges[i, selected_neighbors[i][j]]['weights'] = 0
+                    graph.remove_edge(i, selected_neighbor[j])
+            except RuntimeError as e:
+                pass
             # print(scores[i][:len(successor[i])])
             # print(top2_indices)
-            selected_neighbor = [successor[i][idx] for idx in top2_indices]
             
-            for j in range(2):
-                # graph.edges[i, selected_neighbors[i][j]]['weights'] = 0
-                graph.remove_edge(i, selected_neighbor[j])
                 
             remaining_neighbors.append(
                 [n for j, n in enumerate(successor[i]) if j not in top2_indices]
             )
-            
+        # print('drop out')
         # Step 3: Drop the selected two outgoing connections
         # Assume 'dropping' means we don't consider these for the next step of reconnection
 
@@ -163,7 +184,7 @@ def update_graph( graph, latency, random_rings, N, K, M, sample_sources=3, if_di
             # print(new_connections)
             # assert 0
             new_connections = random.sample(potential_new_connections, K - len(remaining_neighbors[i]))
-            for j in range(K - len(remaining_neighbors[i])):
+            for j in range(K - len(remaining_neighbors[i]) - num_random_rings):
                 graph.add_edge(i, new_connections[j], weight=latency.edges[i, new_connections[j]]['weight'])
         # Step 5: Check and drop incoming connections if necessary
         for node in graph.nodes():
@@ -172,12 +193,13 @@ def update_graph( graph, latency, random_rings, N, K, M, sample_sources=3, if_di
                 # print( list(graph.in_edges(node)))
                 # assert 0
                 if random_rings is not None:
-                    incoming_edges = [(i, node) for (i, j) in graph.in_edges(node) if 
-                                      (node != random_rings[0][i] and 
-                                       node != random_rings[1][i] and 
-                                       node != random_rings[2][i] and 
-                                       node != random_rings[3][i])
-                                      ]
+                    incoming_edges = []
+                    for (i, j) in graph.in_edges(node):
+                        random_ring_flag = True
+                        for ring_id in range(num_random_rings):
+                            random_ring_flag = random_ring_flag and (node != random_rings[ring_id][i])
+                        if random_ring_flag:
+                            incoming_edges.append((i, node))
                 else:
                     incoming_edges = list(graph.in_edges(node))
                 edges_to_drop = random.sample(incoming_edges, excess_connections)
@@ -215,20 +237,23 @@ def update_graph( graph, latency, random_rings, N, K, M, sample_sources=3, if_di
         # clear_output(wait=True)
         # time.sleep(0.5)
         previous_diameter = current_diameter
+        print(f'itr={itr}, current_diameter={current_diameter}')
     return a, diameter_list
 
 
 
 if __name__ == '__main__':
     # Parameters and graph initialization
-    N = 500  # Number of nodes
+    N = 400  # Number of nodes
     K = 8   # Outgoing connections per node
-    M = 16 # Maximum incoming connections per node
+    M = 10 # Maximum incoming connections per node
+    num_drop = 1
+    num_random_rings = 2
     num_tests = 1
-    max_iterations = 16
+    max_iterations = 65
     sample_sources = 3
     diameter_optimal = []
-    for i in range(20):
+    for i in range(1):
         seed = 0
         random.seed(seed)
         np.random.seed(seed)
@@ -237,31 +262,37 @@ if __name__ == '__main__':
         # graph_name = f'N={N}_{i}.pkl'
         # with open(os.path.join('.', 'test_dataset', graph_name), 'rb') as f:
         #     G = pkl.load(f)
-        file_path = '/global/homes/s/swu264/perigee/linkdelay.npy'
-        with open(file_path, 'rb') as f:
-            LinkDelay = np.load(f)
-        G = nx.complete_graph(N )
-        for (u, v) in G.edges():
-            G.edges[u,v]['weight'] = LinkDelay[u, v] # Assign random positive weights
-        for (u, v) in G.edges():
-            G.edges[v,u]['weight'] = LinkDelay[v, u]  # Assign random positive weights
-        graph_name = f'N={N}_{i}_Gaussian.pkl'
-        with open(os.path.join('.', 'test_dataset', graph_name), 'rb') as f:
+        # file_path = '/global/homes/s/swu264/perigee/linkdelay.npy'
+        # with open(file_path, 'rb') as f:
+        #     LinkDelay = np.load(f)
+        # G = nx.complete_graph(N )
+        # for (u, v) in G.edges():
+        #     G.edges[u,v]['weight'] = LinkDelay[u, v] # Assign random positive weights
+        # for (u, v) in G.edges():
+        #     G.edges[v,u]['weight'] = LinkDelay[v, u]  # Assign random positive weights
+        # graph_name = f'N={N}_{i}_Gaussian.pkl'
+        # with open(os.path.join('.', 'test_dataset', graph_name), 'rb') as f:
+        #     G = pkl.load(f)
+
+        with open('../sc_test/G_400_FABRIC.pkl', 'rb') as f:
             G = pkl.load(f)
-        graph, latency, random_rings = initialize_graph(N, K, if_random_ring=True, if_cluster=False, latency=G)
+        graph, latency, random_rings = initialize_graph(N, K, if_random_ring=True, if_cluster=False, latency=G, num_random_rings=num_random_rings)
         # graph, latency, random_ring = initialize_graph(N, K, if_random_ring=True, if_cluster=False, latency=None)
 
         # Compute scores
-        data,diameter_list = update_graph(graph, latency, random_rings, N, K, M, sample_sources=sample_sources, if_diameter_directed=True, max_iterations=max_iterations)
+        data,diameter_list = update_graph(graph, latency, random_rings, N, K, M, sample_sources=sample_sources, if_diameter_directed=True, max_iterations=max_iterations, num_drop=num_drop, num_random_rings=num_random_rings)
         diameter_optimal.append(min(diameter_list))
-        # plt.figure()
-        # fig, ax = plt.subplots()
-        # x = [j for j in range(N)]
+        plt.figure()
+        fig, ax = plt.subplots()
+        x = [j for j in range(N)]
         # for j in range(max_iterations):
-        #     y = data[j].numpy()
-        #     ax.plot(x, y)
-        # # ax.legend()
-        # fig.savefig(f'N={N}_{seed}_bitnode_perigee.png')
+        j = 1
+        while j - 1 < max_iterations:
+            y = data[j - 1].numpy()
+            ax.plot(x, y, label=f'itr {j - 1}')
+            j *= 4
+        ax.legend()
+        fig.savefig(f'N={N}_{seed}_bitnode_perigee.png')
         print(diameter_list, diameter_optimal)
         # with open(f'N={N}_{seed}_bitnode_perigee.pkl', 'wb') as f:
         #     pkl.dump(diameter_list, f)
