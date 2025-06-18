@@ -39,6 +39,7 @@ def init(path=None):
     parser.add_argument("--seed", type=int, help="Random seed", default=1)
     parser.add_argument("--load_path", type=str, help="Path to load the model", default=path)
     parser.add_argument("--if_wandb", type=bool, help="Wandb on or off", default=False)
+    parser.add_argument("--num_sources", type=int, help="Number of diameter approximation sources", default=2)
     args = parser.parse_args()
     config = {
         'num_nodes': args.N,
@@ -90,7 +91,7 @@ def train(args):
     random.seed(args.seed)
     np.random.seed(args.seed)
     device = torch.device("cuda")
-    env = GraphEnv(num_nodes=args.N, K=args.K)
+    env = GraphEnv(num_nodes=args.N, K=args.K, num_sources=args.num_sources)
     # assert 0
     agent = DQNAgent(state_size=args.feature_dim, action_size=args.N, replay_buffer=ReplayBuffer(1000000)
                     , decay_gamma=args.decay_gamma, device=device, experiment_name=args.experiment_name)

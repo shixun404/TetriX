@@ -26,7 +26,7 @@ class ReplayBuffer:
         return len(self.buffer)
 
 
-def test(args, num_tests=1, agent=None, env=None, log_file=None, if_plot=False, seed=42, epsilon = 0, num_tests_startnode=3000):
+def test(args, num_tests=1, agent=None, env=None, log_file=None, if_plot=False, seed=42, epsilon = 0, num_tests_startnode=10):
 
     
     torch.manual_seed(args.seed)
@@ -53,7 +53,8 @@ def test(args, num_tests=1, agent=None, env=None, log_file=None, if_plot=False, 
         cumulative_time = 0    
         for _ in range(num_tests_startnode):
             # for start_id in range(args.N):
-            for start_id in range(1):
+            print(_)
+            for start_id in range(_, _ + 1):
                 state_dict = env.reset(if_test=if_test, start_id=start_id, test_id=i)
                 state = np.append(state_dict['initial_graph'].flatten(), state_dict['graph'].flatten())  # Flatten the adjacency matrix to fit the network input
                 state = np.append(state, state_dict['degree'])
@@ -83,18 +84,23 @@ def test(args, num_tests=1, agent=None, env=None, log_file=None, if_plot=False, 
                     next_state = np.append(next_state, next_state_dict['start_id'])
                     state = next_state
                     total_reward += reward
-                    assert 0
+                    # assert 0
                     if done:
                         break
             cur_time = time.time()
-            diameter_list.append(nx.diameter(env.graph, weight='weight'))
-            if num_tests_startnode != 1 and (_ % 100 == 0 or _ == 2999):
+            try:
+                diameter = nx.diameter(env.graph, weight='weight')
+                diameter_list.append(diameter)
+            except:
+                pass
+            
+            if num_tests_startnode != 1 and ((_ + 1) % 10 == 0 or _ == 2999):
                 diameter_tensor = torch.tensor(diameter_list, dtype=torch.float)
                 print(f'diameter mean={diameter_tensor.mean()}, std={diameter_tensor.std()}, min={diameter_tensor.min()}, max={diameter_tensor.max()}')
                 if epsilon == 0:
                     with open(f'../sc_test/{args.N}_histo_seed={seed}_FABRIC/{args.N}_best_graph.pkl', 'wb') as f:
                         pkl.dump(env.graph, f)
-                        assert 0
+                        # assert 0
                 else:
                     plt.figure()
                     plt.hist(diameter_list, bins=50)
@@ -113,7 +119,7 @@ def test(args, num_tests=1, agent=None, env=None, log_file=None, if_plot=False, 
         max_test_diameter.append(max(diameter_list))
         min_test_diameter.append(min(diameter_list))
         # test_episode_lengths.append(t)
-        time_list.append(cumulative_time / args.N)
+        time_list.append(cumulative_time)
 
     # print(f"Test Reward", test_reward, 'average=', sum(test_diameter) / len(test_diameter) )
     # log_file.write(f"Test Reward" + str(test_reward))
@@ -124,7 +130,7 @@ def test(args, num_tests=1, agent=None, env=None, log_file=None, if_plot=False, 
 
     # print(f"Test Episode Length", test_episode_lengths)
     # log_file.write(f"Test Episode Length" + str(test_episode_lengths))
-    print(f"Test Time " + str(time_list), 'average_time = ', sum(time_list) / len(time_list) )
+    print(f"Test Time " + str(time_list[0] / num_tests_startnode), 'average_time = ', sum(time_list) / (len(time_list) * num_tests_startnode) )
     log_file.write(f"Test Time" + str(time_list))
 
     return sum(min_test_diameter) / len(min_test_diameter), env.graph
@@ -214,9 +220,10 @@ if __name__ == '__main__':
     # args = init('/pscratch/sd/s/swu264/SWARM/model/20250319_154043/config.json')
     # args = init('/pscratch/sd/s/swu264/SWARM/model/20250320_135432/config.json')
     args = init('/pscratch/sd/s/swu264/SWARM/model/20250407_214739/config.json')
+    
     # args.N = 100
     args.N = 400
-    args.K = 3
+    args.K = 4
     device = torch.device("cuda")
     # device = torch.device("cpu")
     env = GraphEnv(num_nodes=args.N, K=args.K)
@@ -229,10 +236,16 @@ if __name__ == '__main__':
     # model_path = '/pscratch/sd/s/swu264/SWARM/model/20250318_141312/model.pth'
     # model_path = '/pscratch/sd/s/swu264/SWARM/model/20250319_154043/model.pth'
     # model_path = '/pscratch/sd/s/swu264/SWARM/model/20250320_135432/model.pth'
-    model_path = '/pscratch/sd/s/swu264/SWARM/model/20250407_214739/model.pth'
-    log_file_path = os.path.join(args.experiment_name, f'{args.experiment_name}.output')
-    log_file = open(log_file_path, 'w')
-    agent.load(model_path)
-    d, G = test(args, env=env, agent=agent, log_file=log_file, seed=seed, epsilon=0.00)
-    with open(os.path.join('..', 'sc_test', f'best_test_graph_N={args.N}_K={args.K}_seed={seed}.pkl'), 'wb') as f:
-        pkl.dump(G, f)
+    # model_path = '/pscratch/sd/s/swu264/SWARM/model/20250407_214739/model.pth'
+    model_path = ["/pscratch/sd/s/swu264/SWARM/model/20250609_153331/model.pth",
+                  "/pscratch/sd/s/swu264/SWARM/model/20250609_153334/model.pth",
+                  "/pscratch/sd/s/swu264/SWARM/model/20250609_153410/model.pth",
+                  "/pscratch/sd/s/swu264/SWARM/model/20250609_153420/model.pth"]
+    
+    for i in range(len(model_path)):
+        log_file_path = os.path.join(args.experiment_name, f'{args.experiment_name}.output')
+        log_file = open(log_file_path, 'w')
+        agent.load(model_path[i])
+        d, G = test(args, env=env, agent=agent, log_file=log_file, seed=seed, epsilon=0.00)
+        with open(os.path.join('..', 'sc_test', f'best_test_graph_N={args.N}_K={args.K}_seed={seed}.pkl'), 'wb') as f:
+            pkl.dump(G, f)

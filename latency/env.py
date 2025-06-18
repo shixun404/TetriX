@@ -11,7 +11,7 @@ from collections import Counter
 class GraphEnv(gym.Env):
     metadata = {'render.modes': ['console']}
 
-    def __init__(self, num_nodes=500, K=8):
+    def __init__(self, num_nodes=500, K=8, num_sources=1):
         super(GraphEnv, self).__init__()
         self.num_nodes = num_nodes
         self.K = K
@@ -30,6 +30,7 @@ class GraphEnv(gym.Env):
         self.if_test = False
         self.mean = 5
         self.std_dev = 1
+        self.num_sources = num_sources
         self.load_graph()
 
     def reset(self, if_test=False, start_id=0, test_id=0):
@@ -95,14 +96,20 @@ class GraphEnv(gym.Env):
         if self.if_test == False:
             try:
                 # self.cur_diameter = nx.diameter(self.graph, weight='weight')
-                shortest_length = nx.shortest_path_length(self.graph, source=self.start_id, weight='weight')
-                self.cur_diameter = max(shortest_length.values())
+                self.cur_diameter = 0
+                for i in range(self.num_sources):
+                    shortest_length = nx.shortest_path_length(self.graph, source=i, weight='weight')
+                    self.cur_diameter = max(self.cur_diameter, max(shortest_length.values()))
             except:
                 largest_cc = max(nx.connected_components(self.graph), key=len)
                 subgraph = self.graph.subgraph(largest_cc)
                 # self.cur_diameter = nx.diameter(subgraph)
-                shortest_length = nx.shortest_path_length(subgraph, source=0, weight='weight')
-                self.cur_diameter = max(shortest_length.values())
+                # shortest_length = nx.shortest_path_length(subgraph, source=0, weight='weight')
+                self.cur_diameter = 0
+                for i in range(self.num_sources):
+                    shortest_length = nx.shortest_path_length(subgraph, source=i, weight='weight')
+                    self.cur_diameter = max(self.cur_diameter, max(shortest_length.values()))
+                # self.cur_diameter = max(shortest_length.values())
                 # self.cur_diameter = 0
             reward = self.prev_diameter - self.cur_diameter -  self.initial_graph.edges[self.start_id, action]['weight']
         else:
