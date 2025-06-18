@@ -137,6 +137,7 @@ class GraphEnv(gym.Env):
         self.start_id = action
         
         if self.num_steps >= ((self.num_nodes) * self.K) or sum(mask) == 0:
+            print(self.mask)
             mask = [1 for i in range(self.num_nodes)]
             done = True  # You can define your own condition
             

@@ -1,7 +1,7 @@
 from DQNAgent_graph_parallel import DQNAgent
 # from DQNAgent_greedy import DQNAgent
 from collections import deque
-from env import GraphEnv
+from env_parallel import GraphEnv
 import random
 import argparse
 import os
@@ -26,7 +26,7 @@ class ReplayBuffer:
         return len(self.buffer)
 
 
-def test(args, num_tests=1, agent=None, env=None, log_file=None, if_plot=False, seed=42, epsilon = 0, num_tests_startnode=10):
+def test(args, num_tests=1, agent=None, env=None, log_file=None, if_plot=False, seed=42, epsilon = 0, num_tests_startnode=1):
 
     
     torch.manual_seed(args.seed)
@@ -45,19 +45,24 @@ def test(args, num_tests=1, agent=None, env=None, log_file=None, if_plot=False, 
     cnt_test = 0
     if_test = True
     time_list = []
-    for i in range(num_tests):
+    for test_id in range(num_tests):
         cnt_test += 1 if if_test else 0
         diameter_list = []
         cumulative_time = 0    
         for _ in range(num_tests_startnode):
             print(_)
             for start_id in range(_, _ + 1):
-                state_dict = env.reset(if_test=if_test, start_id=start_id, test_id=i)
+                masks, start_id = agent.generate_masked_one_hot(env.num_nodes, env.M)
+                env.start_id = start_id
+                # print('test_id', i)
+                state_dict = env.reset(if_test=if_test, start_id=env.start_id, test_id=test_id)
                 state = np.append(state_dict['initial_graph'].flatten(), state_dict['graph'].flatten())  # Flatten the adjacency matrix to fit the network input
                 state = np.append(state, state_dict['degree'])
-                state = np.append(state, state_dict['start_id'])
+                start_id = state_dict['start_id']
                 
-                mask = state_dict['mask']
+                # state = np.append(state, state_dict['start_id'])
+                
+                mask = np.array(state_dict['mask'])
                 total_reward = 0
                 t = 0
                 if if_plot:
@@ -66,25 +71,32 @@ def test(args, num_tests=1, agent=None, env=None, log_file=None, if_plot=False, 
                     axes = axes.flatten()  # Flatten the array of axes
                 last_time = time.time()
                 while True:
-                    if t % (env.num_nodes // env.M) == 0:
+                    if t % (env.num_nodes // env.M) == 0 and t != 0:
                         masks, start_id = agent.generate_masked_one_hot(env.num_nodes, env.M)
+                        mask = [1 for i in range(env.num_nodes)]
+                        for i in start_id:
+                            mask[i] = 0
+                        env.start_id = start_id
+                        # print(t, 'start_id', start_id)
                         
+                    print(t)
                     t += 1
                     cur_time = time.time()
                     
                     action = agent.act(state, env.graph.degree, env.graph, mask, masks, start_id, K=args.K, epsilon=epsilon)
-                    special_edge = (env.start_id, action)
                     next_time = time.time()
                     cumulative_time += next_time - cur_time
+
                     next_state_dict, reward, done, _a = env.step(action)
+                    
                     mask = np.array(next_state_dict['mask'])
                     next_state = np.append(next_state_dict['initial_graph'].flatten(), next_state_dict['graph'].flatten())
                     next_state = np.append(next_state, next_state_dict['degree'])
-                    # next_state = np.append(next_state, next_state_dict['start_id'])
                     start_id = next_state_dict['start_id']
                     state = next_state
                     total_reward += reward
                     if done:
+                        print(next_state_dict['degree'])
                         break
             cur_time = time.time()
             try:
@@ -198,7 +210,7 @@ if __name__ == '__main__':
     args.K = 4
     args.M = 4
     device = torch.device("cuda")
-    env = GraphEnv(num_nodes=args.N, K=args.K)
+    env = GraphEnv(num_nodes=args.N, K=args.K, M=args.M)
     seed = 42
     # assert 0
     agent = DQNAgent(M=args.M, state_size=args.feature_dim, action_size=args.N, replay_buffer=ReplayBuffer(1000000)
@@ -206,7 +218,8 @@ if __name__ == '__main__':
     model_path = ["/pscratch/sd/s/swu264/SWARM/model/20250609_153331/model.pth",
                   "/pscratch/sd/s/swu264/SWARM/model/20250609_153334/model.pth",
                   "/pscratch/sd/s/swu264/SWARM/model/20250609_153410/model.pth",
-                  "/pscratch/sd/s/swu264/SWARM/model/20250609_153420/model.pth"]
+                  "/pscratch/sd/s/swu264/SWARM/model/20250609_153420/model.pth"
+                  ]
     
     for i in range(len(model_path)):
         log_file_path = os.path.join(args.experiment_name, f'{args.experiment_name}.output')

@@ -7,6 +7,7 @@ import pickle as pkl
 from math import exp
 import os
 from collections import Counter
+import torch as th
 class GraphEnv(gym.Env):
     metadata = {'render.modes': ['console']}
     def __init__(self, num_nodes=500, K=8, num_sources=1, M=1):
@@ -48,7 +49,7 @@ class GraphEnv(gym.Env):
         self.num_steps = 0
         with open('../sc_test/G_400_FABRIC.pkl', 'rb') as f:
             graph_background = pkl.load(f)
-        if if_test:        
+        if if_test:
             self.initial_graph = nx.Graph(self.test_graphs[self.test_id])  
         else:
             self.initial_graph = nx.complete_graph(self.num_nodes)
@@ -107,15 +108,18 @@ class GraphEnv(gym.Env):
             for j in range(self.M):
                 if self.graph.has_edge(action[j], i) or action[j] == i:
                     mask[i] = 0
-        if min_value != 0 and sum(mask) == 0:
-            for i in range(self.num_nodes):
-                mask[i] = 1
-            for i in range(self.M):
-                mask[action[i]] = 0
+        # if min_value != 0 and sum(self.mask) % (self.num_nodes * 2) == 0:
+        #     print("reset", self.num_steps, sum(mask))
+        #     for i in range(self.num_nodes):
+        #         mask[i] = 1
+        #     for i in range(self.M):
+        #         mask[action[i]] = 0
+        print(self.num_steps, 'start_id', self.start_id, 'action', action, 'mask', sum(mask), 'self.mask', sum(self.mask),'min', min_value)
         for i in range(self.M):
             self.start_id[i] = action[i]
         
-        if self.num_steps >= ((self.num_nodes) * self.K // self.M) or sum(mask) == 0:
+        # print(self.num_steps, 'mask', sum(mask), th.where(th.as_tensor(mask) != 0), 'self.mask', sum(self.mask),  th.where(th.as_tensor(self.mask) != 0),'min', min_value)
+        if self.num_steps >= ((self.num_nodes) * self.K // self.M):
             mask = [1 for i in range(self.num_nodes)]
             done = True
             

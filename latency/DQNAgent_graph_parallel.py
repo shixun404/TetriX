@@ -1,4 +1,5 @@
 import torch
+import torch as th
 import torch.nn as nn
 import torch.optim as optim
 import random
@@ -127,7 +128,7 @@ class DQNAgent:
             # Create the directory
             os.makedirs(experiment_name)
     
-    def generate_masked_one_hot(N, M):
+    def generate_masked_one_hot(self, N, M):
         assert N % M == 0, "N must be divisible by M"
         partition_size = N // M
 
@@ -150,19 +151,33 @@ class DQNAgent:
     def act(self, state, degree, G, mask, masks, start_id, vector=None, K=4, epsilon=0.95):
         
         id = int(state[-1])
+        state = torch.tensor(state, dtype=torch.float32, device=self.device).unsqueeze(0)
+        parallel_action = []
+        final_mask_list = []
+        partition_mask_list = []
+        mask_list = []
         for i in range(self.M):
+            
             mask = torch.tensor(mask, dtype=torch.bool, device=self.device)
+            # print(start_id[i], 'mask', (th.where(mask == 1)[0]).shape[0])
             partition_mask = masks[i].to(dtype=torch.bool, device=self.device)
+            # print(start_id[i], 'partition_mask', (th.where(partition_mask ==1)[0]).shape[0])
             final_mask = mask & partition_mask  # logical AND
+            # print(start_id[i], 'final_mask', (th.where(final_mask == 1)[0]).shape[0])
+            final_mask_list.append((th.where(final_mask == 1)[0]).shape[0])
+            partition_mask_list.append((th.where(partition_mask == 1)[0]).shape[0])
+            mask_list.append((th.where(mask == 1)[0]).shape[0])
             if random.random() > epsilon:
-                state = torch.tensor(state, dtype=torch.float32, device=self.device).unsqueeze(0)
-                action_values = torch.where(final_mask, self.model(state, start_id[i]), torch.tensor(float('-inf')))
+                action_values = torch.where(final_mask, self.model(state, th.as_tensor([start_id[i]], device=self.device)), torch.tensor(float('-inf')))
                 action = torch.argmax(action_values).item()
             else:
                 valid_indices = torch.nonzero(final_mask, as_tuple=True)[0]
                 action = valid_indices[torch.randint(len(valid_indices), (1,))].item()
-
-        return action
+            parallel_action.append(action)
+        print(final_mask_list)
+        print(partition_mask_list)
+        print(mask_list)
+        return parallel_action
 
     def learn(self, batch_size):
         if len(self.replay_buffer) < batch_size:
