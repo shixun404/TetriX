@@ -174,9 +174,9 @@ class DQNAgent:
                 valid_indices = torch.nonzero(final_mask, as_tuple=True)[0]
                 action = valid_indices[torch.randint(len(valid_indices), (1,))].item()
             parallel_action.append(action)
-        print(final_mask_list)
-        print(partition_mask_list)
-        print(mask_list)
+        # print(final_mask_list)
+        # print(partition_mask_list)
+        # print(mask_list)
         return parallel_action
 
     def learn(self, batch_size):

@@ -223,7 +223,7 @@ if __name__ == '__main__':
     
     # args.N = 100
     args.N = 400
-    args.K = 4
+    args.K = 3
     device = torch.device("cuda")
     # device = torch.device("cpu")
     env = GraphEnv(num_nodes=args.N, K=args.K)
@@ -238,9 +238,10 @@ if __name__ == '__main__':
     # model_path = '/pscratch/sd/s/swu264/SWARM/model/20250320_135432/model.pth'
     # model_path = '/pscratch/sd/s/swu264/SWARM/model/20250407_214739/model.pth'
     model_path = ["/pscratch/sd/s/swu264/SWARM/model/20250609_153331/model.pth",
-                  "/pscratch/sd/s/swu264/SWARM/model/20250609_153334/model.pth",
-                  "/pscratch/sd/s/swu264/SWARM/model/20250609_153410/model.pth",
-                  "/pscratch/sd/s/swu264/SWARM/model/20250609_153420/model.pth"]
+                #   "/pscratch/sd/s/swu264/SWARM/model/20250609_153334/model.pth",
+                #   "/pscratch/sd/s/swu264/SWARM/model/20250609_153410/model.pth",
+                #   "/pscratch/sd/s/swu264/SWARM/model/20250609_153420/model.pth"
+                  ]
     
     for i in range(len(model_path)):
         log_file_path = os.path.join(args.experiment_name, f'{args.experiment_name}.output')

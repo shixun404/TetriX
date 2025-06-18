@@ -79,7 +79,7 @@ def test(args, num_tests=1, agent=None, env=None, log_file=None, if_plot=False, 
                         env.start_id = start_id
                         # print(t, 'start_id', start_id)
                         
-                    print(t)
+                    # print(t)
                     t += 1
                     cur_time = time.time()
                     
@@ -96,7 +96,7 @@ def test(args, num_tests=1, agent=None, env=None, log_file=None, if_plot=False, 
                     state = next_state
                     total_reward += reward
                     if done:
-                        print(next_state_dict['degree'])
+                        # print(next_state_dict['degree'])
                         break
             cur_time = time.time()
             try:
@@ -207,7 +207,7 @@ if __name__ == '__main__':
     
     # args.N = 100
     args.N = 400
-    args.K = 4
+    args.K = 3
     args.M = 4
     device = torch.device("cuda")
     env = GraphEnv(num_nodes=args.N, K=args.K, M=args.M)
@@ -216,15 +216,20 @@ if __name__ == '__main__':
     agent = DQNAgent(M=args.M, state_size=args.feature_dim, action_size=args.N, replay_buffer=ReplayBuffer(1000000)
                     , decay_gamma=args.decay_gamma, device=device, experiment_name=args.experiment_name)
     model_path = ["/pscratch/sd/s/swu264/SWARM/model/20250609_153331/model.pth",
-                  "/pscratch/sd/s/swu264/SWARM/model/20250609_153334/model.pth",
-                  "/pscratch/sd/s/swu264/SWARM/model/20250609_153410/model.pth",
-                  "/pscratch/sd/s/swu264/SWARM/model/20250609_153420/model.pth"
+                #   "/pscratch/sd/s/swu264/SWARM/model/20250609_153334/model.pth",
+                #   "/pscratch/sd/s/swu264/SWARM/model/20250609_153410/model.pth",
+                #   "/pscratch/sd/s/swu264/SWARM/model/20250609_153420/model.pth"
                   ]
     
     for i in range(len(model_path)):
         log_file_path = os.path.join(args.experiment_name, f'{args.experiment_name}.output')
         log_file = open(log_file_path, 'w')
         agent.load(model_path[i])
-        d, G = test(args, env=env, agent=agent, log_file=log_file, seed=seed, epsilon=0.00)
-        with open(os.path.join('..', 'sc_test', f'best_test_graph_N={args.N}_K={args.K}_seed={seed}.pkl'), 'wb') as f:
-            pkl.dump(G, f)
+
+        for M in [1, 2, 4, 8, 16]:
+            print(f"Testing with M={M}")
+            env.M = M
+            agent.M = M
+            d, G = test(args, env=env, agent=agent, log_file=log_file, seed=seed, epsilon=0.00)
+            with open(os.path.join('..', 'sc_test', f'best_test_graph_N={args.N}_K={args.K}_seed={seed}.pkl'), 'wb') as f:
+                pkl.dump(G, f)

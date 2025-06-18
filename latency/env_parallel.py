@@ -72,7 +72,10 @@ class GraphEnv(gym.Env):
     def step(self, action): 
         weight_sum = 0
         for i in range(self.M):
-            self.graph.add_edge(self.start_id[i], action[i])
+            try:
+                self.graph.add_edge(self.start_id[i], action[i])
+            except:
+                pass
             w = self.initial_graph.edges[self.start_id[i], action[i]]['weight']
             self.graph.edges[self.start_id[i], action[i]]['weight'] = w
             weight_sum += w
@@ -104,19 +107,21 @@ class GraphEnv(gym.Env):
         mask = (self.mask == max_value).astype(int)
 
         i = 0
-        for i in range(self.num_nodes):
-            for j in range(self.M):
-                if self.graph.has_edge(action[j], i) or action[j] == i:
-                    mask[i] = 0
+        # for i in range(self.num_nodes):
+        #     for j in range(self.M):
+        #         if self.graph.has_edge(action[j], i) or action[j] == i:
+        #             mask[i] = 0
+        
         # if min_value != 0 and sum(self.mask) % (self.num_nodes * 2) == 0:
         #     print("reset", self.num_steps, sum(mask))
         #     for i in range(self.num_nodes):
         #         mask[i] = 1
         #     for i in range(self.M):
         #         mask[action[i]] = 0
-        print(self.num_steps, 'start_id', self.start_id, 'action', action, 'mask', sum(mask), 'self.mask', sum(self.mask),'min', min_value)
+        # print(self.num_steps, 'start_id', self.start_id, 'action', action, 'mask', sum(mask), 'self.mask', sum(self.mask),'min', min_value)
         for i in range(self.M):
             self.start_id[i] = action[i]
+            mask[action[i]] = 0
         
         # print(self.num_steps, 'mask', sum(mask), th.where(th.as_tensor(mask) != 0), 'self.mask', sum(self.mask),  th.where(th.as_tensor(self.mask) != 0),'min', min_value)
         if self.num_steps >= ((self.num_nodes) * self.K // self.M):
