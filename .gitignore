@@ -3,8 +3,6 @@ rl/figs
 *.pth
 **/wandb
 *.tar.gz
-*.png
-*.pdf
 **/logs
 **/__pycache__/
 latency/__pycache__/*
