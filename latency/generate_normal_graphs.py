@@ -4,7 +4,7 @@ import pickle as pkl
 import os
 import random
 
-def generate_normal_weighted_graph(num_nodes, mu=100, sigma=50, seed=None):
+def generate_normal_weighted_graph(num_nodes, mu=100, sigma=15, seed=None):
     """
     生成权重服从正态分布的完全图
     
@@ -27,14 +27,14 @@ def generate_normal_weighted_graph(num_nodes, mu=100, sigma=50, seed=None):
     # 为每条边分配正态分布权重
     for (u, v) in graph.edges():
         # 生成正态分布权重，确保权重为正数
-        weight = max(1.0, np.random.normal(mu, sigma))
+        weight = max(25, np.random.normal(mu, sigma))
         graph.edges[u, v]['weight'] = weight
         # 无向图，设置对称权重
         graph.edges[v, u]['weight'] = weight
     
     return graph
 
-def generate_test_graphs(num_graphs=5, num_nodes=100, mu=100, sigma=50, base_seed=42):
+def generate_test_graphs(num_graphs=5, num_nodes=100, mu=100, sigma=15, base_seed=42):
     """
     生成多个测试图并保存
     
@@ -71,7 +71,7 @@ def generate_test_graphs(num_graphs=5, num_nodes=100, mu=100, sigma=50, base_see
     
     return test_graphs
 
-def save_background_graph(num_nodes=100, mu=100, sigma=50, seed=12345):
+def save_background_graph(num_nodes=100, mu=100, sigma=15, seed=12345):
     """
     生成并保存训练用的背景图（训练时每次随机生成时的参考模板）
     """
@@ -97,7 +97,7 @@ if __name__ == "__main__":
         num_graphs=5, 
         num_nodes=100, 
         mu=100, 
-        sigma=50, 
+        sigma=15, 
         base_seed=42
     )
     
@@ -105,7 +105,7 @@ if __name__ == "__main__":
     bg_graph = save_background_graph(
         num_nodes=100, 
         mu=100, 
-        sigma=50, 
+        sigma=15, 
         seed=12345
     )
     

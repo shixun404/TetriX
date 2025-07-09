@@ -11,7 +11,7 @@ class OptimizedGraphEnv(gym.Env):
     metadata = {'render.modes': ['console']}
     
     def __init__(self, num_nodes=100, K=8, num_sources=1, M=1, alpha=0.5, alpha_schedule=None, 
-                 weight_mu=100, weight_sigma=50):
+                 weight_mu=100, weight_sigma=5):
         super(OptimizedGraphEnv, self).__init__()
         self.num_nodes = num_nodes
         self.K = K
@@ -71,11 +71,27 @@ class OptimizedGraphEnv(gym.Env):
         graph = nx.complete_graph(self.num_nodes)
         for (u, v) in graph.edges():
             # 生成正态分布权重，确保权重为正数
-            weight = max(1.0, np.random.normal(self.weight_mu, self.weight_sigma))
+            weight = max(25.0, np.random.normal(self.weight_mu, self.weight_sigma))
             graph.edges[u, v]['weight'] = weight
             graph.edges[v, u]['weight'] = weight
         
         return graph
+    
+    def _load_test_graphs(self):
+        """Load test graphs for evaluation"""
+        self.test_graphs = []
+        for i in range(5):  # 加载5个测试图
+            try:
+                filename = f'../sc_test/G_{self.num_nodes}_normal_test_{i}.pkl'
+                with open(filename, 'rb') as f:
+                    test_graph = pkl.load(f)
+                    self.test_graphs.append(test_graph)
+                print(f"Loaded test graph {i} from {filename}")
+            except FileNotFoundError:
+                print(f"Test graph {i} not found, generating dynamically")
+                # 如果测试图不存在，动态生成
+                test_graph = self._generate_normal_weighted_graph(seed=42+i)
+                self.test_graphs.append(test_graph)
         
     def update_alpha(self, episode):
         """Update alpha parameter based on schedule"""
@@ -104,18 +120,15 @@ class OptimizedGraphEnv(gym.Env):
         self.num_steps = 0
         
         # Initialize graph efficiently
-        if if_test and self.test_graphs:
-            self.initial_graph = self.test_graphs[self.test_id]
+        if if_test and self.test_graphs and test_id < len(self.test_graphs):
+            # 测试时使用预定义的测试图
+            # self.initial_graph = self.test_graphs[test_id].copy()
+            self.initial_graph = self.graph_background.copy()
+            # print(f"Using test graph {test_id}")
         else:
-            self.initial_graph = nx.complete_graph(self.num_nodes)
-            # Add weights efficiently
-            for (u, v) in self.initial_graph.edges():
-                if self.graph_background.has_edge(u, v):
-                    weight = self.graph_background.edges[u, v]['weight']
-                else:
-                    weight = 1.0
-                self.initial_graph.edges[u, v]['weight'] = weight
-                self.initial_graph.edges[v, u]['weight'] = weight
+            # 训练时动态生成正态分布权重的图
+            # self.initial_graph = self._generate_normal_weighted_graph()
+            self.initial_graph = self.graph_background.copy()
         
         # Cache adjacency matrix
         self.initial_adjacency_matrix = nx.to_numpy_array(

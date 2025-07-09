@@ -74,9 +74,9 @@ def init_args():
     parser = argparse.ArgumentParser(description="Optimized Parallel DGRO Training")
     
     # Graph parameters
-    parser.add_argument("--N", type=int, help="Number of nodes", default=400)
+    parser.add_argument("--N", type=int, help="Number of nodes", default=100)
     parser.add_argument("--K", type=int, help="Degree constraint", default=3)
-    parser.add_argument("--M", type=int, help="Number of partitions", default=4)
+    parser.add_argument("--M", type=int, help="Number of partitions", default=1)
     
     # Training parameters
     parser.add_argument("--episodes", type=int, help="Number of episodes", default=50000)
@@ -91,7 +91,7 @@ def init_args():
     parser.add_argument("--alpha_schedule", type=str, help="Alpha schedule type", 
                         choices=['linear', 'exponential', 'constant'], default='linear')
     parser.add_argument("--sync_freq", type=int, help="Synchronization frequency", default=1)
-    parser.add_argument("--target_update_freq", type=int, help="Target network update frequency", default=1000)
+    parser.add_argument("--target_update_freq", type=int, help="Target network update frequency", default=10000000)
     
     # Other parameters
     parser.add_argument("--reward_mode", type=str, help="Reward mode", default='diameter')
@@ -243,7 +243,7 @@ def train_parallel_dgro_optimized(args):
             env.update_alpha(episode)
             
             # Generate partition masks and start IDs
-            masks, start_id = agent.generate_masked_one_hot(args.N, args.M)
+            masks, start_id = agent.generate_masked_one_hot(args.N, args.M, if_random=False)
             
             # Reset environment and construct state efficiently
             state_dict = env.reset(if_test=False, start_id=start_id, test_id=0)
@@ -258,7 +258,7 @@ def train_parallel_dgro_optimized(args):
             total_losses = []
             
             # Calculate epsilon for exploration
-            epsilon = max((1 - update_count / 10000), 0.05)
+            epsilon = max((1 - update_count / 5000), 0.05)
             
             start_time = time.time()
             

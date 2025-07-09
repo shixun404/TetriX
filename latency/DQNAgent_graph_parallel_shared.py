@@ -136,13 +136,14 @@ class SharedParallelDQNAgent:
         if not os.path.exists(experiment_name):
             os.makedirs(experiment_name)
     
-    def generate_masked_one_hot(self, N, M):
+    def generate_masked_one_hot(self, N, M, if_random=True):
         """Generate partition masks and starting nodes"""
         assert N % M == 0, "N must be divisible by M"
         partition_size = N // M
 
         indices = list(range(N))
-        random.shuffle(indices)
+        if if_random:
+            random.shuffle(indices)
 
         masks = []
         start_id = []
@@ -248,7 +249,7 @@ class SharedParallelDQNAgent:
         
         # Next Q-values using target network
         with torch.no_grad():
-            next_q_values = self.target_model(next_states, dummy_start_ids)
+            next_q_values = self.model(next_states, dummy_start_ids)
             next_q_values = torch.where(masks, next_q_values, torch.tensor(float('-inf')))
             next_q = next_q_values.max(1)[0]
         
