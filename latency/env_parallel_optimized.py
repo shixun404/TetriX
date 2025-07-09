@@ -10,7 +10,8 @@ class OptimizedGraphEnv(gym.Env):
     
     metadata = {'render.modes': ['console']}
     
-    def __init__(self, num_nodes=500, K=8, num_sources=1, M=1, alpha=0.5, alpha_schedule=None):
+    def __init__(self, num_nodes=100, K=8, num_sources=1, M=1, alpha=0.5, alpha_schedule=None, 
+                 weight_mu=100, weight_sigma=50):
         super(OptimizedGraphEnv, self).__init__()
         self.num_nodes = num_nodes
         self.K = K
@@ -18,6 +19,8 @@ class OptimizedGraphEnv(gym.Env):
         self.M = M
         self.alpha = alpha
         self.alpha_schedule = alpha_schedule
+        self.weight_mu = weight_mu
+        self.weight_sigma = weight_sigma
         
         # Pre-allocate arrays for better performance
         self.mask = np.zeros(self.num_nodes, dtype=int)
@@ -43,19 +46,36 @@ class OptimizedGraphEnv(gym.Env):
         # Track edges for efficient removal
         self.current_edges = set()
         
-        # Load background graph once
+        # Load test graphs and background graph
+        self._load_test_graphs()
         self._load_background_graph()
         
     def _load_background_graph(self):
-        """Load background graph once to avoid repeated I/O"""
+        """Load background graph or generate normal distribution weights"""
         try:
-            with open('../sc_test/G_400_FABRIC.pkl', 'rb') as f:
+            # 尝试加载对应的背景图
+            filename = f'../sc_test/G_{self.num_nodes}_NORMAL.pkl'
+            with open(filename, 'rb') as f:
                 self.graph_background = pkl.load(f)
+                print(f"Loaded background graph from {filename}")
         except:
-            # Fallback if file doesn't exist
-            self.graph_background = nx.complete_graph(self.num_nodes)
-            for (u, v) in self.graph_background.edges():
-                self.graph_background.edges[u, v]['weight'] = 1.0
+            # 如果文件不存在，动态生成正态分布权重图
+            print(f"Background graph file not found, generating with normal distribution (μ={self.weight_mu}, σ={self.weight_sigma})")
+            self.graph_background = self._generate_normal_weighted_graph()
+    
+    def _generate_normal_weighted_graph(self, seed=None):
+        """Generate a complete graph with normal distribution weights"""
+        if seed is not None:
+            np.random.seed(seed)
+        
+        graph = nx.complete_graph(self.num_nodes)
+        for (u, v) in graph.edges():
+            # 生成正态分布权重，确保权重为正数
+            weight = max(1.0, np.random.normal(self.weight_mu, self.weight_sigma))
+            graph.edges[u, v]['weight'] = weight
+            graph.edges[v, u]['weight'] = weight
+        
+        return graph
         
     def update_alpha(self, episode):
         """Update alpha parameter based on schedule"""
@@ -127,38 +147,38 @@ class OptimizedGraphEnv(gym.Env):
         if self.if_test:
             return 0
         
-        # Use edge set as cache key for small graphs
-        if use_cache and len(graph.edges()) < 1000:
-            edge_key = tuple(sorted(graph.edges()))
-            if edge_key in self.diameter_cache:
-                return self.diameter_cache[edge_key]
+        # # Use edge set as cache key for small graphs
+        # if use_cache and len(graph.edges()) < 1000:
+        #     edge_key = tuple(sorted(graph.edges()))
+        #     if edge_key in self.diameter_cache:
+        #         return self.diameter_cache[edge_key]
         
         try:
-            diameter = 0
-            for i in range(self.num_sources):
-                if i in graph.nodes():
-                    shortest_length = nx.shortest_path_length(graph, source=i, weight='weight')
-                    diameter = max(diameter, max(shortest_length.values()))
+            # 只计算最大连通分量的直径
+            largest_cc = max(nx.connected_components(graph), key=len)
+            subgraph = graph.subgraph(largest_cc)
             
-            # Cache result
-            if use_cache and len(graph.edges()) < 1000:
-                self.diameter_cache[edge_key] = diameter
+            # 找到最大连通分量中编号最小的节点
+            min_node = min(largest_cc)
             
-            return diameter
+            # 计算从最小节点到所有其他节点的最短路径
+            shortest_length = nx.shortest_path_length(subgraph, source=min_node, weight='weight')
+            
+            # 返回最短路径的最大值
+            return max(shortest_length.values()) if shortest_length else 0
+            
         except:
-            # Handle disconnected graphs
+            # Handle other errors
             if len(graph.nodes()) == 0:
                 return float('inf')
             
             try:
+                # 回退到简单的最大连通分量方法
                 largest_cc = max(nx.connected_components(graph), key=len)
                 subgraph = graph.subgraph(largest_cc)
-                diameter = 0
-                for i in range(self.num_sources):
-                    if i in subgraph:
-                        shortest_length = nx.shortest_path_length(subgraph, source=i, weight='weight')
-                        diameter = max(diameter, max(shortest_length.values()))
-                return diameter
+                min_node = min(largest_cc)
+                shortest_length = nx.shortest_path_length(subgraph, source=min_node, weight='weight')
+                return max(shortest_length.values()) if shortest_length else 0
             except:
                 return float('inf')
     
@@ -201,7 +221,7 @@ class OptimizedGraphEnv(gym.Env):
         
         # Compute global reward
         R_G = diameter_before - diameter_after
-        
+        # print(f"Global reward: {R_G}, diameter_before: {diameter_before}, diameter_after: {diameter_after}")
         # Compute individual rewards efficiently (avoid deepcopy)
         individual_rewards = []
         
@@ -230,6 +250,7 @@ class OptimizedGraphEnv(gym.Env):
                 # Combine rewards
                 individual_reward = self.alpha * R_G + (1 - self.alpha) * R_M_p - weight_sum[p]
                 individual_rewards.append(individual_reward)
+                # print(f"Individual reward: {R_M_p}")
         else:
             individual_rewards = [0.0] * self.M
         

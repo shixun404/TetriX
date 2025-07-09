@@ -258,7 +258,7 @@ def train_parallel_dgro_optimized(args):
             total_losses = []
             
             # Calculate epsilon for exploration
-            epsilon = max((1 - update_count / 2000), 0.05)
+            epsilon = max((1 - update_count / 10000), 0.05)
             
             start_time = time.time()
             
@@ -273,6 +273,7 @@ def train_parallel_dgro_optimized(args):
                     for i in start_id:
                         mask[i] = 0
                     env.start_id = start_id
+                # print('step_count: ', step_count)
                 
                 step_count += 1
                 
@@ -303,7 +304,7 @@ def train_parallel_dgro_optimized(args):
                 )
                 
                 # Update Q-networks if enough experiences are available
-                if len(replay_buffer) > 4000:
+                if len(replay_buffer) > 2000:
                     loss = agent.learn(args.bs)
                     if loss > 0:
                         total_losses.append(loss)
@@ -315,7 +316,7 @@ def train_parallel_dgro_optimized(args):
                 start_id = next_state_dict['start_id']
             
             episode_time = time.time() - start_time
-            
+            # assert 0
             # Logging and evaluation
             if episode < 1000:
                 avg_loss = np.mean(total_losses) if total_losses else 0.0
