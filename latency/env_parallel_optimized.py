@@ -10,8 +10,8 @@ class OptimizedGraphEnv(gym.Env):
     
     metadata = {'render.modes': ['console']}
     
-    def __init__(self, num_nodes=100, K=8, num_sources=1, M=1, alpha=0.5, alpha_schedule=None, 
-                 weight_mu=100, weight_sigma=5):
+    def __init__(self, num_nodes=100, K=8, num_sources=1, M=1, alpha=0.9, alpha_schedule=None, 
+                 weight_mu=100, weight_sigma=15):
         super(OptimizedGraphEnv, self).__init__()
         self.num_nodes = num_nodes
         self.K = K
@@ -105,7 +105,7 @@ class OptimizedGraphEnv(gym.Env):
         self.current_edges.clear()
         
         # Reset masks and positions
-        self.mask.fill(self.K)  # Use fill instead of list comprehension
+        self.mask.fill(self.K * 2)  # Use fill instead of list comprehension
         
         if start_id is None:
             self.start_id = random.sample(range(self.num_nodes), self.M)
@@ -127,8 +127,8 @@ class OptimizedGraphEnv(gym.Env):
             # print(f"Using test graph {test_id}")
         else:
             # 训练时动态生成正态分布权重的图
-            # self.initial_graph = self._generate_normal_weighted_graph()
-            self.initial_graph = self.graph_background.copy()
+            self.initial_graph = self._generate_normal_weighted_graph()
+            # self.initial_graph = self.graph_background.copy()
         
         # Cache adjacency matrix
         self.initial_adjacency_matrix = nx.to_numpy_array(
@@ -171,29 +171,26 @@ class OptimizedGraphEnv(gym.Env):
             largest_cc = max(nx.connected_components(graph), key=len)
             subgraph = graph.subgraph(largest_cc)
             
-            # 找到最大连通分量中编号最小的节点
-            min_node = min(largest_cc)
+            # 选择最大连通分量中的前 num_sources 个节点作为源节点
+            sorted_nodes = sorted(largest_cc)
+            source_nodes = sorted_nodes[:min(self.num_sources, len(sorted_nodes))]
             
-            # 计算从最小节点到所有其他节点的最短路径
-            shortest_length = nx.shortest_path_length(subgraph, source=min_node, weight='weight')
+            # 计算从所有源节点到其他节点的最短路径，取最大值作为直径
+            max_diameter = 0
+            current_max = 0
+            for source in source_nodes:
+                if source in subgraph.nodes():
+                    shortest_length = nx.shortest_path_length(subgraph, source=source, weight='weight')
+                    if shortest_length:
+                        current_max = max(shortest_length.values())
+                        max_diameter = max(max_diameter, current_max)
             
-            # 返回最短路径的最大值
-            return max(shortest_length.values()) if shortest_length else 0
-            
-        except:
-            # Handle other errors
-            if len(graph.nodes()) == 0:
-                return float('inf')
-            
-            try:
-                # 回退到简单的最大连通分量方法
-                largest_cc = max(nx.connected_components(graph), key=len)
-                subgraph = graph.subgraph(largest_cc)
-                min_node = min(largest_cc)
-                shortest_length = nx.shortest_path_length(subgraph, source=min_node, weight='weight')
-                return max(shortest_length.values()) if shortest_length else 0
-            except:
-                return float('inf')
+            # return max_diameter / len(source_nodes)
+            return max_diameter
+        except Exception as e:
+            # 如果出现任何错误，返回无穷大
+            print(e)
+            return float('inf')
     
     def step(self, action):
         """Optimized step function eliminating deepcopy operations"""
@@ -261,7 +258,7 @@ class OptimizedGraphEnv(gym.Env):
                     R_M_p = 0
                 
                 # Combine rewards
-                individual_reward = self.alpha * R_G + (1 - self.alpha) * R_M_p - weight_sum[p]
+                individual_reward = self.alpha * R_G + (1 - self.alpha) * R_M_p - 1 * weight_sum[p]
                 individual_rewards.append(individual_reward)
                 # print(f"Individual reward: {R_M_p}")
         else:
@@ -279,12 +276,12 @@ class OptimizedGraphEnv(gym.Env):
         # Compute new mask efficiently
         max_value = np.max(self.mask)
         mask = (self.mask == max_value).astype(int)
-        
+
         # Update start positions
         for i in range(self.M):
             self.start_id[i] = action[i]
             mask[action[i]] = 0
-        
+        # print('self.mask: ', self.mask, 'mask: ', mask, 'max_value: ', max_value)        
         # Check termination
         done = self.num_steps >= (self.num_nodes * self.K // self.M)
         if done:

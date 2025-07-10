@@ -102,7 +102,7 @@ class SharedParallelDQNAgent:
     所有partition共享同一个Q-network，减少内存使用并加快训练
     """
     def __init__(self, M, state_size, action_size, replay_buffer, decay_gamma, device, 
-                 experiment_name, sync_freq=1, target_update_freq=1000, shared_buffer=True):
+                 experiment_name, sync_freq=1, target_update_freq=1000, shared_buffer=True, K=3):
         
         self.state_size = state_size
         self.N = action_size
@@ -115,6 +115,13 @@ class SharedParallelDQNAgent:
         self.decay_gamma = decay_gamma
         self.experiment_name = experiment_name
         self.update_counter = 0
+        self.generated_mask_count = 0
+        self.indices_shufl = []
+        self.K = K
+        for i in range(K):
+            indices = list(range(self.N))
+            random.shuffle(indices)
+            self.indices_shufl.append(indices)
         
         # 创建单个共享的Q-network和target network
         print(f"Creating shared Q-network for {M} partitions")
@@ -136,25 +143,28 @@ class SharedParallelDQNAgent:
         if not os.path.exists(experiment_name):
             os.makedirs(experiment_name)
     
-    def generate_masked_one_hot(self, N, M, if_random=True):
+    def generate_masked_one_hot(self, N, M):
         """Generate partition masks and starting nodes"""
         assert N % M == 0, "N must be divisible by M"
         partition_size = N // M
 
-        indices = list(range(N))
-        if if_random:
-            random.shuffle(indices)
+        # indices = list(range(N))
+        indices = self.indices_shufl[self.generated_mask_count % self.K]
+        # if if_random:
+        #     random.shuffle(indices)
 
         masks = []
         start_id = []
+        partition_start = []
         for i in range(M):
             part_indices = indices[i * partition_size: (i + 1) * partition_size]
             mask = torch.zeros(N)
             mask[part_indices] = 1
             masks.append(mask)
             start_id.append(indices[i * partition_size])
-        
-        return masks, start_id
+            partition_start.append(indices[i * partition_size])
+        self.generated_mask_count += 1
+        return masks, start_id, partition_start
 
     def act(self, state, degree, G, mask, masks, start_id, vector=None, K=4, epsilon=0.95):
         """
@@ -172,7 +182,9 @@ class SharedParallelDQNAgent:
             partition_mask = masks[i].to(dtype=torch.bool, device=self.device)
             final_mask = mask_tensor & partition_mask  # logical AND
             mask_list.append((torch.where(mask_tensor == 1)[0]).shape[0])  # 记录统计信息
-            
+            unmasked_indices = torch.where(mask_tensor == 1)[0]
+            masked_indices = torch.where(mask_tensor == 0)[0]
+            # print(f'partition {i} start_id: {start_id[i]} unmasked_indices: {masked_indices} len: {len(masked_indices)}')
             if random.random() > epsilon:
                 # 使用共享的Q-network
                 action_values = torch.where(final_mask, 
@@ -184,8 +196,8 @@ class SharedParallelDQNAgent:
                 # print(f'partition {i}', mask_tensor, partition_mask, final_mask)
                 valid_indices = torch.nonzero(final_mask, as_tuple=True)[0]
                 action = valid_indices[torch.randint(len(valid_indices), (1,))].item()
-            unmasked_indices = torch.where(mask_tensor == 1)[0]
-            masked_indices = torch.where(mask_tensor == 0)[0]
+            # unmasked_indices = torch.where(mask_tensor == 1)[0]
+            # masked_indices = torch.where(mask_tensor == 0)[0]
             # print(f'partition {i} start_id: {start_id[i]} action: {action} unmasked_indices: {masked_indices} len: {len(masked_indices)}')
             parallel_action.append(action)
         
@@ -249,6 +261,7 @@ class SharedParallelDQNAgent:
         
         # Next Q-values using target network
         with torch.no_grad():
+            # next_q_values = self.target_model(next_states, dummy_start_ids)
             next_q_values = self.model(next_states, dummy_start_ids)
             next_q_values = torch.where(masks, next_q_values, torch.tensor(float('-inf')))
             next_q = next_q_values.max(1)[0]

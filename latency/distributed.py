@@ -187,11 +187,11 @@ def update_graph( graph, latency, random_rings, N, K, M, sample_sources=3,
 
 if __name__ == '__main__':
     # Parameters and graph initialization
-    N = 400  # Number of nodes
-    K = 4   # Outgoing connections per node
-    M = 6 # Maximum incoming connections per node
+    N = 100  # Number of nodes
+    K = 3   # Outgoing connections per node
+    M = 4 # Maximum incoming connections per node
     num_drop = 1
-    num_random_rings = 2
+    num_random_rings = 1
     num_tests = 1
     max_iterations = 65
     sample_sources = 8
@@ -202,7 +202,8 @@ if __name__ == '__main__':
         np.random.seed(seed)
         th.random.manual_seed(seed)
 
-        with open('../sc_test/G_400_FABRIC.pkl', 'rb') as f:
+        # with open('../sc_test/G_400_FABRIC.pkl', 'rb') as f:
+        with open(f'../sc_test/G_{N}_NORMAL.pkl', 'rb') as f:
             G = pkl.load(f)
         graph, latency, random_rings = initialize_graph(N, K, if_random_ring=True, if_cluster=False, latency=G, num_random_rings=num_random_rings)
         data,diameter_list = update_graph(graph, latency, random_rings, N, K, M, sample_sources=sample_sources, if_diameter_directed=True, max_iterations=max_iterations, num_drop=num_drop, num_random_rings=num_random_rings)

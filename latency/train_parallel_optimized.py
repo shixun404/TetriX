@@ -86,17 +86,17 @@ def init_args():
     parser.add_argument("--lr", type=float, help="Learning rate", default=5e-4)
     
     # Parallel DGRO specific parameters
-    parser.add_argument("--alpha_start", type=float, help="Starting alpha for reward combination", default=0.5)
-    parser.add_argument("--alpha_end", type=float, help="Ending alpha for reward combination", default=0.8)
+    parser.add_argument("--alpha_start", type=float, help="Starting alpha for reward combination", default=1.0)
+    parser.add_argument("--alpha_end", type=float, help="Ending alpha for reward combination", default=1.0)
     parser.add_argument("--alpha_schedule", type=str, help="Alpha schedule type", 
                         choices=['linear', 'exponential', 'constant'], default='linear')
     parser.add_argument("--sync_freq", type=int, help="Synchronization frequency", default=1)
-    parser.add_argument("--target_update_freq", type=int, help="Target network update frequency", default=10000000)
+    parser.add_argument("--target_update_freq", type=int, help="Target network update frequency", default=1000000)
     
     # Other parameters
     parser.add_argument("--reward_mode", type=str, help="Reward mode", default='diameter')
     parser.add_argument("--seed", type=int, help="Random seed", default=42)
-    parser.add_argument("--num_sources", type=int, help="Number of diameter sources", default=1)
+    parser.add_argument("--num_sources", type=int, help="Number of diameter sources", default=3)
     parser.add_argument("--if_wandb", action='store_true', help="Use Weights & Biases logging")
     
     args = parser.parse_args()
@@ -134,7 +134,8 @@ def test_parallel_agent_optimized(args, agent, env, num_tests=1):
     
     for test_run in range(num_tests):
         # Generate partition masks and start IDs
-        masks, start_id = agent.generate_masked_one_hot(args.N, args.M)
+        agent.generated_mask_count = 0
+        masks, start_id, partition_start = agent.generate_masked_one_hot(args.N, args.M)
         
         state_dict = env.reset(if_test=True, start_id=start_id, test_id=0)
         state = state_manager.construct_state(state_dict)
@@ -147,19 +148,24 @@ def test_parallel_agent_optimized(args, agent, env, num_tests=1):
             
             # Regenerate partition masks periodically
             if step_count % (args.N // args.M) == 0 and step_count != 0:
-                masks, start_id = agent.generate_masked_one_hot(args.N, args.M)
+                masks, start_id, partition_start = agent.generate_masked_one_hot(args.N, args.M)
                 mask = state_manager.update_mask([1] * args.N)
                 for i in start_id:
                     mask[i] = 0
                 env.start_id = start_id
-            step_count += 1
+            
 
-            # Get actions from all partition agents
-            actions = agent.act(state, env.graph.degree, env.graph, mask, masks, start_id, 
-                              K=args.K, epsilon=0.0)
+            if (step_count + 1) % (args.N // args.M) == 0:
+                actions = [partition_start[(i + 1) % args.M] for i in range(args.M)]
+
+            else:
+                # All partition agents choose actions
+                actions = agent.act(state, env.graph.degree, env.graph, mask, masks, start_id, 
+                                K=args.K, epsilon=0)
+            step_count += 1
             
             next_state_dict, rewards, done, info = env.step(actions)
-            
+            # print('next_state_dict: ', next_state_dict)
             # Update state and masks efficiently
             mask = state_manager.update_mask(next_state_dict['mask'])
             state = state_manager.construct_state(next_state_dict)
@@ -220,7 +226,8 @@ def train_parallel_dgro_optimized(args):
         device=device,
         experiment_name=args.experiment_name,
         sync_freq=args.sync_freq,
-        target_update_freq=args.target_update_freq
+        target_update_freq=args.target_update_freq,
+        K=args.K
     )
     
     # Initialize Weights & Biases if requested
@@ -242,8 +249,10 @@ def train_parallel_dgro_optimized(args):
             # Update alpha schedule
             env.update_alpha(episode)
             
+            
             # Generate partition masks and start IDs
-            masks, start_id = agent.generate_masked_one_hot(args.N, args.M, if_random=False)
+            agent.generated_mask_count = 0
+            masks, start_id, partition_start = agent.generate_masked_one_hot(args.N, args.M)
             
             # Reset environment and construct state efficiently
             state_dict = env.reset(if_test=False, start_id=start_id, test_id=0)
@@ -258,7 +267,7 @@ def train_parallel_dgro_optimized(args):
             total_losses = []
             
             # Calculate epsilon for exploration
-            epsilon = max((1 - update_count / 5000), 0.05)
+            epsilon = max((1 - episode / 150 ), 0.05)
             
             start_time = time.time()
             
@@ -267,27 +276,32 @@ def train_parallel_dgro_optimized(args):
                 
                 # Regenerate partition masks periodically
                 if step_count % (args.N // args.M) == 0 and step_count != 0:
-                    masks, start_id = agent.generate_masked_one_hot(args.N, args.M)
+                    masks, start_id, partition_start = agent.generate_masked_one_hot(args.N, args.M)
                     # Use efficient mask update
+                    # print('start_id: ', start_id, 'partition_start: ', partition_start)
                     mask = state_manager.update_mask([1] * args.N)
                     for i in start_id:
                         mask[i] = 0
                     env.start_id = start_id
                 # print('step_count: ', step_count)
                 
+                
+                if (step_count + 1) % (args.N // args.M) == 0:
+                    # print('start_id: ', start_id, 'partition_start: ', partition_start)
+                    actions = [partition_start[(i + 1) % args.M] for i in range(args.M)]
+
+                else:
+                    # All partition agents choose actions
+                    actions = agent.act(state, env.graph.degree, env.graph, mask, masks, start_id, 
+                                    K=args.K, epsilon=epsilon)
                 step_count += 1
-                
-                # All partition agents choose actions
-                actions = agent.act(state, env.graph.degree, env.graph, mask, masks, start_id, 
-                                  K=args.K, epsilon=epsilon)
-                
                 # Environment step
                 next_state_dict, individual_rewards, done, info = env.step(actions)
 
                 # Update episode rewards
                 for p in range(args.M):
                     episode_rewards[p] += individual_rewards[p]
-                
+                # print('next_state_dict: ', next_state_dict['mask'])
                 # Prepare next state efficiently
                 next_mask = state_manager.update_mask(next_state_dict['mask'])
                 next_state = state_manager.construct_state(next_state_dict)
@@ -314,46 +328,83 @@ def train_parallel_dgro_optimized(args):
                 state = next_state
                 mask = next_mask
                 start_id = next_state_dict['start_id']
+                
+                if update_count % 25 == 0 and update_count != 0:
+                    avg_loss = np.mean(total_losses) if total_losses else 0.0
+                    avg_episode_reward = np.mean(episode_rewards)
+                    
+                    # Test the agent
+                    test_diameter = test_parallel_agent_optimized(args, agent, test_env, num_tests=1)
+                    
+                    # Log results
+                    log_msg = (f"Episode {episode:6d}: Steps={step_count:3d}, "
+                            f"Avg Reward={avg_episode_reward:8.2f}, Loss={avg_loss:8.4f}, "
+                            f"Test Diameter={test_diameter:8.2f}, Alpha={env.alpha:.3f}, "
+                            )
+                    
+                    print(log_msg)
+                    log_file.write(log_msg + '\n')
+                    log_file.flush()
+                    
+                    # Save best model
+                    if test_diameter < best_diameter:
+                        best_diameter = test_diameter
+                        agent.save(episode)
+                        print(f"New best diameter: {best_diameter:.2f}")
+                    
+                    # Weights & Biases logging
+                    if args.if_wandb:
+                        wandb.log({
+                            'episode': episode,
+                            'avg_episode_reward': avg_episode_reward,
+                            'test_diameter': test_diameter,
+                            'avg_loss': avg_loss,
+                            'alpha': env.alpha,
+                            'epsilon': epsilon,
+                            'global_reward': info.get('global_reward', 0),
+                            'step_count': step_count,
+                            # 'episode_time': episode_time
+                        })
             
             episode_time = time.time() - start_time
             # assert 0
             # Logging and evaluation
-            if episode < 1000:
-                avg_loss = np.mean(total_losses) if total_losses else 0.0
-                avg_episode_reward = np.mean(episode_rewards)
+            # if episode < 1000:
+            #     avg_loss = np.mean(total_losses) if total_losses else 0.0
+            #     avg_episode_reward = np.mean(episode_rewards)
                 
-                # Test the agent
-                test_diameter = test_parallel_agent_optimized(args, agent, test_env, num_tests=1)
+            #     # Test the agent
+            #     test_diameter = test_parallel_agent_optimized(args, agent, test_env, num_tests=1)
                 
-                # Log results
-                log_msg = (f"Episode {episode:6d}: Steps={step_count:3d}, "
-                          f"Avg Reward={avg_episode_reward:8.2f}, Loss={avg_loss:8.4f}, "
-                          f"Test Diameter={test_diameter:8.2f}, Alpha={env.alpha:.3f}, "
-                          f"Time={episode_time:.2f}s")
+            #     # Log results
+            #     log_msg = (f"Episode {episode:6d}: Steps={step_count:3d}, "
+            #               f"Avg Reward={avg_episode_reward:8.2f}, Loss={avg_loss:8.4f}, "
+            #               f"Test Diameter={test_diameter:8.2f}, Alpha={env.alpha:.3f}, "
+            #               f"Time={episode_time:.2f}s")
                 
-                print(log_msg)
-                log_file.write(log_msg + '\n')
-                log_file.flush()
+            #     print(log_msg)
+            #     log_file.write(log_msg + '\n')
+            #     log_file.flush()
                 
-                # Save best model
-                if test_diameter < best_diameter:
-                    best_diameter = test_diameter
-                    agent.save(episode)
-                    print(f"New best diameter: {best_diameter:.2f}")
+            #     # Save best model
+            #     if test_diameter < best_diameter:
+            #         best_diameter = test_diameter
+            #         agent.save(episode)
+            #         print(f"New best diameter: {best_diameter:.2f}")
                 
-                # Weights & Biases logging
-                if args.if_wandb:
-                    wandb.log({
-                        'episode': episode,
-                        'avg_episode_reward': avg_episode_reward,
-                        'test_diameter': test_diameter,
-                        'avg_loss': avg_loss,
-                        'alpha': env.alpha,
-                        'epsilon': epsilon,
-                        'global_reward': info.get('global_reward', 0),
-                        'step_count': step_count,
-                        'episode_time': episode_time
-                    })
+            #     # Weights & Biases logging
+            #     if args.if_wandb:
+            #         wandb.log({
+            #             'episode': episode,
+            #             'avg_episode_reward': avg_episode_reward,
+            #             'test_diameter': test_diameter,
+            #             'avg_loss': avg_loss,
+            #             'alpha': env.alpha,
+            #             'epsilon': epsilon,
+            #             'global_reward': info.get('global_reward', 0),
+            #             'step_count': step_count,
+            #             'episode_time': episode_time
+            #         })
     
     print(f"Training completed. Best diameter: {best_diameter:.2f}")
     return agent, env
