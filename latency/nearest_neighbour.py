@@ -379,9 +379,15 @@ def K_ring(G, num_nodes, degree):
 def test_synthetic_graph(num_tests, N, k):
     diameter_list = []
     for i in range(num_tests):
-        graph_name = f'N={N}_{i}_Gaussian.pkl'
-        with open(os.path.join('.', 'test_dataset', graph_name), 'rb') as f:
+        # graph_name = f'N={N}_{i}_Gaussian.pkl'
+        # with open(os.path.join('.', 'test_dataset', graph_name), 'rb') as f:
+        #     G = pkl.load(f)
+        with open('../sc_test/G_400_FABRIC.pkl', 'rb') as f:
             G = pkl.load(f)
+        if i != 0:
+            node = random.choice(list(G.nodes()))
+            for v in G.neighbors(node):
+                G.edges[node, v]['weight'] += 100
         test_methods(G, N, k)
 
 def test_bitnode_graph(file_path, N, k):
@@ -445,10 +451,10 @@ def test_methods(G, N, k):
 if __name__ == '__main__':
     
     N = 500
-    k = 8
+    k = 3
     M = 4
     file_path = '/global/homes/s/swu264/perigee/linkdelay.npy'
-    N_list = [100]
+    N_list = [400]
     for i in range(500, 5001, 500):
         N_list.append(i)
     seed = 1
@@ -458,6 +464,7 @@ if __name__ == '__main__':
         np.random.seed(seed)
         th.manual_seed(seed)
         num_tests = 20
+        # for _ in range(10):
         test_synthetic_graph(num_tests, N, k)
         # test_bitnode_graph(file_path, N, k) 
         # test_cluster(N, k, M)

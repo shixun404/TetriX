@@ -1,11 +1,43 @@
 rl/figs
 
+# Model weights
 *.pth
-**/wandb
+
+# Experiment tracking
+**/wandb/
+
+# Archives
 *.tar.gz
-**/logs
-**/__pycache__/
-latency/__pycache__/*
+
+# Logs
+**/logs/
 *.output
 *.out
+latency/output.txt
 
+# Python cache
+**/__pycache__/
+*.pyc
+*.pyo
+
+# Profiling
+*.prof
+profile_results.txt
+
+# Jupyter checkpoints
+**/.ipynb_checkpoints/
+
+# Large data/result dirs
+sc_test/*_histo_*/
+sc_test/best_test_graph*.pkl
+sc_test/FABRIC_*.pkl
+sc_test/G_*.pkl
+sc_test/node_mapping*.pkl
+sc_test/*.log
+rl/*.pkl
+
+# Temp / OS files
+.zsh_history
+.zshrc
+*.png
+*.pdf

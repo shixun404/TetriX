@@ -33,7 +33,7 @@ class GraphEnv(gym.Env):
         self.num_sources = num_sources
         self.load_graph()
 
-    def reset(self, if_test=False, start_id=0, test_id=0):
+    def reset(self, if_test=False, start_id=0, test_id=0, random_noise=False, mu=10, sigma=5):
         self.if_test = if_test
         self.graph.clear()
         self.mask = [self.K for i in range(self.num_nodes)]
@@ -65,6 +65,12 @@ class GraphEnv(gym.Env):
             for (u, v) in self.initial_graph.edges():
                 # self.initial_graph.add_edge(v, u)
                 self.initial_graph.edges[v,u]['weight'] = self.initial_graph.edges[u,v]['weight']  # Assign random positive weights
+        if random_noise:
+            for (u, v) in self.initial_graph.edges():
+                noise = np.random.normal(mu, sigma)
+                noise = noise if noise > 0 else -noise
+                new_weight = self.initial_graph.edges[u, v]['weight'] + noise
+                self.initial_graph.edges[u, v]['weight'] = new_weight
         self.initial_adjacency_matrix = nx.to_numpy_array(self.initial_graph, nodelist=sorted(self.initial_graph.nodes()))
         # for i in range(self.num_nodes):
         #     self.graph.add_edge(i, (i + 1) % self.num_nodes)
@@ -137,7 +143,7 @@ class GraphEnv(gym.Env):
         self.start_id = action
         
         if self.num_steps >= ((self.num_nodes) * self.K) or sum(mask) == 0:
-            print(self.mask)
+            # print(self.mask)
             mask = [1 for i in range(self.num_nodes)]
             done = True  # You can define your own condition
             

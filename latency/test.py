@@ -11,6 +11,11 @@ from brute_force import *
 import json
 # from node2vec import Node2Vec
 import time
+import matplotlib.pyplot as plt
+import networkx as nx
+import pickle as pkl
+from failure_scenarios import FailureScenarios, test_failure_scenarios
+from scipy import stats
 
 class ReplayBuffer:
     def __init__(self, capacity):
@@ -55,7 +60,7 @@ def test(args, num_tests=1, agent=None, env=None, log_file=None, if_plot=False, 
             # for start_id in range(args.N):
             print(_)
             for start_id in range(_, _ + 1):
-                state_dict = env.reset(if_test=if_test, start_id=start_id, test_id=i)
+                state_dict = env.reset(if_test=if_test, start_id=start_id, test_id=i, random_noise=False)
                 state = np.append(state_dict['initial_graph'].flatten(), state_dict['graph'].flatten())  # Flatten the adjacency matrix to fit the network input
                 state = np.append(state, state_dict['degree'])
                 state = np.append(state, state_dict['start_id'])
@@ -248,5 +253,84 @@ if __name__ == '__main__':
         log_file = open(log_file_path, 'w')
         agent.load(model_path[i])
         d, G = test(args, env=env, agent=agent, log_file=log_file, seed=seed, epsilon=0.00)
+        
+        # 添加随机噪声并测试diameter
+        
+        diameter_list = []
+        original_diameter = nx.diameter(G, weight='weight')
+        print(f"Original diameter: {original_diameter}")
+        
+        for j in range(100):
+            # 创建图的副本
+            G_noisy = G.copy()
+            
+            # # 为每条边添加随机噪声 absolute(Normal(20, 5))
+            # for u, v in G_noisy.edges():
+            #     noise = abs(np.random.normal(5, 1))
+            #     original_weight = G_noisy.edges[u, v]['weight']
+            #     G_noisy.edges[u, v]['weight'] = original_weight + noise
+
+            # 随机选一个点，让这个点的所有weight都加100.
+            node = random.choice(list(G_noisy.nodes()))
+            for v in G_noisy.neighbors(node):
+                G_noisy.edges[node, v]['weight'] += 100
+            
+            # 计算新的diameter
+            try:
+                diameter = nx.diameter(G_noisy, weight='weight')
+                diameter_list.append(diameter)
+                if j % 10 == 0:
+                    print(f"Test {j}: diameter = {diameter}")
+            except:
+                print(f"Test {j}: Failed to compute diameter (graph disconnected)")
+        
+        # 画出histogram
+        if diameter_list:
+            plt.figure(figsize=(10, 6))
+            plt.hist(diameter_list, bins=20, edgecolor='black', alpha=0.7)
+            plt.title(f'Diameter Distribution with Random Noise N={args.N} K={args.K}\n(Original diameter: {original_diameter:.2f})')
+            plt.xlabel('Diameter')
+            plt.ylabel('Frequency')
+            plt.grid(True, alpha=0.3)
+            
+            # 添加统计信息
+            mean_diameter = np.mean(diameter_list)
+            std_diameter = np.std(diameter_list)
+            plt.axvline(mean_diameter, color='red', linestyle='--', label=f'Mean: {mean_diameter:.2f}')
+            plt.axvline(original_diameter, color='blue', linestyle='--', label=f'Original: {original_diameter:.2f}')
+            plt.legend()
+            
+            # 保存图像
+            os.makedirs(f'../sc_test/{args.N}_histo_seed={seed}_FABRIC', exist_ok=True)
+            plt.savefig(f'../sc_test/{args.N}_histo_seed={seed}_FABRIC/diameter_noise_histogram.png', dpi=300, bbox_inches='tight')
+            plt.show()
+            
+            # 保存数据
+            noise_results = {
+                'original_diameter': original_diameter,
+                'diameter_list': diameter_list,
+                'mean_diameter': mean_diameter,
+                'std_diameter': std_diameter,
+                'min_diameter': min(diameter_list),
+                'max_diameter': max(diameter_list)
+            }
+            
+            with open(f'../sc_test/{args.N}_histo_seed={seed}_FABRIC/diameter_noise_results.pkl', 'wb') as f:
+                pkl.dump(noise_results, f)
+            
+            print(f"\nStatistics with noise:")
+            print(f"Original diameter: {original_diameter:.2f}")
+            print(f"Mean diameter: {mean_diameter:.2f}")
+            print(f"Std diameter: {std_diameter:.2f}")
+            print(f"Min diameter: {min(diameter_list):.2f}")
+            print(f"Max diameter: {max(diameter_list):.2f}")
+        
+        # 运行故障场景分析
+        print("\n" + "="*80)
+        print("STARTING FAILURE SCENARIOS ANALYSIS")
+        print("="*80)
+        
+       
+            
         with open(os.path.join('..', 'sc_test', f'best_test_graph_N={args.N}_K={args.K}_seed={seed}.pkl'), 'wb') as f:
             pkl.dump(G, f)
